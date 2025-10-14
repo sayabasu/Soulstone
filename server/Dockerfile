@@ -1,6 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM node:20-alpine
 
+# Ensure OpenSSL libraries are available for Prisma Client at runtime
+RUN apk add --no-cache openssl1.1-compat
+
 WORKDIR /app
 
 # Install dependencies using the server package manifest
