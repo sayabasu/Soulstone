@@ -3,7 +3,6 @@
 Status: Final
 Version: v1.0
 Last Updated: 2023-10-14
-Owners/Reviewers: CEO (Aarav Mehta), COO (Kavya Iyer), CMO (Rohan Deshmukh), PM (TBD), Eng Lead (TBD)
 
 <a id="sec-executive-summary"></a>
 
