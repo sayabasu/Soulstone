@@ -518,3 +518,120 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - `[2026‑04‑10] v0.9.0` — Added subscriptions MVP; improved PDP performance; fixed address validation; applied OpenSSL patch.
   - `[2026‑05‑02] v1.0.0` — Public launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
 
+
+---
+
+## 7. 🧠 Internal Policies & Hiring Plan
+
+### 7.1 Org Chart & Hiring Plan
+
+- Org structure (functions):
+  - Founders: Brand & Growth, Ops & Sourcing, Product & Tech.
+  - Product & Design; Engineering; Data & Analytics; Operations & Sourcing; Customer Experience (CX); Brand & Growth; Finance & Legal; People & Culture.
+
+- Year 1 headcount (15–18 FTE):
+  - Product: 1 PM, 1 Product Designer.
+  - Engineering: 3 Full‑stack, 1 Mobile (React Native), 1 QA, 1 DevOps/Infra.
+  - Ops & Sourcing: 2 Associates (vendor, quality), 1 Supply/Inventory.
+  - CX: 3 Associates (chat, email, WhatsApp) with weekend rotation.
+  - Growth: 1 Content Lead, 1 Performance Marketer.
+  - G&A: 1 Finance/HR Generalist.
+
+- Year 2 expansion (25–30 FTE):
+  - Add: 2 Engineers, 1 Data Analyst, 1 Community Manager, 1 Vendor Manager, 1 Compliance/QA (product), 1 Senior PM.
+
+- Hiring priorities & timeline:
+  - Q1: Core eng (2), designer, PM, CX lead.
+  - Q2: DevOps, QA, performance marketer, sourcing associate.
+  - Q3: Mobile engineer, content lead, supply/inventory.
+  - Q4: Data analyst, additional CX, vendor manager.
+
+- Recruiting process:
+  - Funnel: Recruiter screen → tech/functional rounds (2) → assignment/live exercise → culture interview → references → offer.
+  - SLA: time‑to‑hire ≤ 30 days; candidate response ≤ 48h; feedback within 24h per round.
+  - Diversity: aim ≥ 40% women/UR groups in pipeline; structured rubrics; calibrated panels.
+
+- Compensation & ESOPs:
+  - Market‑aligned INR bands; mix of cash + ESOP (4‑year vest, 1‑year cliff); performance bonus for ops/CX.
+  - Illustrative bands (Bengaluru): SDE‑2 ₹18–28 LPA; PM ₹18–28 LPA; Designer ₹12–20 LPA; Ops ₹8–14 LPA; CX ₹4–8 LPA.
+
+- Contractors & vendors:
+  - Use for creative (photo/video), translations, seasonal CX; clear SLAs and IP assignment.
+
+### 7.2 Company Policies (Remote Work, Expenses, Security)
+
+- Work model & hours:
+  - Hybrid by default (Bengaluru HQ); remote‑friendly within India; core hours 11:00–17:00 IST; 5‑day week.
+  - Time off: 18 days annual leave, 8 sick/casual, 12 public holidays; comp‑off for approved weekend work.
+
+- Remote & equipment:
+  - Company laptop, 27" monitor (role‑based), peripherals; WFH stipend ₹1,500/month (internet/power); ergonomic allowance ₹10,000 every 2 years.
+  - Coworking up to ₹8,000/month (manager approval).
+
+- Travel & expenses:
+  - Local travel: actuals (rideshare/metro) within city; intercity: economy airfare/train 2A; hotel up to ₹4,000/night (Tier‑1), ₹3,000 (Tier‑2).
+  - Meals: ₹800/day cap when traveling; client entertainment with pre‑approval; submit within 10 days; receipts mandatory > ₹500.
+
+- Security policy:
+  - SSO + 2FA mandatory; device encryption; screen lock ≤ 5 min; password manager required.
+  - No production data on local machines; access via bastion/SSO; least‑privilege IAM.
+  - Phishing drills quarterly; report suspected incidents within 1 hour to security alias.
+
+- Data protection & privacy:
+  - Comply with DPDP Act (India) and GDPR where applicable; data classification (Public/Internal/Confidential/Restricted).
+  - PII/Payment data handling only via approved systems; retention schedules documented; right‑to‑erasure process ≤ 7 days.
+
+- Device & BYOD:
+  - MDM enrollment required; patch OS within 14 days (critical within 72h); company data only in managed apps; no USB media for prod data.
+
+- Procurement & vendors:
+  - Security and privacy review for SaaS; DPA where needed; SOC2/ISO27001 preferred; annual re‑review.
+
+- Performance & reviews:
+  - Quarterly check‑ins; annual review with 360 feedback; OKRs at company/team/individual levels.
+
+- Compliance & workplace:
+  - PoSH committee constituted; anti‑harassment training mandatory; zero retaliation policy.
+
+### 7.3 Code of Conduct
+
+- Principles:
+  - Be respectful, inclusive, truthful, and customer‑obsessed; uphold ethical sourcing and environmental standards.
+
+- Expected behaviors:
+  - Assume positive intent; disagree and commit; document decisions; protect customer data; declare conflicts of interest.
+
+- Unacceptable behaviors:
+  - Harassment, discrimination, bullying; demeaning language; sexual advances; threats; doxxing; retaliation.
+
+- Conflicts, gifts, anti‑bribery:
+  - Disclose vendor/partner relationships; gifts/hospitality ≤ ₹2,500 acceptable with disclosure; never solicit kickbacks; follow anti‑corruption laws.
+
+- Communications & social media:
+  - Do not disclose confidential info; media requests via founders/PR; respectful public engagement; brand guidelines for ambassadors.
+
+- Reporting & enforcement:
+  - Report via HR, manager, or anonymous form; PoSH matters to ICC; prompt investigation; proportional consequences; no retaliation.
+
+### 7.4 Team Onboarding Documents
+
+- Pre‑boarding (D‑7 to D‑1):
+  - Offer, NDA, IP assignment, policy acknowledgement; KYC/ID proofs; laptop shipment; accounts pre‑provisioned (SSO, email, Slack, Notion, GitHub, HRIS).
+
+- Day 1 checklist:
+  - Welcome, device setup, security brief (2FA, password manager), tool access, introductions, benefits overview, assign buddy/manager 1:1s.
+
+- Week 1 plan:
+  - Product walkthrough; brand/story; sourcing ethics; support shadowing; read PRD, runbooks, and security policies; complete PoSH & infosec training.
+
+- 30/60/90 plan:
+  - 30: environment + first contribution; 60: own a small project; 90: end‑to‑end feature or process improvement with metrics.
+
+- Access map & approvals:
+  - Infra (AWS), repos, CI/CD, analytics, CRM/Helpdesk, finance tools — request via tickets; least‑privilege by default; revoke on role change.
+
+- Documentation hub:
+  - Org chart, OKRs, roadmaps, design system, API docs, incident runbooks, vendor list, policy wiki; search‑first culture.
+
+- Onboarding completion:
+  - Manager sign‑off; survey; probation feedback; add to on‑call/training rosters as applicable.
