@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Ensure OpenSSL libraries are available for Prisma Client at runtime
-RUN apk add --no-cache openssl1.1-compat
+RUN apk add --no-cache openssl
 
 WORKDIR /app
 
