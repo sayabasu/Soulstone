@@ -1,7 +1,17 @@
 """Utility to combine Markdown files into a professionally formatted PDF.
 
-This module exposes a command line interface. Example usage:
-    python pdf_generator.py output.pdf section1.md section2.md
+
+This module exposes a command line interface. Example usage::
+
+    # Generate ``MyProject.pdf`` from every Markdown file in the directory
+    python pdf_generator.py
+
+    # Explicitly control the output file name
+    python pdf_generator.py --output release-notes.pdf
+
+    # Preserve the legacy calling convention
+    python pdf_generator.py release-notes.pdf section1.md section2.md
+
 """
 from __future__ import annotations
 
@@ -40,15 +50,22 @@ def _parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
         )
     )
     parser.add_argument(
-        "output",
-        type=Path,
-        help="Output PDF file path.",
-    )
-    parser.add_argument(
+
         "inputs",
         type=Path,
-        nargs="+",
-        help="One or more Markdown files whose contents will populate the PDF.",
+        nargs="*",
+        help="Markdown files whose contents will populate the PDF."
+        " Defaults to every .md file in the current directory when omitted.",
+    )
+    parser.add_argument(
+        "--output",
+        "-o",
+        type=Path,
+        default=None,
+        help=(
+            "Optional output PDF file path. Defaults to '<cwd name>.pdf' when not provided."
+        ),
+
     )
     parser.add_argument(
         "--title",
@@ -72,6 +89,15 @@ def _load_content(files: Iterable[Path]) -> List[Section]:
             raise ValueError(f"Input file must be a Markdown file (.md): {file}")
         sections.append((file.stem.replace("_", " "), file.read_text(encoding="utf-8")))
     return sections
+
+
+
+def _discover_markdown_files(directory: Path) -> List[Path]:
+    """Return a sorted list of Markdown files in *directory*."""
+
+    files = sorted(p for p in directory.iterdir() if p.suffix.lower() == ".md" and p.is_file())
+    return files
+
 
 
 def _inner_html(element: ET.Element) -> str:
@@ -350,9 +376,29 @@ def generate_pdf(output: Path, sections: Sequence[Section], *, title: str, foote
 
 def main(argv: Iterable[str] | None = None) -> None:
     args = _parse_args(argv)
-    sections = _load_content(args.inputs)
+
+    inputs: List[Path] = list(args.inputs)
+    output: Path | None = args.output
+
+    # Preserve previous CLI behaviour: treating the first positional argument ending with
+    # ``.pdf`` as the output path when ``--output`` is not supplied.
+    if output is None and inputs and inputs[0].suffix.lower() == ".pdf":
+        output = inputs.pop(0)
+
+    if not inputs:
+        inputs = _discover_markdown_files(Path.cwd())
+        if not inputs:
+            raise SystemExit("No Markdown files found in the current directory.")
+
+    sections = _load_content(inputs)
+
+    if output is None:
+        default_name = Path.cwd().name or "document"
+        output = Path.cwd() / f"{default_name}.pdf"
+
     generate_pdf(
-        args.output,
+        output,
+
         sections,
         title=args.title,
         footer=args.footer,
