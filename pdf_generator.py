@@ -153,7 +153,7 @@ def _convert_table(element: ET.Element, *, body_style: ParagraphStyle) -> Table 
     return table
 
 
-def _convert_list(element: ET.Element, *, styles, bullet_type: str) -> ListFlowable:
+def _convert_list(element: ET.Element, *, styles, bullet_type: str) -> ListFlowable | None:
     items: List[ListItem] = []
     body_style: ParagraphStyle = styles["MarkdownBody"]
 
@@ -186,6 +186,9 @@ def _convert_list(element: ET.Element, *, styles, bullet_type: str) -> ListFlowa
             items.append(
                 ListItem(item_flowables if len(item_flowables) > 1 else item_flowables[0])
             )
+
+    if not items:
+        return None
 
     return ListFlowable(
         items,
@@ -230,10 +233,12 @@ def _markdown_element_to_flowables(element: ET.Element, *, styles) -> List:
         return [Preformatted(code_text or "", styles["MarkdownCode"])]
 
     if tag == "ul":
-        return [_convert_list(element, styles=styles, bullet_type="bullet")]
+        list_flowable = _convert_list(element, styles=styles, bullet_type="bullet")
+        return [list_flowable] if list_flowable is not None else []
 
     if tag == "ol":
-        return [_convert_list(element, styles=styles, bullet_type="1")]
+        list_flowable = _convert_list(element, styles=styles, bullet_type="1")
+        return [list_flowable] if list_flowable is not None else []
 
     if tag == "table":
         table = _convert_table(element, body_style=body_style)
@@ -270,7 +275,11 @@ def _markdown_to_flowables(markdown_text: str, styles) -> List:
             "tables",
             "fenced_code",
         ],
-        output_format="html5",
+        # ``xml.etree`` expects XHTML-style void elements (e.g. ``<br />``) to
+        # remain well-formed.  Using ``xhtml1`` ensures Markdown generates
+        # compatible markup rather than HTML5 shorthand tags that would break
+        # parsing when wrapped in an XML container.
+        output_format="xhtml1",
     )
 
     wrapped_html = f"<root>{_sanitize_html(html)}</root>"
