@@ -24,7 +24,7 @@ const loadAuthFromStorage = () => {
   }
 };
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children = null }) => {
   const [state, setState] = useState(() => loadAuthFromStorage());
 
   const login = useCallback((token, user) => {
@@ -53,10 +53,6 @@ export const AuthProvider = ({ children }) => {
 
 AuthProvider.propTypes = {
   children: PropTypes.node,
-};
-
-AuthProvider.defaultProps = {
-  children: null,
 };
 
 export default AuthProvider;

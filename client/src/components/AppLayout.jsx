@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 import NavigationBar from './NavigationBar.jsx';
 
-const AppLayout = ({ children }) => (
+const AppLayout = ({ children = null }) => (
   <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
     <NavigationBar />
     {children}
@@ -11,10 +11,6 @@ const AppLayout = ({ children }) => (
 
 AppLayout.propTypes = {
   children: PropTypes.node,
-};
-
-AppLayout.defaultProps = {
-  children: null,
 };
 
 export default AppLayout;
