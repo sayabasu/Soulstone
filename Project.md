@@ -221,7 +221,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Year 1 Target: 25,000 active users
 - Vision: Wellness ecosystem with personalization and community
 
-### 5.2 PRD (Product Requirements Document)
+### 5.2 Product Requirements Document
 
 - Fast product discovery and secure checkout.
 - Personalized energy guides and storytelling modules.
