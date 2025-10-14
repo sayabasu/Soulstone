@@ -1,5 +1,40 @@
 # Soulstone Startup Plan
 
+Status: Final
+Version: v1.0
+Last Updated: 2023-10-14
+Owners/Reviewers: CEO (Aarav Mehta), COO (Kavya Iyer), CMO (Rohan Deshmukh), PM (TBD), Eng Lead (TBD)
+
+## Executive Summary
+
+- Purpose: Build India’s trusted, modern spiritual lifestyle brand with ethically sourced crystals, education-first content, and community-led experiences.
+- Market: Strong tailwinds in India’s wellness and e-commerce growth; target 25,000 paying users in Year 1 with healthy repeat (≥30%).
+- Differentiation: Authentic sourcing, transparent storytelling, premium design, and responsible marketing; education and community as durable moats.
+- Product: Web + mobile app MVP in Q2 2026; 100+ SKUs at launch; subscriptions, loyalty, and referrals as retention engines.
+- Tech/Ops: TypeScript stack (Next.js/React Native/Node), robust SLOs, secure payments, analytics taxonomy, and documented APIs.
+- Unit economics: AOV ~₹1,800, CAC ≤₹500, LTV ~₹4,500; LTV:CAC ≥ 8–10:1 with improving cohorts via subscriptions and content.
+- GTM: Tier‑1 focus initially, creator partnerships, content/SEO, and community events; transparent reviews and ethics lead brand trust.
+- Funding: Seed ₹1.5 Cr (target) to achieve MVP launch, early traction, and runway to contribution margin positive.
+
+## Table of Contents
+
+- Executive Summary
+- 1. Preface
+- 2. Vision & Strategy Docs
+- 3. Founders’ & Legal Docs
+- 4. Pitch Deck & Financial Model
+- 5. Product Roadmap & PRD
+- 6. Mobile App & Website Documentation
+- 7. Internal Policies & Hiring Plan
+- 8. Marketing and Sales Materials
+- 9. Investor & Growth Reporting Templates
+- 10. Risks & Mitigations
+- 11. Cross-Functional Milestones
+- 12. Next Steps & Sign-Off
+- Appendix A: Glossary
+- Appendix B: Source Notes & Disclaimers
+- Version History
+
 
 ## 1. Preface
 
@@ -549,8 +584,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Known Issues — impact/workarounds
 
 - Example entries (illustrative):
-  - `[2026‑04‑10] v0.9.0` — Added subscriptions MVP; improved PDP performance; fixed address validation; applied OpenSSL patch.
-  - `[2026‑05‑02] v1.0.0` — Public launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
+  - `[2023‑04‑10] v0.9.0` — Added subscriptions MVP; improved PDP performance; fixed address validation; applied OpenSSL patch.
+  - `[2023‑05‑02] v1.0.0` — Public launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
 
 
 
@@ -844,3 +879,104 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Partnership KPIs:
   - Leads, conversions, revenue share, CPA, repeat rate, brand search uplift, content reach/engagement.
+
+---
+
+## 10. Risks & Mitigations
+
+- Supply authenticity risk
+  - Risk: Misrepresentation or inconsistent quality from upstream vendors harms trust.
+  - Mitigations: Direct sourcing, certifications, periodic audits, randomized QA, tamper‑evident packaging, authenticity cards + QR to sourcing stories.
+
+- Regulatory/claims risk
+  - Risk: Non‑compliant wellness claims or consumer protection violations.
+  - Mitigations: Legal review for all copy, approved claims library, disclaimers, training; DPDP/consumer law compliance checks.
+
+- Performance/availability risk
+  - Risk: Slow pages, checkout failures, or outages reduce conversion.
+  - Mitigations: Perf budgets, load tests, SLOs/alerts, rollback plans, blue/green deploys, CDN optimization, payment gateway failover.
+
+- Payments/fraud risk
+  - Risk: High decline rates, chargebacks, or reconciliation gaps.
+  - Mitigations: 3DS where applicable, risk scoring, address verification, idempotency on webhooks, daily recon, reserve buffers.
+
+- Reputation/UGC risk
+  - Risk: Biased or manipulated reviews; harmful content impacts brand.
+  - Mitigations: Transparent review policy (no suppression), moderation guidelines, clear community standards, right to reply.
+
+- Data privacy/security risk
+  - Risk: PII leakage, improper access, or breach.
+  - Mitigations: Least privilege, encryption at rest/in transit, secrets management, audit logs, incident runbooks, consent and deletion flows.
+
+- Vendor/third‑party dependency risk
+  - Risk: Single point of failure for logistics/payments/infra.
+  - Mitigations: Secondary providers, contractual SLAs, health checks, feature flags/kill‑switches, exit plans.
+
+- Cash runway risk
+  - Risk: Overspend vs. traction leading to shortened runway.
+  - Mitigations: Scenario budgets, marketing guardrails, CAC/LTV gates, hiring gates tied to milestones, monthly runway reviews.
+
+## 11. Cross-Functional Milestones
+
+- Q4 2025
+  - Legal prep, IP audit, partner discovery, initial brand system, analytics taxonomy draft.
+
+- Q1 2026
+  - LLP/GST/PAN/TAN filings complete; MVP scope lock; design system v1; supplier shortlist; creator pipeline seeded.
+
+- Q2 2026 (MVP Launch)
+  - Web + app MVP live; 100+ SKUs; payments live; Learn hub v1; analytics dashboards; first 10 partners activated.
+
+- Q3 2026
+  - Subscriptions v1; loyalty/referrals; Tier‑2 expansion; 50 partners; CAC ≤₹500; repeat rate ≥25%.
+
+- Q4 2026
+  - Influencer marketplace pilot; 120+ partners; contribution margin positive cohorts; SEO pillar pages live.
+
+- H1 2027
+  - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%.
+
+## 12. Next Steps & Sign-Off
+
+- Immediate actions (next 30 days)
+  - Finalize supplier contracts and QA checklist (COO)
+  - Lock MVP scope and delivery plan (PM/Eng Lead)
+  - Approve brand system and content guidelines (CEO/CMO)
+  - Stand up dashboards with core KPIs (PM/Data)
+  - Seed first 10 creator partnerships (CMO)
+
+- Decision checkpoints
+  - Gate 1 (Design freeze): ready for build (PM/CEO)
+  - Gate 2 (Go‑to‑market assets): launch‑ready (CMO)
+  - Gate 3 (MVP readiness): perf/a11y/security passed (Eng Lead)
+
+- Sign-off
+  - CEO (Aarav Mehta): ____________________  Date: __________
+  - COO (Kavya Iyer): _____________________  Date: __________
+  - CMO (Rohan Deshmukh): ________________  Date: __________
+  - PM (TBD): _____________________________  Date: __________
+  - Eng Lead (TBD): _______________________  Date: __________
+
+## Appendix A: Glossary
+
+- AOV: Average Order Value
+- CAC: Customer Acquisition Cost
+- LTV: Customer Lifetime Value (12‑month model unless stated)
+- CVR: Conversion Rate
+- MAU: Monthly Active Users
+- NPS/CSAT: Net Promoter Score / Customer Satisfaction
+- SLO/SLA: Service Level Objective/Agreement
+- RPO/RTO: Recovery Point/Time Objective
+- P95/P75: 95th/75th percentile performance metrics
+- DPDP: Digital Personal Data Protection (India)
+- PoSH: Prevention of Sexual Harassment (workplace policy)
+
+## Appendix B: Source Notes & Disclaimers
+
+- Figures are indicative, based on internal estimates and publicly available industry reports as of 2024–2025; to be refreshed during fundraising and before public launch.
+- No medical claims: products are not intended to diagnose, treat, cure, or prevent disease. Content is educational; users should consult professionals for medical advice.
+- Forward‑looking statements involve risks and uncertainties; actual outcomes may differ based on market conditions and execution.
+
+## Version History
+
+- v1.0 (2023-10-14) — Finalized draft: added Executive Summary, Table of Contents, Risks & Mitigations, Cross‑Functional Milestones, Next Steps & Sign‑Off, Glossary, Disclaimers.
