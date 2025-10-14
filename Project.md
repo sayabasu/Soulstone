@@ -1098,21 +1098,27 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Q4 2023
   - Legal prep, IP audit, partner discovery, initial brand system, analytics taxonomy draft.
+  - Engineering discovery: repo conventions, initial CI plan, infra prerequisites.
 
 - Q1 2024
   - LLP/GST/PAN/TAN filings complete; MVP scope lock; design system v1; supplier shortlist; creator pipeline seeded.
+  - Engineering foundations & scaffolding: monorepo, CI/CD, Docker, IaC baseline; Express/TS API scaffold with auth and error model; Prisma schema/migrations/seed; Next.js app shell; RN bootstrap; analytics SDK wrappers.
 
 - Q2 2024 (MVP Launch)
   - Web + app MVP live; 100+ SKUs; payments live; Learn hub v1; analytics dashboards; first 10 partners activated.
+  - Admin minimal (ops tooling) live; infra & runbooks in place; QA/perf/security gates passed; mobile in staged beta (browse/auth/cart).
 
 - Q3 2024
   - Subscriptions v1; loyalty/referrals; Tier‑2 expansion; 25 partners; CAC ≤₹500; repeat rate ≥25%.
+  - Reviews & UGC v1; search improvements (typeahead, synonyms/fuzzy); mobile checkout parity and push/deep links; synthetic checks and error budget policy.
 
 - Q4 2024
   - Influencer marketplace pilot; 40+ partners; contribution margin positive cohorts; SEO pillar pages live.
+  - Admin workflows (promotions/coupons, bulk uploads, reservations, returns approvals, RBAC/audit); security & DR hardening (pen‑test fixes, WAF tuning, DR drill).
 
 - H1 2025
   - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%; 50 partners achieved by Q1 2025.
+  - Notifications & i18n scaffolding; multi‑region readiness (read replica plan) and incident automation improvements.
 
 <a id="sec-12"></a>
 
@@ -1129,6 +1135,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Gate 1 (Design freeze): ready for build (PM/CEO)
   - Gate 2 (Go‑to‑market assets): launch‑ready (CMO)
   - Gate 3 (MVP readiness): perf/a11y/security passed (Eng Lead)
+  - Engineering Gates A–D (timeline alignment):
+    - Gate A: CI/CD, envs, schema baseline, auth ready (Q1 W4)
+    - Gate B: Checkout + webhooks stabilized; Admin minimal live (Q2 W4)
+    - Gate C: Web P75 < 2.0s; app crash‑free > 99.5% (beta); security checklist (Q2 W6)
+    - Gate D: Beta, bug bash, staged rollout → go‑live (Q2 W8–10)
 
 - Sign-off
   - CEO (Aarav Mehta): ____________________  Date: __________

@@ -1,467 +1,428 @@
-# Soulstone — Business Requirements (Software Only)
+# Soulstone — Business Requirements (PERN, DevSecOps-ready)
 
-🧭 1. Epic — High-level business goal
+## [ Epic ] - Soulstone
 
-Purpose: Capture major outcomes for the Soulstone web and mobile software products. Scope includes product, APIs, data, security, reliability, and app distribution. No budgets, hiring, or legal.
+### 1. [ Feature ] - Engineering Foundations & Dev Environment
 
+#### 1.1. [ User Story ] - Monorepo and Tooling Setup
+##### 1.1.1. [ Task ] - Initialize monorepo (pnpm or yarn workspaces)
+###### 1.1.1.1. [ Subtask ] - Create structure: apps/api, apps/web, packages/ui, packages/config, packages/tsconfig, packages/eslint-config, infra/terraform, ops/
+###### 1.1.1.2. [ Subtask ] - Configure workspace root package.json with scripts (build, dev, test, lint, format)
+###### 1.1.1.3. [ Subtask ] - Add .editorconfig, .nvmrc, .gitattributes, .gitignore
+##### 1.1.2. [ Task ] - TypeScript baselines
+###### 1.1.2.1. [ Subtask ] - Define shared tsconfig in packages/tsconfig and extend in apps
+###### 1.1.2.2. [ Subtask ] - Enable strict mode, path aliases, incremental builds
+##### 1.1.3. [ Task ] - Linting/formatting standards
+###### 1.1.3.1. [ Subtask ] - ESLint with TypeScript rules; Prettier with import/order
+###### 1.1.3.2. [ Subtask ] - Add lint-staged + Husky pre-commit hooks
+##### 1.1.4. [ Task ] - Commit and branch conventions
+###### 1.1.4.1. [ Subtask ] - Configure commitlint (Conventional Commits)
+###### 1.1.4.2. [ Subtask ] - Define branch protection and PR template
 
-Epic: Core Shopping Experience (Browse → PDP)
-Description: Deliver a fast, trustworthy catalog browsing experience with rich product detail pages including energy attributes, origins, and certifications.
-Success criteria:
-- P95 web LCP ≤ 2.5s; app TTI ≤ 2.0s on mid-range Android.
-- Search-to-PDP success ≥ 90%; PDP bounce < 40%.
-- Add-to-cart rate from PDP ≥ 8% across top categories.
+#### 1.2. [ User Story ] - Local Dev Environment
+##### 1.2.1. [ Task ] - Docker Compose services
+###### 1.2.1.1. [ Subtask ] - postgres (15), redis, mailhog, localstack (optional)
+###### 1.2.1.2. [ Subtask ] - Seed volumes and healthchecks; named networks
+##### 1.2.2. [ Task ] - Env management
+###### 1.2.2.1. [ Subtask ] - .env.example with required vars; dotenv-safe loading
+###### 1.2.2.2. [ Subtask ] - Split envs: .env.dev, .env.test, .env.local
+##### 1.2.3. [ Task ] - Developer bootstrap script
+###### 1.2.3.1. [ Subtask ] - Makefile/Taskfile for install, db:up, db:migrate, db:seed, dev
+###### 1.2.3.2. [ Subtask ] - Onboarding doc covering prerequisites and commands
 
-Feature: Product Listing & Filtering (PLP)
-Description: Category pages with robust facets (type, intention, chakra, price, size, origin, rating).
-Acceptance Criteria:
-- Supports multi-select facets and sort (relevance, newest, price, popularity, rating).
-- Zero-result state with suggested intents and top searches.
-- Cursor/offset pagination with SEO-friendly URLs and canonicals.
+### 2. [ Feature ] - Infrastructure as Code (AWS)
 
-User Story:
-As a shopper, I want to quickly filter by “intention” and “stone type” so I can find a crystal aligned with my needs.
-Acceptance Criteria:
-- Applying/removing filters updates results < 300ms (cache hit) or < 1s (origin).
-- URL captures filters for share/deep-linking.
-- Selected facets are keyboard accessible and screen-reader friendly.
-Tasks:
-- Implement GraphQL queries for product collections with facet metadata.
-- Build PLP UI with facet chips, filter drawer, and sort controls (web + app).
-- Add SEO slugs and canonical URLs for categories.
-- Implement zero-result recommendations using top intents.
-Subtasks:
-- Add Prisma models/indexes for facet fields.
-- Configure CDN caching and `stale-while-revalidate` for collections.
-- Add analytics events: `view_collection`, `search`, `filter_apply`.
-- Unit/e2e tests for filter state and URL sync.
+#### 2.1. [ User Story ] - Core Networking & Security
+##### 2.1.1. [ Task ] - VPC with public/private subnets and NAT
+###### 2.1.1.1. [ Subtask ] - Terraform module for VPC, subnet, route tables
+###### 2.1.1.2. [ Subtask ] - Security groups least privilege; SSM Session Manager access
+##### 2.1.2. [ Task ] - DNS/CDN
+###### 2.1.2.1. [ Subtask ] - Route 53 hosted zones; ACM certs
+###### 2.1.2.2. [ Subtask ] - CloudFront for web with S3 origin and WAF
 
-User Story:
-As an accessibility-focused user, I want keyboard-navigable filters so I can refine results without a mouse.
-Acceptance Criteria:
-- All filter controls reachable by Tab order; visible focus state; ARIA labels on checkboxes.
-- Screen readers announce selected/cleared states correctly.
-Tasks:
-- Add ARIA attributes and focus management to filter controls.
-- Validate with WCAG AA checklist and axe.
-Subtasks:
-- Write a11y unit tests; include storybook a11y checks.
-- QA pass on NVDA/VoiceOver baseline.
+#### 2.2. [ User Story ] - Compute & Containers
+##### 2.2.1. [ Task ] - ECR repositories and lifecycle policies
+###### 2.2.1.1. [ Subtask ] - Private ECR with immutability and tag scanning
+##### 2.2.2. [ Task ] - ECS Fargate services
+###### 2.2.2.1. [ Subtask ] - API service behind ALB; health/readiness checks
+###### 2.2.2.2. [ Subtask ] - Web SSR service (if Next SSR) or static S3 hosting
 
-Feature: Product Detail Page (PDP)
-Description: Rich PDP with images, price, origin, energy tags, certification, care, and related content.
-Acceptance Criteria:
-- PDP renders above-the-fold in < 1.2s from cache; images optimized (AVIF/WebP).
-- Shows energy tags, chakra mapping, and sourcing story block.
-- Surfaces back-in-stock alerts and variant availability.
+#### 2.3. [ User Story ] - Data Stores
+##### 2.3.1. [ Task ] - RDS PostgreSQL (Multi-AZ) with security
+###### 2.3.1.1. [ Subtask ] - Parameter groups, backups, encryption at rest
+###### 2.3.1.2. [ Subtask ] - Read replica plan; connection limits and alerts
+##### 2.3.2. [ Task ] - ElastiCache Redis for sessions/cache
 
-User Story:
-As a shopper, I want to understand the authenticity and origin of a crystal so I can trust my purchase.
-Acceptance Criteria:
-- Origin, certification badge, and authenticity grade visible near title.
-- “Learn more” links to sourcing story and care article.
-Tasks:
-- Add PDP schema and components for origin/certification.
-- Integrate CMS-driven sourcing story block.
-- Add JSON-LD (Product, Breadcrumb) markup.
-Subtasks:
-- Image zoom and gallery with lazy-loading.
-- Unit tests for schema rendering and JSON-LD.
+#### 2.4. [ User Story ] - Secrets & Keys
+##### 2.4.1. [ Task ] - Secrets Manager/SSM Parameter Store structure
+###### 2.4.1.1. [ Subtask ] - Namespace by env (dev/stage/prod)
+###### 2.4.1.2. [ Subtask ] - Rotation policy and IAM access boundaries
 
+#### 2.5. [ User Story ] - Observability Base
+##### 2.5.1. [ Task ] - CloudWatch log groups and metrics
+###### 2.5.1.1. [ Subtask ] - Log retention policies; metric filters for errors/latency
+##### 2.5.2. [ Task ] - Alarms and notifications
+###### 2.5.2.1. [ Subtask ] - SNS + Slack/webhook integration for alerts
 
-Epic: Cart, Checkout & Payments
-Description: Provide an intuitive cart and a reliable, secure checkout supporting UPI, cards, BNPL via Razorpay/Stripe.
-Success criteria:
-- Checkout completion ≥ 65% of initiated carts; payment failures < 2%/provider.
-- Payment intent creation < 500ms P95; idempotent write ops.
-- Refund/partial return flows available via account.
+### 3. [ Feature ] - CI/CD Pipelines
 
-Feature: Cart & Offers
-Description: Add/update/remove items, show shipping, taxes, and discounts in real time.
-Acceptance Criteria:
-- Accurate cart totals and coupon validation; handles OOS and min/max qty.
-- Persist cart across sessions (secure storage) and devices (signed user).
-User Story:
-As a shopper, I want my cart to persist across devices so I don’t lose my selections.
-Acceptance Criteria:
-- Signed-in users see the same cart on web and app.
-- Guest cart persists locally for 14 days.
-Tasks:
-- Implement server-side cart with merge-on-login.
-- Local persistence using encrypted storage (app) and HTTP-only cookies (web).
-Subtasks:
-- GraphQL mutations for add/update/remove; totals calculation service.
-- Unit tests for merge-on-login and price recalculation.
+#### 3.1. [ User Story ] - Continuous Integration
+##### 3.1.1. [ Task ] - GitHub Actions workflows
+###### 3.1.1.1. [ Subtask ] - Jobs: lint, type-check, unit tests, build
+###### 3.1.1.2. [ Subtask ] - Cache node modules and build artifacts
+##### 3.1.2. [ Task ] - Security scanning in CI
+###### 3.1.2.1. [ Subtask ] - eslint-plugin-security, npm audit, trivy image scan
+###### 3.1.2.2. [ Subtask ] - Secret scanning (gitleaks)
 
-Feature: Checkout & Payments
-Description: Multi-step checkout with address, shipping, payment.
-Acceptance Criteria:
-- Razorpay/Stripe payment intents; retries with backoff on failures.
-- PCI-DSS compliant tokenization; no sensitive data stored.
-User Story:
-As a shopper, I want to pay with UPI or card so I can complete my purchase with my preferred method.
-Acceptance Criteria:
-- UPI, cards, BNPL available when provider supports it; relevant error messages on failure.
-- Successful payment updates order status to “paid” and triggers confirmation.
-Tasks:
-- Integrate payment providers and webhooks with signature validation.
-- Create order/payment domain models and state machine.
-- Implement address validation and shipping options.
-Subtasks:
-- Idempotency keys on all write operations.
-- Webhook retry handling and dead-letter queue.
-- E2E checkout smoke tests.
+#### 3.2. [ User Story ] - Build & Release Artifacts
+##### 3.2.1. [ Task ] - Dockerfiles (multi-stage) for api and web
+###### 3.2.1.1. [ Subtask ] - Non-root user, minimal base (alpine or distroless)
+###### 3.2.1.2. [ Subtask ] - Healthcheck and SIGTERM handling
+##### 3.2.2. [ Task ] - Image versioning and SBOM
+###### 3.2.2.1. [ Subtask ] - Tagging with sha/semver; syft/grype SBOM
 
+#### 3.3. [ User Story ] - Continuous Delivery
+##### 3.3.1. [ Task ] - Deploy API to ECS with blue/green
+###### 3.3.1.1. [ Subtask ] - Auto rollback on health check failure
+##### 3.3.2. [ Task ] - Deploy Web
+###### 3.3.2.1. [ Subtask ] - S3+CloudFront invalidations (SSG) or ECS (SSR)
+##### 3.3.3. [ Task ] - Database migrations
+###### 3.3.3.1. [ Subtask ] - Gate deploy on successful migrate; rollback plan
+##### 3.3.4. [ Task ] - Preview environments per PR
+###### 3.3.4.1. [ Subtask ] - Ephemeral API + web URLs; tear-down job
 
-Epic: Accounts, Orders & Returns
-Description: Enable account creation/login, address book, order history, tracking, returns/refunds.
-Success criteria:
-- Account creation success ≥ 95%; password reset ≤ 5 minutes.
-- Return requests resolved within SLA; defect rate < 2%.
+### 4. [ Feature ] - Security & Compliance
 
-Feature: Authentication & Profile
-Description: Email/password auth with session/refresh tokens; optional 2FA later.
-Acceptance Criteria:
-- JWT-based sessions; refresh rotation; secure cookie on web.
-- Rate-limited login; device/session management.
-User Story:
-As a customer, I want to manage my profile and addresses so I can checkout faster next time.
-Acceptance Criteria:
-- CRUD addresses; default address selection; validation for Indian formats.
-Tasks:
-- Implement `/auth` REST endpoints and GraphQL `me` queries.
-- Profile and address book UIs (web/app).
-Subtasks:
-- Email verification and reset flows.
-- Brute-force protection and captcha on suspicious IPs.
+#### 4.1. [ User Story ] - AppSec Baseline
+##### 4.1.1. [ Task ] - OWASP top 10 controls
+###### 4.1.1.1. [ Subtask ] - Input/output validation (Zod) and parameterized queries
+###### 4.1.1.2. [ Subtask ] - Helmet/CSP, HSTS, CORS allowlist
+##### 4.1.2. [ Task ] - Rate limiting and abuse prevention
+###### 4.1.2.1. [ Subtask ] - Per-IP and per-token quotas; circuit breaker
 
-Feature: Orders & Returns
-Description: View past orders, track shipments, initiate returns/refunds.
-User Story:
-As a customer, I want to initiate a return from my order details so I can get a refund for damaged items.
-Acceptance Criteria:
-- Return eligibility check and reason capture; RMA issuance.
-- Refund webhook updates order and wallet/bank as applicable.
-Tasks:
-- Order detail UI with shipment tracking.
-- Returns micro-flow and refund integration.
-Subtasks:
-- Notifications on status changes (email/push/SMS where applicable).
-- Audit log entries for returns and refunds.
+#### 4.2. [ User Story ] - Privacy & DPDP/GDPR
+##### 4.2.1. [ Task ] - Consent management and preferences store
+###### 4.2.1.1. [ Subtask ] - Cookie banner and SDK gating
+##### 4.2.2. [ Task ] - Data rights portal
+###### 4.2.2.1. [ Subtask ] - Export/delete with audit log; SLA ≤ 7 days
 
+### 5. [ Feature ] - Database & Data Modeling (PostgreSQL + Prisma)
 
-Epic: Search & Discovery
-Description: Deliver fast, relevant search with synonyms and intent-based discovery.
-Success criteria:
-- Search latency < 300ms P95; zero-result rate < 5%.
-- Search → PDP success ≥ 90%.
+#### 5.1. [ User Story ] - Schema Foundation
+##### 5.1.1. [ Task ] - Define core models (User, Address, Product, Collection, Inventory, Cart, CartItem, Order, Payment, Review, Subscription, Article, Media)
+###### 5.1.1.1. [ Subtask ] - Prisma schema and enums; migrations
+###### 5.1.1.2. [ Subtask ] - Foreign keys, cascades, unique constraints
+##### 5.1.2. [ Task ] - Indexing and performance
+###### 5.1.2.1. [ Subtask ] - B-tree/GiST indexes for search/facets; partial indexes
 
-Feature: Query, Facets, Synonyms
-Description: Typeahead, fuzzy match, localized synonyms (e.g., Amethyst ↔ Jamunia).
-User Story:
-As a shopper, I want helpful suggestions as I type so I can discover relevant crystals faster.
-Acceptance Criteria:
-- Autosuggest with recent searches and popular intents.
-- Handles typos and synonym expansion.
-Tasks:
-- Implement search API with facets and synonyms.
-- Add autosuggest UI, recent searches, and clear history.
-Subtasks:
-- Configure indexes, analyzers, and ranking.
-- Track `search`, `autosuggest_select`, and zero-result metrics.
+#### 5.2. [ User Story ] - Data Lifecycle
+##### 5.2.1. [ Task ] - Seed data for dev/test
+###### 5.2.1.1. [ Subtask ] - Factories and fixtures; anonymized sample content
+##### 5.2.2. [ Task ] - Backups and restore drills
+###### 5.2.2.1. [ Subtask ] - Automated snapshots; quarterly restore test
 
-Feature: Recommendations
-Description: Cross-sell on PDP and personalized trending collections.
-User Story:
-As a returning shopper, I want recommendations aligned to my interests so I can find products I’m likely to buy.
-Acceptance Criteria:
-- PDP shows related by intent/stone; home shows trending collections.
-Tasks:
-- Rules-based recommendations (v1) using tags and co-views.
-- UI blocks for PDP and home modules.
-Subtasks:
-- Feature flag rollout and A/B test hooks.
+### 6. [ Feature ] - API Platform (Express/Node, TypeScript)
 
+#### 6.1. [ User Story ] - API Server Scaffolding
+##### 6.1.1. [ Task ] - Express app with modular structure (routes/controllers/services/repos)
+###### 6.1.1.1. [ Subtask ] - Request ID correlation and structured logging (pino)
+###### 6.1.1.2. [ Subtask ] - Health, readiness, and metrics endpoints
 
-Epic: Content & Education Hub
-Description: Education-first content (guides, rituals, sourcing stories) via CMS.
-Success criteria:
-- Content-assisted conversion uplift +5% ATC on PDP.
-- Organic sessions +10% MoM from content pages.
+#### 6.2. [ User Story ] - Error Handling & Validation
+##### 6.2.1. [ Task ] - Global error handler and error shape
+###### 6.2.1.1. [ Subtask ] - Map to codes: AUTH_FAILED, FORBIDDEN, NOT_FOUND, VALIDATION_ERROR, RATE_LIMITED
+##### 6.2.2. [ Task ] - DTO validation
+###### 6.2.2.1. [ Subtask ] - Zod schemas; sanitize and normalize inputs
 
-Feature: CMS-driven Learn Hub
-Description: Guides, rituals, sourcing & ethics, care & cleansing.
-User Story:
-As a learner, I want trustworthy articles and rituals so I can use crystals safely and effectively.
-Acceptance Criteria:
-- CMS entities for article/ritual with author and reviewed date.
-- JSON-LD (Article, FAQ); internal linking to PDP.
-Tasks:
-- Integrate CMS webhooks and content fetchers.
-- Build Learn hub, article pages, and ritual templates.
-Subtasks:
-- Add glossary and FAQ components.
-- Lighthouse SEO checks for Core Web Vitals.
+#### 6.3. [ User Story ] - Auth Endpoints
+##### 6.3.1. [ Task ] - /auth/signup, /auth/login, /auth/refresh, /auth/logout
+###### 6.3.1.1. [ Subtask ] - JWT (RS256) access/refresh; rotation and revocation store (Redis)
+###### 6.3.1.2. [ Subtask ] - Email verification, password reset tokens
 
-Feature: PDP↔Content Cross-linking
-Description: Deep links between PDP and related content to build trust.
-User Story:
-As a shopper, I want to read authenticity and care information from the PDP so I can make a confident choice.
-Acceptance Criteria:
-- PDP shows sourcing block; Learn articles link back to product intents.
-Tasks:
-- Add cross-link resolver by tags and categories.
-- Track engagement impact on ATC.
-Subtasks:
-- Create UTM tagging and cohort analysis in BI.
+#### 6.4. [ User Story ] - Rate Limiting & Security
+##### 6.4.1. [ Task ] - IP and user-based throttles
+###### 6.4.1.1. [ Subtask ] - Redis-backed token bucket; per-route configs
 
+### 7. [ Feature ] - Authentication & Accounts
 
-Epic: Trust, Reviews & UGC
-Description: Transparent reviews, photo/video UGC, and anti-gaming safeguards.
-Success criteria:
-- Publish all compliant reviews (incl. critical) within SLA.
-- Review volume per product ≥ industry median; fraud rate < 1%.
+#### 7.1. [ User Story ] - User Profile & Address Book
+##### 7.1.1. [ Task ] - CRUD profile and addresses
+###### 7.1.1.1. [ Subtask ] - Indian address validation; default selection
+##### 7.1.2. [ Task ] - Session/device management
+###### 7.1.2.1. [ Subtask ] - List/revoke active sessions
 
-Feature: Verified Reviews
-Description: Allow verified buyers to rate and review with media.
-User Story:
-As a buyer, I want my honest review to be visible so I can help others make decisions.
-Acceptance Criteria:
-- Moderation pipeline with clear guidelines; no suppression of critical but compliant reviews.
-- “Verified purchase” badge and media uploads.
-Tasks:
-- Build reviews service with verification and moderation states.
-- Add PDP reviews UI with filters (rating, media).
-Subtasks:
-- Storage via S3 presigned URLs; virus scan pipeline.
-- Rate limiting and anti-spam protections.
+### 8. [ Feature ] - Catalog & Search
 
-Feature: Community Stories
-Description: Curated testimonials and journeys, distinct from reviews.
-User Story:
-As a community member, I want to share my story so others can learn from my experience.
-Acceptance Criteria:
-- CMS-driven curation; separate from product reviews; clear labeling.
-Tasks:
-- Build stories content type and display templates.
-- Add submission flow with consent and rights management.
-Subtasks:
-- Legal disclaimers and content policy notices.
+#### 8.1. [ User Story ] - Catalog Browse (PLP)
+##### 8.1.1. [ Task ] - Products list with facets (type, intention, chakra, price, size, origin, rating)
+###### 8.1.1.1. [ Subtask ] - Cursor/offset pagination; sort options
+###### 8.1.1.2. [ Subtask ] - Zero-result handling with suggested intents
 
+#### 8.2. [ User Story ] - Product Detail (PDP)
+##### 8.2.1. [ Task ] - PDP data: images, price, origin, authenticity, energy tags
+###### 8.2.1.1. [ Subtask ] - Related products by intent/type; JSON-LD
 
-Epic: Loyalty, Subscriptions & Referrals
-Description: Drive retention via subscription boxes, loyalty tiers, and referrals.
-Success criteria:
-- Repeat purchase rate ≥ 30%; subscription churn ≤ 3%/mo.
-- Referral-attributed orders ≥ 10% of monthly volume.
+#### 8.3. [ User Story ] - Search Service
+##### 8.3.1. [ Task ] - Typeahead and full-text search
+###### 8.3.1.1. [ Subtask ] - Synonyms (e.g., Amethyst <-> Jamunia); fuzzy match
+###### 8.3.1.2. [ Subtask ] - Recent searches and clear history
 
-Feature: Subscription Box (v1)
-Description: Simple monthly/quarterly curation with pause/resume.
-User Story:
-As a subscriber, I want to pause or resume my plan so I have flexibility when needed.
-Acceptance Criteria:
-- Pause/resume in ≤ 3 taps; takes effect within 5 minutes.
-- Billing history visible; proration rules documented.
-Tasks:
-- Subscription domain models and billing scheduler.
-- Pause/resume/cancel GraphQL mutations and UI flows.
-Subtasks:
-- Webhook reconciliation with payment provider.
-- E2E tests for lifecycle events.
+### 9. [ Feature ] - Cart & Pricing
 
-Feature: Loyalty & Referrals
-Description: Tiered loyalty and referral links/codes.
-User Story:
-As a loyal customer, I want to refer friends and earn rewards so I save on future purchases.
-Acceptance Criteria:
-- Unique referral links; attribution and fraud checks; reward issuance on first purchase.
-Tasks:
-- Implement referral tracking and reward ledger.
-- Loyalty tier computation and benefits display.
-Subtasks:
-- Anti-abuse rules (same device/IP/email heuristics).
-- BI dashboards for referral performance.
+#### 9.1. [ User Story ] - Cart Service
+##### 9.1.1. [ Task ] - Add/update/remove items; totals (subtotal, tax, shipping, discounts)
+###### 9.1.1.1. [ Subtask ] - Server cart persistence; guest cart local persistence
+##### 9.1.2. [ Task ] - Merge-on-login
+###### 9.1.2.1. [ Subtask ] - Conflict resolution and price recalc
 
+### 10. [ Feature ] - Checkout & Payments (Razorpay/Stripe)
 
-Epic: Mobile App Experience & Distribution
-Description: High-quality React Native app with push notifications and store-compliant release.
-Success criteria:
-- Crash-free sessions > 99.5%; ANR ≤ 0.3%; cold start ≤ 2.5s.
-- Successful staged rollout with no critical issues.
+#### 10.1. [ User Story ] - Address & Shipping
+##### 10.1.1. [ Task ] - Address capture and validation; shipping methods
+###### 10.1.1.1. [ Subtask ] - Pin code and phone validation
 
-Feature: Onboarding & Push Opt-in
-Description: Guided onboarding with optional education-first or quick-start variants.
-User Story:
-As a new app user, I want a simple onboarding so I can start shopping quickly while discovering useful content.
-Acceptance Criteria:
-- A/B tested onboarding variants; push opt-in with clear value proposition.
-Tasks:
-- Implement onboarding screens and experiment hooks.
-- Integrate push notifications (topics: orders, content, offers).
-Subtasks:
-- Deep link routing and cold-start handling.
-- Event tracking: `push_opt_in`, `notification_open`.
+#### 10.2. [ User Story ] - Payment Intent & Confirmation
+##### 10.2.1. [ Task ] - Create payment intent; handle success/failure
+###### 10.2.1.1. [ Subtask ] - Idempotency keys on writes
+##### 10.2.2. [ Task ] - Webhooks
+###### 10.2.2.1. [ Subtask ] - Signature validation; retries and DLQ
 
-Feature: Store Readiness & Compliance
-Description: Prepare assets/metadata and fulfill Play/App Store policies.
-User Story:
-As a release manager, I want a repeatable store submission process so we can ship updates smoothly.
-Acceptance Criteria:
-- Complete store listings with localized screenshots/descriptions.
-- Privacy/DCI labels accurate; internal testing tracks configured.
-Tasks:
-- CI job to build signed artifacts (`.ipa`, `.aab`).
-- Checklist automation and release notes templating.
-Subtasks:
-- Test credentials and review notes for reviewers.
-- Post-launch monitoring dashboard.
+### 11. [ Feature ] - Orders, Fulfillment & Returns
 
+#### 11.1. [ User Story ] - Order Lifecycle
+##### 11.1.1. [ Task ] - Order states and transitions (created, paid, fulfilled, refunded)
+###### 11.1.1.1. [ Subtask ] - Event emission for state changes
+##### 11.1.2. [ Task ] - Shipment tracking
+###### 11.1.2.1. [ Subtask ] - Carrier tracking link and status sync
 
-Epic: Analytics & Telemetry
-Description: End-to-end event taxonomy and observability for product, growth, and reliability.
-Success criteria:
-- Funnels and cohorts available in BI; consent-compliant tracking.
-- Alerts for checkout dips, payment failures, and performance regressions.
+#### 11.2. [ User Story ] - Returns & Refunds
+##### 11.2.1. [ Task ] - RMA creation and eligibility checks
+###### 11.2.1.1. [ Subtask ] - Refund processing and ledger updates
 
-Feature: Event Instrumentation
-Description: Web/app SDKs and server spans/metrics with stable schemas.
-User Story:
-As a product analyst, I want reliable events so I can measure funnels and attribution.
-Acceptance Criteria:
-- GA4/app analytics for core events; OpenTelemetry traces on backend.
-- PII minimization; consent gating; schema versioning.
-Tasks:
-- Implement event wrappers; ensure consistent `user_id`, `session_id`, `device_id`.
-- Define dbt models and daily ETL to warehouse and BI.
-Subtasks:
-- Dashboards: funnel, search success, performance, crash rate.
-- Alerting for checkout CR dip > 20% and PDP LCP > 3s.
+### 12. [ Feature ] - Reviews & UGC
 
-Feature: Experimentation Hooks
-Description: A/B testing for onboarding and PDP layout.
-User Story:
-As a PM, I want safe experiment toggles so we can validate improvements without risking the whole user base.
-Acceptance Criteria:
-- Feature flags with targetable cohorts; guardrails for KPIs.
-Tasks:
-- Integrate flag system; add experiment assignment/arms to events.
-- Build experiment results template in BI.
-Subtasks:
-- Exposure logging and sample ratio mismatch checks.
+#### 12.1. [ User Story ] - Verified Reviews
+##### 12.1.1. [ Task ] - Review CRUD with verification and moderation
+###### 12.1.1.1. [ Subtask ] - Media uploads via presigned URLs; virus scan
+##### 12.1.2. [ Task ] - Anti-spam and rate limiting
 
+### 13. [ Feature ] - Subscriptions, Loyalty & Referrals
 
-Epic: API Platform & Integrations
-Description: Public GraphQL for app/web and REST for webhooks/auth/payments/admin.
-Success criteria:
-- Backwards-compatible changes; error rate < 0.5%; p95 latency < 200ms for cached reads.
+#### 13.1. [ User Story ] - Subscription Lifecycle
+##### 13.1.1. [ Task ] - Create/pause/resume/cancel; billing scheduler
+###### 13.1.1.1. [ Subtask ] - Provider webhook reconciliation
 
-Feature: GraphQL Core
-Description: Catalog, cart, checkout, account, content, subscriptions.
-User Story:
-As a frontend dev, I want typed GraphQL schemas so I can build features quickly and safely.
-Acceptance Criteria:
-- Additive changes only in minor versions; deprecations flagged.
-Tasks:
-- Define schemas and resolvers; persisted queries and caching.
-- Cursor pagination; standardized `Error` shape with `traceId`.
-Subtasks:
-- GraphQL codegen for TS typings.
-- Load tests for hot queries.
+#### 13.2. [ User Story ] - Loyalty & Referrals
+##### 13.2.1. [ Task ] - Referral link generation and attribution
+###### 13.2.1.1. [ Subtask ] - Fraud checks (device/IP/email heuristics)
 
-Feature: Webhooks & Payments REST
-Description: Signed webhooks for Razorpay/Stripe; admin endpoints where needed.
-User Story:
-As a payments engineer, I want idempotent webhook handling so I can ensure consistent order states.
-Acceptance Criteria:
-- HMAC signature validation; retries with exponential backoff; DLQ on repeated failures.
-Tasks:
-- Implement `/v1/webhooks/*` endpoints and idempotency keys.
-- Add payment intent creation and status reconciliation.
-Subtasks:
-- Audit logs for admin actions; strict CORS allowlist.
+### 14. [ Feature ] - Web Frontend (React/Next.js)
 
+#### 14.1. [ User Story ] - App Shell & Routing
+##### 14.1.1. [ Task ] - Next.js app with SSR/SSG where applicable
+###### 14.1.1.1. [ Subtask ] - Layouts, error boundaries, i18n baseline (en-IN)
 
-Epic: Security, Privacy & Compliance
-Description: Protect user data, secure payments, and comply with DPDP/GDPR and PCI-DSS.
-Success criteria:
-- No P1 security incidents; regular pen-tests; successful policy audits.
+#### 14.2. [ User Story ] - Design System
+##### 14.2.1. [ Task ] - Tokens, theming, components (buttons, cards, inputs, modals, nav)
+###### 14.2.1.1. [ Subtask ] - Accessibility-first (WCAG AA), keyboard focus states
 
-Feature: App & API Hardening
-Description: OWASP coverage, input/output validation, rate limiting, secrets hygiene.
-User Story:
-As a security lead, I want standardized safeguards so the platform resists common attacks.
-Acceptance Criteria:
-- WAF rules (bot, SQLi, XSS), CSP/HSTS enforced; JWT (RS256) rotation 90d.
-Tasks:
-- Add Zod/Yup validation and parameterized queries.
-- Implement per-IP and per-token rate limits.
-Subtasks:
-- Secret scanning in CI and dependency audits.
-- Regular key rotation runbook.
+#### 14.3. [ User Story ] - Core Pages
+##### 14.3.1. [ Task ] - PLP with facets and sort
+###### 14.3.1.1. [ Subtask ] - Responsive grid and skeleton loaders
+##### 14.3.2. [ Task ] - PDP with gallery and sourcing block
+###### 14.3.2.1. [ Subtask ] - JSON-LD Product and Breadcrumb
+##### 14.3.3. [ Task ] - Cart and Checkout flows
+###### 14.3.3.1. [ Subtask ] - Address, shipping, payment steps
+##### 14.3.4. [ Task ] - Account (orders, addresses, returns)
 
-Feature: Privacy & Consent
-Description: Consent management, data deletion/export flows, minimal PII tracking.
-User Story:
-As a privacy-conscious user, I want control over my data so I can trust the brand.
-Acceptance Criteria:
-- Consent logs; opt-out honored; data deletion/export within 7 days.
-Tasks:
-- Build consent banner/storage and user data portal.
-- Implement deletion/export jobs with audit trail.
-Subtasks:
-- BI segregation of PII and role-based access control.
+#### 14.4. [ User Story ] - Performance & SEO
+##### 14.4.1. [ Task ] - Image optimization (AVIF/WebP), prefetching, code splitting
+###### 14.4.1.1. [ Subtask ] - Core Web Vitals budgets and monitoring
+##### 14.4.2. [ Task ] - Sitemaps, robots.txt, canonical URLs
+###### 14.4.2.1. [ Subtask ] - Structured data (Article, FAQ, Organization)
 
+### 15. [ Feature ] - Analytics & Telemetry
 
-Epic: Reliability & DevOps
-Description: Robust CI/CD, observability, and SLO-driven operations on AWS.
-Success criteria:
-- Uptime 99.9%; RPO 15m, RTO 60m; automated rollbacks.
+#### 15.1. [ User Story ] - Event Taxonomy & SDKs
+##### 15.1.1. [ Task ] - Define events (view_item, add_to_cart, begin_checkout, purchase, subscribe, refund_initiated, search, view_article)
+###### 15.1.1.1. [ Subtask ] - Implement wrappers on web and server; consistent ids and timestamps
 
-Feature: CI/CD & Environments
-Description: Dev/Staging/Prod with safe deploys (blue/green or canary).
-User Story:
-As an engineer, I want reliable pipelines so I can ship changes confidently.
-Acceptance Criteria:
-- Lint, type-check, tests, build; preview envs; coverage gate on critical paths.
-Tasks:
-- GitHub Actions workflows; infra as code (Terraform) for core resources.
-- Database migrations gating and smoke tests pre-deploy.
-Subtasks:
-- Conventional Commits and semantic versioning automation.
-- Secret management via AWS Secrets Manager.
+#### 15.2. [ User Story ] - Data Pipeline & Dashboards
+##### 15.2.1. [ Task ] - ETL to warehouse and BI
+###### 15.2.1.1. [ Subtask ] - dbt models; retention and consent filters
+##### 15.2.2. [ Task ] - Alerts
+###### 15.2.2.1. [ Subtask ] - Checkout CR dip > 20%, payment failure > 2%, LCP > 3s
 
-Feature: Observability & SRE
-Description: Centralized logs, tracing, metrics, dashboards, and alerting.
-User Story:
-As an on-call engineer, I want actionable alerts so I can resolve incidents quickly.
-Acceptance Criteria:
-- RED/USE metrics; dashboards for latency, errors, saturation; on-call runbooks.
-Tasks:
-- Configure log shipping and tracing (OpenTelemetry) with sampling.
-- Set SLOs and alert policies; incident classification.
-Subtasks:
-- Backup/restore drills and failover health checks.
+### 16. [ Feature ] - Notifications & Communications
 
+#### 16.1. [ User Story ] - Email & Templates
+##### 16.1.1. [ Task ] - Transactional emails (order confirmation, shipping, refund)
+###### 16.1.1.1. [ Subtask ] - Template system and localization hooks
 
-Epic: Customer Support & Knowledge Base
-Description: In-app chat, help center, and escalation flows.
-Success criteria:
-- First-response time ≤ 2 minutes (chat); CSAT ≥ 90.
+#### 16.2. [ User Story ] - Push & SMS
+##### 16.2.1. [ Task ] - Push topics (orders, content, offers) and SMS for order events (where applicable)
+###### 16.2.1.1. [ Subtask ] - Preferences and consent toggles
 
-Feature: Support Chat & Help Center
-Description: Embedded chat and searchable help center with categories.
-User Story:
-As a customer, I want instant help so I can resolve issues during checkout.
-Acceptance Criteria:
-- Chat accessible across PDP/cart/checkout; ticket creation on escalation.
-- Help Center articles searchable with categories and intents.
-Tasks:
-- Integrate chat SDK and build Help Center with CMS.
-- Add escalation workflow and ticketing integration.
-Subtasks:
-- Event logging for support interactions and outcomes.
-- Satisfaction survey post-resolution.
+### 17. [ Feature ] - Support & Help Center
 
+#### 17.1. [ User Story ] - Help Center
+##### 17.1.1. [ Task ] - CMS-driven articles and categories
+###### 17.1.1.1. [ Subtask ] - Search and feedback on articles
 
-— End of business requirements document —
+#### 17.2. [ User Story ] - Chat & Escalation
+##### 17.2.1. [ Task ] - Integrate chat widget and ticketing
+###### 17.2.1.1. [ Subtask ] - Escalation rules and CSAT survey
 
+### 18. [ Feature ] - Reliability & SRE Operations
+
+#### 18.1. [ User Story ] - SLOs & Runbooks
+##### 18.1.1. [ Task ] - Define SLOs for uptime, latency, errors
+###### 18.1.1.1. [ Subtask ] - Error budget policy and dashboards
+
+#### 18.2. [ User Story ] - DR & Backups
+##### 18.2.1. [ Task ] - RPO/RTO targets, snapshots, cross-region read replica plan
+###### 18.2.1.1. [ Subtask ] - Quarterly restore and failover drills
+
+### 19. [ Feature ] - Content & CMS
+
+#### 19.1. [ User Story ] - Learn Hub CMS Integration
+##### 19.1.1. [ Task ] - Article, ritual, glossary types and rendering
+###### 19.1.1.1. [ Subtask ] - Webhook ingestion and cache invalidation
+
+### 20. [ Feature ] - Governance & Quality
+
+#### 20.1. [ User Story ] - Testing Strategy
+##### 20.1.1. [ Task ] - Unit tests (critical paths ≥ 80%), integration (API), e2e (checkout smoke)
+###### 20.1.1.1. [ Subtask ] - Test data factories and fixtures
+
+#### 20.2. [ User Story ] - Release & Versioning
+##### 20.2.1. [ Task ] - Semantic versioning and changelog automation
+###### 20.2.1.1. [ Subtask ] - Release notes template and distribution
+
+### 21. [ Feature ] - Mobile App (React Native)
+
+#### 21.1. [ User Story ] - React Native Bootstrap
+##### 21.1.1. [ Task ] - Create apps/mobile package with TS, ESLint, Prettier
+###### 21.1.1.1. [ Subtask ] - Configure navigation (React Navigation), theming, env handling
+###### 21.1.1.2. [ Subtask ] - Set up native modules config (Android/iOS), app icons/splash
+
+#### 21.2. [ User Story ] - Onboarding & Navigation
+##### 21.2.1. [ Task ] - Onboarding screens with variant flags (education-first/quick-start)
+###### 21.2.1.1. [ Subtask ] - Persist onboarding completion; deep link routing
+##### 21.2.2. [ Task ] - Tab/stack structure (Home, Shop, Learn, Account, Cart)
+
+#### 21.3. [ User Story ] - Mobile Catalog & PDP
+##### 21.3.1. [ Task ] - PLP with facets/sort and infinite scroll
+###### 21.3.1.1. [ Subtask ] - Facet drawer UX, skeletons, empty state
+##### 21.3.2. [ Task ] - PDP with gallery, energy tags, origin/certification
+###### 21.3.2.1. [ Subtask ] - Share, wishlist, related products modules
+
+#### 21.4. [ User Story ] - Mobile Cart & Checkout
+##### 21.4.1. [ Task ] - Cart screens (items, totals, coupons)
+###### 21.4.1.1. [ Subtask ] - Persist cart securely (async storage) and merge-on-login
+##### 21.4.2. [ Task ] - Checkout flow (address, shipping, payment)
+###### 21.4.2.1. [ Subtask ] - Integrate Razorpay/Stripe RN SDKs; handle success/failure callbacks
+
+#### 21.5. [ User Story ] - Push, Deep Links, and Device Metrics
+##### 21.5.1. [ Task ] - Push notifications (orders, content, offers)
+###### 21.5.1.1. [ Subtask ] - Permission prompts with value proposition; topic subscriptions
+##### 21.5.2. [ Task ] - Deep links and universal links/app links
+###### 21.5.2.1. [ Subtask ] - Cold/warm start routing tests
+
+#### 21.6. [ User Story ] - Store Readiness & Compliance
+##### 21.6.1. [ Task ] - Device matrix QA (Android 8–14, iOS 15+); performance targets
+###### 21.6.1.1. [ Subtask ] - Crash-free > 99.5%, ANR ≤ 0.3%, cold start ≤ 2.5s
+##### 21.6.2. [ Task ] - App Store/Play store listings and release pipeline
+###### 21.6.2.1. [ Subtask ] - TestFlight/Play internal tracks; staged rollout and monitoring
+
+### 22. [ Feature ] - Admin Portal & Backoffice
+
+#### 22.1. [ User Story ] - RBAC & Audit
+##### 22.1.1. [ Task ] - Roles/scopes (staff, admin) and permissions
+###### 22.1.1.1. [ Subtask ] - API guard middleware; audit logs for admin actions
+
+#### 22.2. [ User Story ] - Catalog Management
+##### 22.2.1. [ Task ] - Product CRUD, variants, pricing, collections
+###### 22.2.1.1. [ Subtask ] - Bulk upload (CSV) and validation; preview before publish
+
+#### 22.3. [ User Story ] - Inventory & Fulfillment
+##### 22.3.1. [ Task ] - Inventory adjustments and reservations
+###### 22.3.1.1. [ Subtask ] - Stock thresholds and alerts
+
+#### 22.4. [ User Story ] - Orders & Returns Ops
+##### 22.4.1. [ Task ] - Order search, status updates, refunds/RMA approvals
+###### 22.4.1.1. [ Subtask ] - Notes/timeline per order; permission checks
+
+#### 22.5. [ User Story ] - Promotions & Coupons
+##### 22.5.1. [ Task ] - Create/disable coupons, rules, limits
+###### 22.5.1.1. [ Subtask ] - Stacking rules and eligibility conditions
+
+#### 22.6. [ User Story ] - Reviews Moderation
+##### 22.6.1. [ Task ] - Queue, approve/reject with reasons; policy enforcement
+###### 22.6.1.1. [ Subtask ] - Media review and takedown workflow
+
+### 23. [ Feature ] - Tax & Invoicing (India GST)
+
+#### 23.1. [ User Story ] - GST Tax Calculation
+##### 23.1.1. [ Task ] - Apply GST rates by HSN and destination
+###### 23.1.1.1. [ Subtask ] - Maintain HSN catalog and rate tables
+
+#### 23.2. [ User Story ] - Invoices & GSTIN
+##### 23.2.1. [ Task ] - Capture GSTIN (B2B), validate formats; invoice numbering scheme
+###### 23.2.1.1. [ Subtask ] - Generate PDF invoices; email to customer; store for download
+
+#### 23.3. [ User Story ] - Reports & Reconciliation
+##### 23.3.1. [ Task ] - Tax summary reports by period
+###### 23.3.1.1. [ Subtask ] - Export CSV for filing and audit trail
+
+### 24. [ Feature ] - Shipping & Logistics Integration
+
+#### 24.1. [ User Story ] - Carrier Aggregator Integration
+##### 24.1.1. [ Task ] - Integrate Shiprocket/Delhivery (or chosen partner)
+###### 24.1.1.1. [ Subtask ] - Rate shopping, serviceability, pickup scheduling
+
+#### 24.2. [ User Story ] - Labels & Tracking
+##### 24.2.1. [ Task ] - Label generation and manifesting
+###### 24.2.1.1. [ Subtask ] - Tracking webhooks → order updates and notifications
+
+#### 24.3. [ User Story ] - Exceptions Handling
+##### 24.3.1. [ Task ] - RTO/failed delivery flows and customer comms
+###### 24.3.1.1. [ Subtask ] - Automatic ticket creation and refund/Reship options
+
+### 25. [ Feature ] - Media & CDN Pipeline
+
+#### 25.1. [ User Story ] - Uploads & Derivatives
+##### 25.1.1. [ Task ] - Signed uploads to S3; image variants (thumb, PDP, zoom)
+###### 25.1.1.1. [ Subtask ] - Lambda/Image CDN transformation; AVIF/WebP
+
+#### 25.2. [ User Story ] - Caching & Invalidations
+##### 25.2.1. [ Task ] - CloudFront caching strategy and invalidation hooks
+###### 25.2.1.1. [ Subtask ] - Cache keys by device DPR and format
+
+#### 25.3. [ User Story ] - Safety Pipeline
+##### 25.3.1. [ Task ] - Malware scan and content-type validation for uploads
+###### 25.3.1.1. [ Subtask ] - Quarantine bucket and review workflow
+
+### 26. [ Feature ] - Performance & Load Testing
+
+#### 26.1. [ User Story ] - API Load Tests
+##### 26.1.1. [ Task ] - k6/Artillery scenarios for hot paths (browse, PDP, checkout)
+###### 26.1.1.1. [ Subtask ] - Targets: p95 < 200ms cached reads; 5k concurrent users baseline
+
+#### 26.2. [ User Story ] - Web Performance Budgets
+##### 26.2.1. [ Task ] - Lighthouse CI and budgets in CI
+###### 26.2.1.1. [ Subtask ] - LCP ≤ 2.5s P75; JS ≤ 200KB gz critical path
+
+#### 26.3. [ User Story ] - Synthetic Monitoring
+##### 26.3.1. [ Task ] - Uptime and transaction checks from multiple regions
+###### 26.3.1.1. [ Subtask ] - Alert thresholds and on-call rotation
+
+### 27. [ Feature ] - Mobile Crash & Performance Analytics
+
+#### 27.1. [ User Story ] - Crash Reporting
+##### 27.1.1. [ Task ] - Integrate Sentry/Crashlytics for iOS/Android
+###### 27.1.1.1. [ Subtask ] - Symbol upload (dSYM/ProGuard mappings); release tagging
+
+#### 27.2. [ User Story ] - App Performance
+##### 27.2.1. [ Task ] - Track cold start, TTI, memory, ANR
+###### 27.2.1.1. [ Subtask ] - Dashboards and alerts for regressions
