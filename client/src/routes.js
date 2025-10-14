@@ -7,19 +7,19 @@ import CatalogPage from './features/catalog/CatalogPage.jsx';
 const routes = [
   {
     path: '/',
-    element: <HomePage />, 
+    element: React.createElement(HomePage),
   },
   {
     path: '/login',
-    element: <LoginPage />, 
+    element: React.createElement(LoginPage),
   },
   {
     path: '/register',
-    element: <RegisterPage />, 
+    element: React.createElement(RegisterPage),
   },
   {
     path: '/catalog',
-    element: <CatalogPage />, 
+    element: React.createElement(CatalogPage),
   },
 ];
 
