@@ -1,12 +1,10 @@
 # Soulstone Startup Plan
 
----
 
 ## 1. Preface
 
 Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’s rich heritage and mindful living philosophy. It effectively bridges the gap between traditional energy practices and contemporary lifestyles, offering ethically sourced crystals and gemstones that carry both meaning and beauty. Beyond just products, Soulstone is committed to building a trusted ecosystem of education, storytelling, and community — empowering individuals to embrace balance, wellness, and spiritual connection in their daily lives.
 
----
 
 ## 2. Vision & Strategy Docs
 
@@ -98,7 +96,6 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
   - KR2: Repeat purchase rate ≥ 30% within 6 months; subscription churn ≤ 3%/mo.
   - KR3: Product returns ≤ 4% with < 2% defect rate (measured monthly).
 
----
 
 ## 3. Founders’ & Legal Docs
 
@@ -155,7 +152,6 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Aarav 40% | Kavya 35% | Rohan 25%
 - 10% ESOP pool reserved for early team.
 
----
 
 ## 4. Pitch Deck & Financial Model
 
@@ -215,8 +211,6 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Future Series A: ₹5–₹7 Cr for international expansion.
 - SAFE/Convertible Notes for early investors.
 
----
-
 ## 5. Product Roadmap & PRD
 
 ### 5.1 Product Strategy Snapshot
@@ -269,7 +263,6 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - 24/7 support chat and community knowledge base.
 - Premium tier: Expert consultation support.
 
----
 
 ## 6. Mobile App & Website Documentation
 
@@ -398,6 +391,35 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Example queries (indicative):
   - `query { productBySlug(slug: "amethyst-tower") { id name price { amount currency } energyTags images { url alt } } }`
   - `mutation { addCartItem(cartId: "...", sku: "AMY-001", qty: 2) { cart { id items { sku qty } totals { subtotal grandTotal } } } }`
+
+### 6.6 Analytics & Telemetry
+
+- Event taxonomy:
+  - Core commerce: view_item, add_to_cart, begin_checkout, add_payment_info, purchase, subscribe, refund_initiated.
+  - Engagement: search, view_collection, view_article, share, video_play, wishlist_add.
+  - Retention: push_opt_in, notification_open, referral_share, loyalty_enroll.
+  - Error/quality: payment_error, api_error, app_crash, image_fail, oos_notify.
+
+- Instrumentation:
+  - Client SDKs: web (gtag/GA4 + custom), app (Segment/Amplitude), server (OpenTelemetry spans/metrics).
+  - Consistent `user_id`, `session_id`, `device_id`; UTC timestamps; schema versioning.
+  - PII minimization; hash emails for matching; consent gating for tracking cookies.
+
+- Dashboards & KPIs:
+  - Funnel: sessions → PDP views → ATC → checkout → purchase; drop‑off by step and device.
+  - Commerce: AOV, CVR, revenue, ROAS by channel/campaign; repeat rate/cohort LTV.
+  - Product: search success rate, zero‑result rate, PDP LCP, error rates, app crash‑free sessions.
+  - Support: CSAT, FRT/ART, ticket volume by reason; returns/defects.
+
+- Data pipeline:
+  - Ingest (SDKs/webhooks) → events bus (Kinesis) → warehouse (Snowflake/BigQuery) → BI (Looker/Metabase).
+  - Daily ETL with dbt; model definitions under version control; PII segregation; access via roles.
+
+- Alerts & SLOs:
+  - Alert when checkout CR dips > 20% day‑over‑day; payment failures > 2%/provider; PDP LCP > 3s P75; crash‑free < 99.5%.
+
+- Compliance:
+  - Consent logs; opt‑out honored; delete/export data flows; data retention policy (13 months for raw events; 24 months for aggregates).
 
 ### 6.7 Frontend & Backend Development Guidelines
 
@@ -531,7 +553,6 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - `[2026‑05‑02] v1.0.0` — Public launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
 
 
----
 
 ## 7. 🧠 Internal Policies & Hiring Plan
 
