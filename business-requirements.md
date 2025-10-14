@@ -222,6 +222,21 @@ Acceptance Criteria:
 #### 7.1.2. [ Task ] - Session/device management
 **7.1.2.1. [ Subtask ] - List/revoke active sessions**
 
+### 7.2. [ User Story ] - Account Lifecycle (Delete/Close)
+#### 7.2.1. [ Task ] - Account deletion and data export requests
+**7.2.1.1. [ Subtask ] - Identity verification; queue with SLA**
+**7.2.1.2. [ Subtask ] - Soft-delete window; purge job and audit log**
+
+### 7.3. [ User Story ] - Contact Changes & Reverification
+#### 7.3.1. [ Task ] - Change email/phone with re-verification
+**7.3.1.1. [ Subtask ] - Verify new contact; migrate login identifiers**
+**7.3.1.2. [ Subtask ] - Notify old contact; recovery lockout window**
+
+### 7.4. [ User Story ] - Anti-automation on Auth
+#### 7.4.1. [ Task ] - CAPTCHA/risk checks on auth endpoints
+**7.4.1.1. [ Subtask ] - Apply to signup/login/forgot; global rate limits (see 6.4)**
+**7.4.1.2. [ Subtask ] - Device/IP heuristic scoring and throttles**
+
 ## 8. [ Feature ] - Catalog & Search
 Description: Enable rich product discovery with facets, search, and informative PDPs.
 Acceptance Criteria:
@@ -244,6 +259,18 @@ Acceptance Criteria:
 **8.3.1.1. [ Subtask ] - Synonyms (e.g., Amethyst <-> Jamunia); fuzzy match**
 **8.3.1.2. [ Subtask ] - Recent searches and clear history**
 
+### 8.4. [ User Story ] - Variants & Options
+#### 8.4.1. [ Task ] - Variant modeling and selection UI
+**8.4.1.1. [ Subtask ] - Option swatches; canonical SKU selection**
+
+### 8.5. [ User Story ] - Indexing Pipeline
+#### 8.5.1. [ Task ] - Incremental indexing and reindex jobs
+**8.5.1.1. [ Subtask ] - Publish hooks; background reindex; partial updates**
+
+### 8.6. [ User Story ] - Search Analytics & Curation
+#### 8.6.1. [ Task ] - Zero-result analytics and synonyms curation
+**8.6.1.1. [ Subtask ] - Curate synonyms/redirects; promote/demote rules**
+
 ## 9. [ Feature ] - Cart & Pricing
 Description: Provide accurate carts with discounts, tax, shipping, and guest/server persistence.
 Acceptance Criteria:
@@ -258,6 +285,17 @@ Acceptance Criteria:
 #### 9.1.2. [ Task ] - Merge-on-login
 **9.1.2.1. [ Subtask ] - Conflict resolution and price recalc**
 
+### 9.2. [ User Story ] - Inventory Reservations
+#### 9.2.1. [ Task ] - Reserve items on add-to-cart
+**9.2.1.1. [ Subtask ] - TTL and release on abandon**
+**9.2.1.2. [ Subtask ] - Oversell guardrails and alerts**
+
+### 9.3. [ User Story ] - Estimators & Gifting
+#### 9.3.1. [ Task ] - Shipping/tax estimate pre-login
+**9.3.1.1. [ Subtask ] - Pin code estimator on cart**
+#### 9.3.2. [ Task ] - Gift wrap and messages
+**9.3.2.1. [ Subtask ] - Fees, preview, and packing slip handling**
+
 ## 10. [ Feature ] - Checkout & Payments (Razorpay/Stripe)
 Description: Deliver a secure, reliable checkout with address/shipping, payment intents, and robust webhooks.
 Acceptance Criteria:
@@ -270,12 +308,24 @@ Acceptance Criteria:
 ### 10.1. [ User Story ] - Address & Shipping
 #### 10.1.1. [ Task ] - Address capture and validation; shipping methods
 **10.1.1.1. [ Subtask ] - Pin code and phone validation**
+**10.1.1.2. [ Subtask ] - Reuse address validation engine (see 7.1.1.1)**
 
 ### 10.2. [ User Story ] - Payment Intent & Confirmation
 #### 10.2.1. [ Task ] - Create payment intent; handle success/failure
 **10.2.1.1. [ Subtask ] - Idempotency keys on writes**
 #### 10.2.2. [ Task ] - Webhooks
 **10.2.2.1. [ Subtask ] - Signature validation; retries and DLQ**
+
+### 10.3. [ User Story ] - Regulatory & Risk Controls
+#### 10.3.1. [ Task ] - 3DS/SCA and terms acceptance
+**10.3.1.1. [ Subtask ] - Provider challenge UI; error states**
+**10.3.1.2. [ Subtask ] - Terms/return policy checkbox and logging**
+#### 10.3.2. [ Task ] - COD eligibility and fees
+**10.3.2.1. [ Subtask ] - PIN serviceability, order value caps, fee toggles**
+
+### 10.4. [ User Story ] - Provider Resilience & Retries
+#### 10.4.1. [ Task ] - Payment provider failover and retry logic
+**10.4.1.1. [ Subtask ] - Retry/backoff; fallback provider routing**
 
 ## 11. [ Feature ] - Orders, Fulfillment & Returns
 Description: Manage order lifecycle, shipments, returns, and refunds with full auditability.
@@ -295,18 +345,42 @@ Acceptance Criteria:
 #### 11.2.1. [ Task ] - RMA creation and eligibility checks
 **11.2.1.1. [ Subtask ] - Refund processing and ledger updates**
 
+### 11.3. [ User Story ] - Split Shipments & Partial Fulfillment
+#### 11.3.1. [ Task ] - Partial fulfillment and multi-tracking
+**11.3.1.1. [ Subtask ] - Shipment items and status aggregation**
+
+### 11.4. [ User Story ] - Cancellations & Exchanges
+#### 11.4.1. [ Task ] - Cancellation windows and fees
+**11.4.1.1. [ Subtask ] - Pre-ship/after-ship rules; notifications**
+#### 11.4.2. [ Task ] - Exchange flow
+**11.4.2.1. [ Subtask ] - Exchange order creation; stock checks**
+
+### 11.5. [ User Story ] - Guest Tracking & Invoices
+#### 11.5.1. [ Task ] - Guest order lookup via email/phone + OTP
+**11.5.1.1. [ Subtask ] - Invoice PDF download with GST details**
+
 ## 12. [ Feature ] - Reviews & UGC
 Description: Collect verified product reviews and media with moderation and anti-abuse.
 Acceptance Criteria:
 - Review CRUD restricted to verified purchasers; media uploads via presigned URLs with AV scanning.
-- Anti-spam and rate limits enforced; moderation queue operational.
+- Anti-spam enforced leveraging global rate limiting (see 6.4); moderation queue operational.
 - Published reviews meet content policy; takedown workflow exists.
 - Review events tracked for analytics.
 
 ### 12.1. [ User Story ] - Verified Reviews
 #### 12.1.1. [ Task ] - Review CRUD with verification and moderation
 **12.1.1.1. [ Subtask ] - Media uploads via presigned URLs; virus scan**
-#### 12.1.2. [ Task ] - Anti-spam and rate limiting
+#### 12.1.2. [ Task ] - Anti-spam (uses global rate limiting; see 6.4)
+
+### 12.2. [ User Story ] - Quality Signals & Merchant Replies
+#### 12.2.1. [ Task ] - Helpful votes and merchant replies
+**12.2.1.1. [ Subtask ] - One-vote-per-user; reply moderation**
+#### 12.2.2. [ Task ] - Flagged content workflow
+**12.2.2.1. [ Subtask ] - Reasons, SLAs, takedown audit**
+
+### 12.3. [ User Story ] - Media Handling
+#### 12.3.1. [ Task ] - EXIF strip, size limits, and safety
+**12.3.1.1. [ Subtask ] - Image processing and AV scanning**
 
 ## 13. [ Feature ] - Subscriptions, Loyalty & Referrals
 Description: Drive retention via subscription billing, loyalty points, and referrals with fraud checks.
@@ -406,6 +480,14 @@ Acceptance Criteria:
 **16.3.2.1. [ Subtask ] - Per-channel/topic; quiet hours and batching**
 #### 16.3.3. [ Task ] - Delivery orchestration
 **16.3.3.1. [ Subtask ] - De-duplication and channel failover (push/email/SMS)**
+
+### 16.4. [ User Story ] - India DLT & Templates
+#### 16.4.1. [ Task ] - Register sender IDs and templates
+**16.4.1.1. [ Subtask ] - Map events to DLT templates; compliance logs**
+
+### 16.5. [ User Story ] - WhatsApp Business & Routing
+#### 16.5.1. [ Task ] - WhatsApp notifications for key events
+**16.5.1.1. [ Subtask ] - Fallback to SMS/email; opt-in and quiet hours**
 
 ## 17. [ Feature ] - Support & Help Center
 Description: Provide self-serve help content and real-time chat with escalation and CSAT collection.
@@ -557,6 +639,22 @@ Acceptance Criteria:
 #### 22.6.1. [ Task ] - Queue, approve/reject with reasons; policy enforcement
 **22.6.1.1. [ Subtask ] - Media review and takedown workflow**
 
+### 22.7. [ User Story ] - Customer Support Tools
+#### 22.7.1. [ Task ] - Customer search and impersonation
+**22.7.1.1. [ Subtask ] - Audit logs; impersonation consent banner**
+
+### 22.8. [ User Story ] - Fraud Review Queue
+#### 22.8.1. [ Task ] - Manual review for risky orders
+**22.8.1.1. [ Subtask ] - Decisions (approve/hold/cancel); notes and SLAs**
+
+### 22.9. [ User Story ] - Bulk Operations
+#### 22.9.1. [ Task ] - Bulk price/inventory updates
+**22.9.1.1. [ Subtask ] - CSV upload with validation; preview + rollback**
+
+### 22.10. [ User Story ] - Feature Flags & Toggles
+#### 22.10.1. [ Task ] - Admin control of flags
+**22.10.1.1. [ Subtask ] - Targeting rules; audit and approvals**
+
 ## 23. [ Feature ] - Tax & Invoicing (India GST)
 Description: Comply with Indian GST for pricing, invoices, and reporting; prepare for cross-border duties.
 Acceptance Criteria:
@@ -582,6 +680,18 @@ Acceptance Criteria:
 **23.4.1.1. [ Subtask ] - Provider integration and fallback rate tables**
 #### 23.4.2. [ Task ] - Compliance documents
 **23.4.2.1. [ Subtask ] - Commercial invoice and customs declarations**
+
+### 23.5. [ User Story ] - Rounding & Labels
+#### 23.5.1. [ Task ] - India rounding policies and GST labels
+**23.5.1.1. [ Subtask ] - MRP/compare-at display with GST notes**
+
+### 23.6. [ User Story ] - GST Filing Exports
+#### 23.6.1. [ Task ] - GSTR-1/3B exports
+**23.6.1.1. [ Subtask ] - Period selection; CSV with audit trail**
+
+### 23.7. [ User Story ] - TCS/TDS & COD Nuances
+#### 23.7.1. [ Task ] - Handle TCS/TDS where applicable
+**23.7.1.1. [ Subtask ] - COD-specific tax reporting adjustments**
 
 ## 24. [ Feature ] - Shipping & Logistics Integration
 Description: Integrate carriers for rates, labels, tracking, and exception handling, including international.
@@ -610,6 +720,22 @@ Acceptance Criteria:
 **24.4.2.1. [ Subtask ] - Postal code and address verification APIs**
 #### 24.4.3. [ Task ] - Cross-border returns & CX
 **24.4.3.1. [ Subtask ] - RTO and refund SLAs; customer communications**
+
+### 24.5. [ User Story ] - Packaging & DIM Weight
+#### 24.5.1. [ Task ] - Packaging rules and DIM calculations
+**24.5.1.1. [ Subtask ] - Auto-boxing and rate selection impact**
+
+### 24.6. [ User Story ] - NDR & Delivery Retries
+#### 24.6.1. [ Task ] - NDR workflows and customer comms
+**24.6.1.1. [ Subtask ] - Retry attempts; return-to-origin handling**
+
+### 24.7. [ User Story ] - COD Remittance Tracking
+#### 24.7.1. [ Task ] - Track COD settlements and reconciliation
+**24.7.1.1. [ Subtask ] - Expected vs received; aging reports**
+
+### 24.8. [ User Story ] - Aggregator Failover
+#### 24.8.1. [ Task ] - Provider failover rules
+**24.8.1.1. [ Subtask ] - Health-based routing and alerts**
 
 ## 25. [ Feature ] - Media & CDN Pipeline
 Description: Provide secure media uploads, derivatives, and global delivery with smart caching.
@@ -807,6 +933,14 @@ Acceptance Criteria:
 #### 34.4.1. [ Task ] - Review requests, winback, replenishment
 **34.4.1.1. [ Subtask ] - Holdouts and attribution tagging**
 
+### 34.5. [ User Story ] - UTM Governance
+#### 34.5.1. [ Task ] - UTM validation and mapping
+**34.5.1.1. [ Subtask ] - Auto-tagging rules; PII stripping**
+
+### 34.6. [ User Story ] - WhatsApp CRM Integration
+#### 34.6.1. [ Task ] - Sync profiles and events
+**34.6.1.1. [ Subtask ] - Consent sync and opt-out handling (integrates with 4.2.1)**
+
 ## 35. [ Feature ] - Eventing & Tracing
 Description: Ensure reliable domain event delivery and end-to-end observability.
 Acceptance Criteria:
@@ -938,3 +1072,27 @@ Acceptance Criteria:
 ### 40.2. [ User Story ] - Price Presentation
 #### 40.2.1. [ Task ] - Multi-currency UI and SEO tags
 **40.2.1.1. [ Subtask ] - Canonicals and hreflang updates**
+
+## 41. [ Feature ] - Ethical Sourcing & Provenance
+Description: Provide transparent provenance via supplier KYC, certifications, lot-level traceability, and PDP trust signals.
+Acceptance Criteria:
+- Supplier onboarding with KYC and document verification; expiries tracked with alerts.
+- Lot-level chain-of-custody linked to SKUs; PDP shows verified badges and sourcing info.
+- Partner profile pages published with attribution; audit trails recorded for changes.
+- Compliance checks and audit schedules tracked to closure.
+
+### 41.1. [ User Story ] - Supplier Onboarding & KYC
+#### 41.1.1. [ Task ] - Collect KYC and certifications
+**41.1.1.1. [ Subtask ] - Upload/store docs; expiry reminders**
+
+### 41.2. [ User Story ] - Lot-Level Traceability
+#### 41.2.1. [ Task ] - Link lots to inventory and orders
+**41.2.1.1. [ Subtask ] - Scan/import lots; chain-of-custody record**
+
+### 41.3. [ User Story ] - PDP Trust & Partner Pages
+#### 41.3.1. [ Task ] - Display verified badges and sourcing
+**41.3.1.1. [ Subtask ] - Partner pages with certificates and stories**
+
+### 41.4. [ User Story ] - Audits & Compliance
+#### 41.4.1. [ Task ] - Audit scheduling and outcomes
+**41.4.1.1. [ Subtask ] - Findings, remediation, and public transparency notes**
