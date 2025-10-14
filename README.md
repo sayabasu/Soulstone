@@ -21,15 +21,15 @@ npm install
 ```
 
 ## Running with Docker
-The repository includes Docker images for the client, server, and a PostgreSQL instance. Docker Compose loads environment values
+The repository includes Docker images for the client and server. Docker Compose loads environment values
 from `.env.example` in the repository root.
 
 ```bash
 docker compose up --build
 ```
 
-The default configuration exposes the client at <http://localhost:5173> and the API at <http://localhost:4000>. Update the value
-in `.env.example` if you need to change ports or credentials.
+The default configuration exposes the client at <http://localhost:5173> and the API at <http://localhost:4000>.
+Set the `DATABASE_URL` in `.env.example` (or your local `.env`) to point at your hosted PostgreSQL instance.
 
 ## Common Scripts
 Run scripts from the repository root unless otherwise noted.
