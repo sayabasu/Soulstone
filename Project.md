@@ -668,3 +668,111 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Onboarding completion:
   - Manager sign‑off; survey; probation feedback; add to on‑call/training rosters as applicable.
+
+---
+
+## 8. 📈 Marketing and Sales Materials
+
+### 8.1 Marketing Plan
+
+- Goals & KPIs:
+  - Awareness: reach 15M impressions in Year 1; aided awareness +20% in Tier‑1 cities.
+  - Acquisition: CAC ≤ ₹500; CVR ≥ 3.5%; email signup CVR ≥ 2.5%.
+  - Retention: 30% repeat in 6 months; subscription churn ≤ 3%/mo.
+
+- Channels & mix:
+  - Paid: Meta, Google Search/Shopping, YouTube; ROAS targets by campaign; retargeting frequency caps.
+  - Owned: SEO/content hub, email, WhatsApp (opt‑in), app push; 2 posts/week blog, 1 video/week.
+  - Earned: PR, influencer co‑creates, community events; UGC initiatives.
+
+- Audience & segmentation:
+  - Personas: Seeker (learning), Gifter (occasional), Decor Enthusiast (aesthetic), Practitioner (advanced).
+  - Segments by intent, RFM score, AOV band; lifecycle stages: new, active, lapsing, churned.
+
+- Budget & pacing:
+  - 60/30/10 split across prospecting/retargeting/retention; seasonal boosts for Diwali, Raksha Bandhan, Valentine’s.
+  - Weekly pacing reviews; reallocate to best‑performing audiences; creative refresh every 4–6 weeks.
+
+- Measurement:
+  - MMM (v2) and MTA via platform + GA4; lift tests quarterly; brand search index and share of voice tracked monthly.
+
+### 8.2 Brand Messaging & Content Strategy
+
+- Positioning:
+  - Modern, ethical, and educational spiritual lifestyle brand rooted in Indian heritage.
+
+- Messaging pillars:
+  - Authentic Sourcing; Energy Education; Aesthetic Living; Community & Rituals; Responsible Wellness.
+
+- Voice & tone:
+  - Warm, credible, grounded; avoid absolutist health claims; emphasize guidance over guarantees.
+
+- Content calendar:
+  - 2x guides/week, 1x ritual video/week, 1x collection story/fortnight, 1x newsletter/week; monthly long‑form guide.
+
+- Asset specs:
+  - Imagery in AVIF/WebP; short‑form 9:16 and 1:1; captions accessible; alt text required; microcopy pattern library.
+
+- Governance:
+  - E‑E‑A‑T: author bios with expertise; review/refresh cadence; source citations; medical disclaimers where needed.
+
+### 8.3 Sales Playbook
+
+- ICP & qualification (D2C + B2B gifting):
+  - ICP: urban 20–45, wellness‑interested; B2B: HR/EA gifting, boutique hotels, yoga studios.
+  - Qualification (BANT‑lite): Budget fit, Authority (decision maker), Need (use‑case), Timing (event/season).
+
+- Offers & pricing:
+  - D2C: bundles, first‑order codes (≤10%), loyalty tiers; AOV lift with sets/gifts.
+  - B2B: volume tiers, custom packaging, co‑branding; MOQs and lead times documented.
+
+- Play steps:
+  - Inbound: respond ≤ 2h; discovery script; send tailored lookbook; sample kit if qualified; proposal within 48h; close and onboard.
+  - Outbound (B2B): target list → intro email → call → sample → proposal; cadence ≤ 3 weeks; CRM tasks auto‑generated.
+
+- Enablement:
+  - Collateral: lookbooks, spec sheets, authenticity/certification docs, care guides, case studies.
+  - Tools: CRM, email sequences, meeting links, pricing calculator, ROI one‑pagers.
+
+- Metrics:
+  - Pipeline coverage 3× target; win rate ≥ 25%; sales cycle ≤ 21 days (SMB); NPS ≥ 60.
+
+### 8.4 Customer Journey Map
+
+- Stages & moments:
+  - Discover → Consider → Purchase → Receive → Use → Advocate.
+
+- Key touchpoints:
+  - Discover: search, social, PR, influencer content, events.
+  - Consider: PLP/PDP, guides, sourcing/ethics, reviews/UGC, chat.
+  - Purchase: cart/checkout, payment, shipping options, promises.
+  - Receive: unboxing, authenticity card, care instructions, QR to Learn hub.
+  - Use: rituals, reminders, content recommendations, community prompts.
+  - Advocate: review request, referral program, loyalty perks, UGC features.
+
+- Journey KPIs:
+  - TTFV, AOV, CVR, return rate, CSAT, review rate, referral rate, repeat purchase time.
+
+- Improvements backlog (examples):
+  - PDP comparison tool; AR placement (v2); post‑purchase ritual series; OOS back‑in‑stock flows; proactive CX nudges.
+
+### 8.5 Campaign Templates
+
+- Always‑on performance (prospecting/retargeting):
+  - Prospecting: value prop + top collections; hook + proof (authenticity, ethics); broad + interest stacks.
+  - Retargeting: viewed products, abandoned cart, content readers; dynamic product ads; frequency caps.
+
+- Seasonal (Diwali/Rakhi/Valentine’s/Mother’s Day):
+  - Theme: gifting, intentions (love, calm, protection); bundles; limited packaging; countdowns.
+  - Channels: Meta, YouTube, Search, email, WhatsApp; store pop‑ups.
+
+- Launch/new collection:
+  - Tease → unveil → social proof → scarcity; influencer seeding; PR note; collection story page.
+
+- Email/WhatsApp sequences (examples):
+  - Welcome (3 parts): story + bestsellers; education guide; social proof + incentive.
+  - Abandoned cart (2–3 parts): reminder; benefits; scarcity.
+  - Post‑purchase (3 parts): care; ritual; review/referral.
+
+- Creative checklist:
+  - Clear headline, benefit‑first copy, brand cues, CTA above fold, mobile‑first layout, alt text, schema where applicable.
