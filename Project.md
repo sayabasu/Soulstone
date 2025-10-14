@@ -17,6 +17,7 @@ Owners/Reviewers: CEO (Aarav Mehta), COO (Kavya Iyer), CMO (Rohan Deshmukh), PM 
 - Unit economics: AOV ~₹1,800, CAC ≤₹500, LTV ~₹4,500; LTV:CAC ≥ 8–10:1 with improving cohorts via subscriptions and content.
 - GTM: Tier‑1 focus initially, creator partnerships, content/SEO, and community events; transparent reviews and ethics lead brand trust.
 - Funding: Seed ₹1.5 Cr (target) to achieve MVP launch, early traction, and runway to contribution margin positive.
+ - Timeline conventions: Calendar quarters; Year 1 = Q2 2024–Q1 2025; Year 2 = Q2 2025–Q1 2026.
 
 ## Table of Contents
 
@@ -214,8 +215,8 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 ### 3.1 Legal Compliance Timeline & Milestones
 
 - **Q4 2023**: Initiate IP audit, legal consultation, and pre-filing preparations.
-- **Q1 2024**: File for trademark registration, initiate MCA LLP registration, PAN/TAN allocation, and GST filing.
-- **Q2 2024**: Completion of incorporation and basic compliance ahead of MVP launch. All core legal entities established.
+- **Q1 2024**: Complete MCA LLP incorporation; PAN/TAN and GST obtained; file trademark applications.
+- **Q2 2024**: Pre‑launch compliance checks and policy readiness ahead of MVP; annual filing cadences set up.
 - **Q3 2024**: Trademark examination and publication stage, ongoing MCA annual filings set up.
 - **Q4 2024 – Q2 2025**: Trademark registration finalization, renewal calendar setup, and compliance reporting maturity.
 
@@ -226,7 +227,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - **GST Registration**: 5–10 days; ₹2,000–₹5,000
 - **PAN/TAN Allocation**: 2–5 days
 - **Annual MCA Filings**: ₹15,000–₹25,000/year
-- Timeline: All registrations completed by **Q2 2024** before MVP launch.
+- Timeline: All registrations completed by **Q1 2024** before MVP launch.
 
 <a id="sec-3-2"></a>
 
@@ -725,8 +726,9 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Known Issues — impact/workarounds
 
 - Example entries (illustrative):
-  - `[2023‑04‑10] v0.9.0` — Added subscriptions MVP; improved PDP performance; fixed address validation; applied OpenSSL patch.
-  - `[2023‑05‑02] v1.0.0` — Public launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
+  - Example entries (template; not project history):
+  - `[2024‑04‑10] v0.9.0` — Beta build; improved PDP performance; fixed address validation; applied OpenSSL patch.
+  - `[2024‑05‑15] v1.0.0` — MVP launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
 
 
 
@@ -754,9 +756,9 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Add: 2 Engineers, 1 Data Analyst, 1 Community Manager, 1 Vendor Manager, 1 Compliance/QA (product), 1 Senior PM.
 
 - Hiring priorities & timeline:
-  - Q1: Core eng (2), designer, PM, CX lead.
+  - Q1: Core eng (2), Mobile engineer, designer, PM, CX lead.
   - Q2: DevOps, QA, performance marketer, sourcing associate.
-  - Q3: Mobile engineer, content lead, supply/inventory.
+  - Q3: Content lead, supply/inventory.
   - Q4: Data analyst, additional CX, vendor manager.
 
 - Recruiting process:
@@ -1105,13 +1107,13 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Web + app MVP live; 100+ SKUs; payments live; Learn hub v1; analytics dashboards; first 10 partners activated.
 
 - Q3 2024
-  - Subscriptions v1; loyalty/referrals; Tier‑2 expansion; 50 partners; CAC ≤₹500; repeat rate ≥25%.
+  - Subscriptions v1; loyalty/referrals; Tier‑2 expansion; 25 partners; CAC ≤₹500; repeat rate ≥25%.
 
 - Q4 2024
-  - Influencer marketplace pilot; 120+ partners; contribution margin positive cohorts; SEO pillar pages live.
+  - Influencer marketplace pilot; 40+ partners; contribution margin positive cohorts; SEO pillar pages live.
 
 - H1 2025
-  - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%.
+  - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%; 50 partners achieved by Q1 2025.
 
 <a id="sec-12"></a>
 
@@ -1156,7 +1158,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ## Appendix B: Source Notes & Disclaimers
 
-- Figures are indicative, based on internal estimates and publicly available industry reports as of 2024–2025; to be refreshed during fundraising and before public launch.
+- Figures are indicative, based on internal estimates and publicly available industry reports consulted in 2024–2025; these will be refreshed during fundraising and before public launch.
 - No medical claims: products are not intended to diagnose, treat, cure, or prevent disease. Content is educational; users should consult professionals for medical advice.
 - Forward‑looking statements involve risks and uncertainties; actual outcomes may differ based on market conditions and execution.
 
