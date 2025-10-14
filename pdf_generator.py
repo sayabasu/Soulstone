@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as _dt
+import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Iterable, List, Sequence, Tuple
@@ -247,6 +248,19 @@ def _markdown_element_to_flowables(element: ET.Element, *, styles) -> List:
     return flowables
 
 
+_anchor_id_pattern = re.compile(r"(<a\b[^>]*?)\s+id=(['\"])(.*?)\2", re.IGNORECASE)
+
+
+def _sanitize_html(html: str) -> str:
+    """Replace anchor ``id`` attributes with the supported ``name`` attribute."""
+
+    def _replace(match: re.Match[str]) -> str:
+        prefix, quote, anchor_id = match.groups()
+        return f"{prefix} name={quote}{anchor_id}{quote}"
+
+    return _anchor_id_pattern.sub(_replace, html)
+
+
 def _markdown_to_flowables(markdown_text: str, styles) -> List:
     html = markdown.markdown(
         markdown_text,
@@ -259,7 +273,7 @@ def _markdown_to_flowables(markdown_text: str, styles) -> List:
         output_format="html5",
     )
 
-    wrapped_html = f"<root>{html}</root>"
+    wrapped_html = f"<root>{_sanitize_html(html)}</root>"
     try:
         root = ET.fromstring(wrapped_html)
     except ET.ParseError as exc:
