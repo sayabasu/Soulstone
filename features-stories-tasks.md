@@ -1,8 +1,20 @@
-# Launch Soulstone’s trusted commerce platform for ethically sourced crystals.
+# Soulstone Feature, Story & Task Catalog
+
+Status: Final
+Version: v1.0
+Last Updated: 2023-10-14
+
+<a id="sec-overview"></a>
+
+## Overview
+
+Launch Soulstone’s trusted commerce platform for ethically sourced crystals.
 
 Enable wellness-conscious consumers in India to discover, learn about, and purchase ethically sourced crystals through a transparent, high-performing web and mobile experience reinforced by education, subscriptions, loyalty, and community partnerships.
 
-**Success criteria:**
+<a id="sec-success-criteria"></a>
+
+### Success Criteria
 
 - MVP live within 3 months with web + mobile, 100+ SKUs, payments, and Learn Hub v1.
 - Year‑1 traction: ≥ 25,000 paying users; repeat purchase rate ≥ 30%.
@@ -10,6 +22,59 @@ Enable wellness-conscious consumers in India to discover, learn about, and purch
 - Performance and reliability: P75 page load < 2.0s (web); crash‑free sessions > 99.5% (app).
 - Unit economics: CAC ≤ ₹500; LTV:CAC ≥ 8:1; AOV ≈ ₹1,800.
 - Quality and experience: returns ≤ 4% and defects < 2%; CSAT ≥ 90 with first‑response time ≤ 2 minutes; partner‑attributed revenue ≥ 15% and partner NPS ≥ 60 by Month 12.
+
+<a id="sec-table-of-contents"></a>
+
+## Table of Contents
+
+- [Soulstone Feature, Story & Task Catalog](#soulstone-feature-story--task-catalog)
+  - [Overview](#sec-overview)
+    - [Success Criteria](#sec-success-criteria)
+  - [Table of Contents](#table-of-contents)
+  - [1. Engineering Foundations & Dev Environment](#sec-feature-01)
+  - [2. Infrastructure as Code (AWS)](#sec-feature-02)
+  - [3. CI/CD Pipelines](#sec-feature-03)
+  - [4. Security & Compliance](#sec-feature-04)
+  - [5. Database & Data Modeling (PostgreSQL + Prisma)](#sec-feature-05)
+  - [6. API Platform (Express/Node, TypeScript)](#sec-feature-06)
+  - [7. Authentication & Accounts](#sec-feature-07)
+  - [8. Catalog & Search](#sec-feature-08)
+  - [9. Cart & Pricing](#sec-feature-09)
+  - [10. Checkout & Payments (Razorpay/Stripe)](#sec-feature-10)
+  - [11. Orders, Fulfillment & Returns](#sec-feature-11)
+  - [12. Reviews & UGC](#sec-feature-12)
+  - [13. Subscriptions, Loyalty & Referrals](#sec-feature-13)
+  - [14. Web Frontend (React/Next.js)](#sec-feature-14)
+  - [15. Analytics & Telemetry](#sec-feature-15)
+  - [16. Notifications & Communications](#sec-feature-16)
+  - [17. Support & Help Center](#sec-feature-17)
+  - [18. Reliability & SRE Operations](#sec-feature-18)
+  - [19. Content & CMS](#sec-feature-19)
+  - [20. Governance & Quality](#sec-feature-20)
+  - [21. Mobile App (React Native)](#sec-feature-21)
+  - [22. Admin Portal & Backoffice](#sec-feature-22)
+  - [23. Tax & Invoicing (India GST)](#sec-feature-23)
+  - [24. Shipping & Logistics Integration](#sec-feature-24)
+  - [25. Media & CDN Pipeline](#sec-feature-25)
+  - [26. Performance & Load Testing](#sec-feature-26)
+  - [27. Mobile Crash & Performance Analytics](#sec-feature-27)
+  - [28. Creator/Influencer Marketplace](#sec-feature-28)
+  - [29. Community & Gamification](#sec-feature-29)
+  - [30. Internationalization & Localization](#sec-feature-30)
+  - [31. Identity Enhancements](#sec-feature-31)
+  - [32. Wishlists, Alerts & Recovery](#sec-feature-32)
+  - [33. Payments Advanced](#sec-feature-33)
+  - [34. Marketing & CRM](#sec-feature-34)
+  - [35. Eventing & Tracing](#sec-feature-35)
+  - [36. Legal & Compliance](#sec-feature-36)
+  - [37. Quality Gates & Visual Testing](#sec-feature-37)
+  - [38. Catalog Extensions](#sec-feature-38)
+  - [39. Mobile Store Compliance](#sec-feature-39)
+  - [40. Multi-Currency Pricing](#sec-feature-40)
+  - [41. Ethical Sourcing & Provenance](#sec-feature-41)
+  - [Version History](#sec-version-history)
+
+<a id="sec-feature-01"></a>
 
 ## 1. [ Feature ] - Engineering Foundations & Dev Environment
 
@@ -202,6 +267,8 @@ Description:
 
 - Onboarding doc covering prerequisites
 - Commands
+
+<a id="sec-feature-02"></a>
 
 ## 2. [ Feature ] - Infrastructure as Code (AWS)
 
@@ -414,6 +481,8 @@ Description:
 
 - SNS + Slack/webhook integration for alerts
 
+<a id="sec-feature-03"></a>
+
 ## 3. [ Feature ] - CI/CD Pipelines
 
 Description: Automate build, test, security scanning, artifact creation, and deployments with preview environments.
@@ -582,6 +651,8 @@ Description:
 
 - Ephemeral API + web URLs
 - Tear-down job
+
+<a id="sec-feature-04"></a>
 
 ## 4. [ Feature ] - Security & Compliance
 
@@ -764,6 +835,8 @@ Description:
 - Auto-cancel/hold rules
 - Audit logs
 
+<a id="sec-feature-05"></a>
+
 ## 5. [ Feature ] - Database & Data Modeling (PostgreSQL + Prisma)
 
 Description: Define robust relational models and performance patterns for core entities with repeatable migrations.
@@ -856,6 +929,8 @@ Description:
 
 - Automated snapshots
 - Quarterly restore test
+
+<a id="sec-feature-06"></a>
 
 ## 6. [ Feature ] - API Platform (Express/Node, TypeScript)
 
@@ -991,6 +1066,8 @@ Description:
 
 - Redis-backed token bucket
 - Per-route configs
+
+<a id="sec-feature-07"></a>
 
 ## 7. [ Feature ] - Authentication & Accounts
 
@@ -1130,6 +1207,8 @@ Description:
 
 - Device/IP heuristic scoring
 - Throttles
+
+<a id="sec-feature-08"></a>
 
 ## 8. [ Feature ] - Catalog & Search
 
@@ -1296,6 +1375,8 @@ Description:
 - Curate synonyms/redirects
 - Promote/demote rules
 
+<a id="sec-feature-09"></a>
+
 ## 9. [ Feature ] - Cart & Pricing
 
 Description: Provide accurate carts with discounts, tax, shipping, and guest/server persistence.
@@ -1409,6 +1490,8 @@ Description:
 - Fees
 - Preview
 - Packing slip handling
+
+<a id="sec-feature-10"></a>
 
 ## 10. [ Feature ] - Checkout & Payments (Razorpay/Stripe)
 
@@ -1554,6 +1637,8 @@ Description:
 
 - Retry/backoff
 - Fallback provider routing
+
+<a id="sec-feature-11"></a>
 
 ## 11. [ Feature ] - Orders, Fulfillment & Returns
 
@@ -1705,6 +1790,8 @@ Description:
 
 - Invoice PDF download with GST details
 
+<a id="sec-feature-12"></a>
+
 ## 12. [ Feature ] - Reviews & UGC
 
 Description: Collect verified product reviews and media with moderation and anti-abuse.
@@ -1806,6 +1893,8 @@ Description:
 - Image processing
 - AV scanning
 
+<a id="sec-feature-13"></a>
+
 ## 13. [ Feature ] - Subscriptions, Loyalty & Referrals
 
 Description: Drive retention via subscription billing, loyalty points, and referrals with fraud checks.
@@ -1860,6 +1949,8 @@ Description:
 Description:
 
 - Fraud checks (device/IP/email heuristics)
+
+<a id="sec-feature-14"></a>
 
 ## 14. [ Feature ] - Web Frontend (React/Next.js)
 
@@ -2015,6 +2106,8 @@ Description:
 - FAQ
 - Organization)
 
+<a id="sec-feature-15"></a>
+
 ## 15. [ Feature ] - Analytics & Telemetry
 
 Description: Standardize event tracking, pipeline, alerts, and experimentation for data-driven decisions.
@@ -2136,6 +2229,8 @@ Description:
 
 - Segmentation and stats checks
 - Archive of results
+
+<a id="sec-feature-16"></a>
 
 ## 16. [ Feature ] - Notifications & Communications
 
@@ -2290,6 +2385,8 @@ Description:
 - Fallback to SMS/email
 - Opt-in and quiet hours
 
+<a id="sec-feature-17"></a>
+
 ## 17. [ Feature ] - Support & Help Center
 
 Description: Provide self-serve help content and real-time chat with escalation and CSAT collection.
@@ -2346,6 +2443,8 @@ Description:
 
 - Escalation rules
 - CSAT survey
+
+<a id="sec-feature-18"></a>
 
 ## 18. [ Feature ] - Reliability & SRE Operations
 
@@ -2477,6 +2576,8 @@ Description:
 - Blameless postmortems
 - Action items tracked to closure
 
+<a id="sec-feature-19"></a>
+
 ## 19. [ Feature ] - Content & CMS
 
 Description: Power the Learn Hub with a flexible content model, webhooks, and SEO-friendly templates.
@@ -2518,6 +2619,8 @@ Description:
 
 - SEO pillar pages templates
 - Internal linking
+
+<a id="sec-feature-20"></a>
 
 ## 20. [ Feature ] - Governance & Quality
 
@@ -2575,6 +2678,8 @@ Description:
 
 - Release notes template
 - Distribution
+
+<a id="sec-feature-21"></a>
 
 ## 21. [ Feature ] - Mobile App (React Native)
 
@@ -2796,6 +2901,8 @@ Description:
 
 - TestFlight/Play internal tracks
 - Staged rollout and monitoring
+
+<a id="sec-feature-22"></a>
 
 ## 22. [ Feature ] - Admin Portal & Backoffice
 
@@ -3045,6 +3152,8 @@ Description:
 - Targeting rules
 - Audit and approvals
 
+<a id="sec-feature-23"></a>
+
 ## 23. [ Feature ] - Tax & Invoicing (India GST)
 
 Description: Comply with Indian GST for pricing, invoices, and reporting; prepare for cross-border duties.
@@ -3228,6 +3337,8 @@ Description:
 Description:
 
 - COD-specific tax reporting adjustments
+
+<a id="sec-feature-24"></a>
 
 ## 24. [ Feature ] - Shipping & Logistics Integration
 
@@ -3451,6 +3562,8 @@ Description:
 - Health-based routing
 - Alerts
 
+<a id="sec-feature-25"></a>
+
 ## 25. [ Feature ] - Media & CDN Pipeline
 
 Description: Provide secure media uploads, derivatives, and global delivery with smart caching.
@@ -3534,6 +3647,8 @@ Description:
 - Create quarantine bucket for flagged assets.
 - Implement review workflow for quarantined assets.
 
+<a id="sec-feature-26"></a>
+
 ## 26. [ Feature ] - Performance & Load Testing
 
 Description: Validate performance budgets and scale under load with synthetic checks and alerts.
@@ -3614,6 +3729,8 @@ Description:
 - Alert thresholds
 - On-call rotation
 
+<a id="sec-feature-27"></a>
+
 ## 27. [ Feature ] - Mobile Crash & Performance Analytics
 
 Description: Monitor app stability and performance to ensure store-readiness and user experience.
@@ -3670,6 +3787,8 @@ Description:
 
 - Dashboards
 - Alerts for regressions
+
+<a id="sec-feature-28"></a>
 
 ## 28. [ Feature ] - Creator/Influencer Marketplace
 
@@ -3752,6 +3871,8 @@ Description:
 - Audit trail
 - Dispute workflow
 
+<a id="sec-feature-29"></a>
+
 ## 29. [ Feature ] - Community & Gamification
 
 Description: Build community engagement and retention through forums and gamified progression.
@@ -3832,6 +3953,8 @@ Description:
 - Escalation workflows
 - CSAT on resolutions
 
+<a id="sec-feature-30"></a>
+
 ## 30. [ Feature ] - Internationalization & Localization
 
 Description: Prepare the platform for multilingual content and locale-aware rendering.
@@ -3888,6 +4011,8 @@ Description:
 
 - Missing-key monitoring
 - Export/import tooling
+
+<a id="sec-feature-31"></a>
 
 ## 31. [ Feature ] - Identity Enhancements
 
@@ -3970,6 +4095,8 @@ Description:
 - Trusted devices, anomalous session detection
 - Re-auth for sensitive actions
 
+<a id="sec-feature-32"></a>
+
 ## 32. [ Feature ] - Wishlists, Alerts & Recovery
 
 Description: Improve retention with wishlists, stock/price alerts, and abandoned recovery journeys.
@@ -4051,6 +4178,8 @@ Description:
 - Recency
 - Discount limits
 
+<a id="sec-feature-33"></a>
+
 ## 33. [ Feature ] - Payments Advanced
 
 Description: Expand payment method coverage and robustness while keeping PCI scope minimal.
@@ -4130,6 +4259,8 @@ Description:
 
 - Subscription dunning logic
 - Notifications
+
+<a id="sec-feature-34"></a>
 
 ## 34. [ Feature ] - Marketing & CRM
 
@@ -4281,6 +4412,8 @@ Description:
 - Consent sync
 - Opt-out handling (integrates with 4.2.1)
 
+<a id="sec-feature-35"></a>
+
 ## 35. [ Feature ] - Eventing & Tracing
 
 Description: Ensure reliable domain event delivery and end-to-end observability.
@@ -4384,6 +4517,8 @@ Description:
 
 - Access controls
 - Audit trail
+
+<a id="sec-feature-36"></a>
 
 ## 36. [ Feature ] - Legal & Compliance
 
@@ -4489,6 +4624,8 @@ Description:
 - Legal holds
 - Reporting
 
+<a id="sec-feature-37"></a>
+
 ## 37. [ Feature ] - Quality Gates & Visual Testing
 
 Description: Prevent regressions via accessibility, visual, and contract testing with release gates.
@@ -4590,6 +4727,8 @@ Description:
 Description:
 
 - Verified rollback plan
+
+<a id="sec-feature-38"></a>
 
 ## 38. [ Feature ] - Catalog Extensions
 
@@ -4693,6 +4832,8 @@ Description:
 - UX toggles
 - SEO tags
 
+<a id="sec-feature-39"></a>
+
 ## 39. [ Feature ] - Mobile Store Compliance
 
 Description: Meet iOS/Android store policies for privacy, ratings, and versioning.
@@ -4773,6 +4914,8 @@ Description:
 - Remote config
 - Kill switches
 
+<a id="sec-feature-40"></a>
+
 ## 40. [ Feature ] - Multi-Currency Pricing
 
 Description: Support FX-driven price display and SEO for international audiences.
@@ -4829,6 +4972,8 @@ Description:
 
 - Canonicals
 - Hreflang updates
+
+<a id="sec-feature-41"></a>
 
 ## 41. [ Feature ] - Ethical Sourcing & Provenance
 
@@ -4933,3 +5078,9 @@ Description:
 - Findings
 - Remediation
 - Public transparency notes
+
+<a id="sec-version-history"></a>
+
+## Version History
+
+- v1.0 (2023-10-14) — Finalized: added status header, anchors, table of contents, and clarified success criteria wording to align with project.md conventions.

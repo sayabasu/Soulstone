@@ -10,21 +10,25 @@ Last Updated: 2023-10-14
 
 This timeline is derived from `project.md`. It uses Indian fiscal quarters (FY; Apr–Mar) and India date format `dd-mm-yyyy`. Mapping to project “Year” notation: Year 1 = FY25 (Apr 2024–Mar 2025); Year 2 = FY26 (Apr 2025–Mar 2026).
 
+<a id="sec-table-of-contents"></a>
+
 ## Table of Contents
 
-- [Overview](#sec-overview)
-- [Conventions](#sec-conventions)
-- [Q3 FY24 (Oct–Dec)](#sec-q3fy24)
-- [Q4 FY24 (Jan–Mar)](#sec-q4fy24)
-- [Q1 FY25 (Apr–Jun)](#sec-q1fy25)
-- [Q2 FY25 (Jul–Sep)](#sec-q2fy25)
-- [Q3 FY25 (Oct–Dec)](#sec-q3fy25)
-- [Q4 FY25 (Jan–Mar)](#sec-q4fy25)
-- [Q1 FY26 (Apr–Jun)](#sec-q1fy26)
-- [Engineering Track](#sec-eng-track)
-- [MVP Critical Path](#sec-critical-path)
-- [Risks & Mitigations](#sec-risks)
-- [Version History](#sec-version-history)
+- [Soulstone Project Timeline](#soulstone-project-timeline)
+  - [Overview](#sec-overview)
+  - [Table of Contents](#table-of-contents)
+  - [Conventions](#sec-conventions)
+  - [Q3 FY24 (Oct–Dec)](#sec-q3fy24)
+  - [Q4 FY24 (Jan–Mar)](#sec-q4fy24)
+  - [Q1 FY25 (Apr–Jun)](#sec-q1fy25)
+  - [Q2 FY25 (Jul–Sep)](#sec-q2fy25)
+  - [Q3 FY25 (Oct–Dec)](#sec-q3fy25)
+  - [Q4 FY25 (Jan–Mar)](#sec-q4fy25)
+  - [Q1 FY26 (Apr–Jun)](#sec-q1fy26)
+  - [Engineering Track](#sec-eng-track)
+  - [MVP Critical Path](#sec-critical-path)
+  - [Risks & Mitigations](#sec-risks)
+  - [Version History](#sec-version-history)
 
 <a id="sec-conventions"></a>
 

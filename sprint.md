@@ -1,16 +1,40 @@
-# Sprint Plan — 3‑Week Sprints (Soulstone)
+# Soulstone Sprint Plan (3-Week Cadence)
 
-Status: Draft
+Status: Final
 Version: v1.0
-Last Updated: 2025-10-14
+Last Updated: 2023-10-14
 
-Sources: timeline.md, features-stories-tasks.md
+<a id="sec-overview"></a>
+
+## Overview
+
+This plan maps Soulstone’s roadmap into rolling three-week sprints aligned with the master timeline and feature backlog.
+
+Sources: `timeline.md`, `features-stories-tasks.md`.
+
+<a id="sec-table-of-contents"></a>
+
+## Table of Contents
+
+- [Soulstone Sprint Plan (3-Week Cadence)](#soulstone-sprint-plan-3-week-cadence)
+  - [Overview](#sec-overview)
+  - [Table of Contents](#table-of-contents)
+  - [Conventions](#sec-conventions)
+  - [Sprint Calendar (Q4 FY24 → Q1 FY26)](#sec-sprint-calendar-q4-fy24-q1-fy26)
+  - [Sprint Details and Feature Alignment](#sec-sprint-details-and-feature-alignment)
+  - [Cross-Cutting Cadences & Gates](#sec-cross-cutting-cadences-gates)
+  - [Notes](#sec-notes)
+  - [Version History](#sec-version-history)
+
+<a id="sec-conventions"></a>
 
 ## Conventions
 - Sprint length: 3 weeks (21 days), dates in dd-mm-yyyy.
 - Scope aligns to timeline.md quarters (FY), adapted to 3‑week cadence.
 - Feature IDs refer to features-stories-tasks.md (e.g., Feature 8 — Catalog & Search).
 - Ownership tags mirror timeline.md (Engineering; Product & Design; …).
+
+<a id="sec-sprint-calendar-q4-fy24-q1-fy26"></a>
 
 ## Sprint Calendar (Q4 FY24 → Q1 FY26)
 
@@ -48,6 +72,8 @@ Sources: timeline.md, features-stories-tasks.md
 | Buffer | 24-06-2025 → 30-06-2025 | Q1 FY26 | Retros and H2 planning |
 
 ---
+
+<a id="sec-sprint-details-and-feature-alignment"></a>
 
 ## Sprint Details and Feature Alignment
 
@@ -314,6 +340,8 @@ For each sprint, feature references are from features-stories-tasks.md.
 
 ---
 
+<a id="sec-cross-cutting-cadences-gates"></a>
+
 ## Cross-Cutting Cadences & Gates
 - Demos: End of each sprint (week 3, Thu/Fri).
 - Retro/Planning: Last 1–2 days of each sprint; buffers used for launch/hardening.
@@ -323,8 +351,15 @@ For each sprint, feature references are from features-stories-tasks.md.
   - Gate C (Q1 FY25 W6): Perf/security/QA baselines (by S7).
   - Gate D (Q1 FY25 W8–10): Beta, bug bash, staged rollout; go‑live (S8 + Launch week).
 
+<a id="sec-notes"></a>
+
 ## Notes
 - This plan adapts the 2‑week engineering cadence in timeline.md to 3‑week sprints per request.
 - Non‑engineering timeline items (e.g., hiring, legal filings) occur in parallel and are not fully itemized here; owners remain accountable within quarter goals.
 - Adjust sprint scope with throughput data after S6.
 
+<a id="sec-version-history"></a>
+
+## Version History
+
+- v1.0 (2023-10-14) — Finalized: added status header, anchors, table of contents, and aligned cadence summary with project.md timeline.
