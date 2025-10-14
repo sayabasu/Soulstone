@@ -1,89 +1,119 @@
-"""Convert Markdown documents in the repository into standalone PDF files.
-
-This module is a thin wrapper around :mod:`pdf_generator` that iterates over
-Markdown sources and emits one PDF per file.  By default it scans the repository
-root for ``.md`` files and writes the generated PDFs into ``docs/``.
-
-Example
--------
-    python convert_md_to_pdf.py
-
-It can also accept explicit source/output directories::
-
-    python convert_md_to_pdf.py --source notes --destination build/docs
-"""
-from __future__ import annotations
-
-import argparse
+import pypandoc
 from pathlib import Path
+import re
 
-from pdf_generator import generate_pdf
+# ----- HEADER STYLING (headers, footers, section spacing) -----
+header_includes = r"""
+\usepackage{titlesec}
+\usepackage{sectsty}
+\usepackage[compact]{titlesec}
+\usepackage{fancyhdr}
 
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
 
-def _read_markdown(file_path: Path) -> tuple[str, str]:
-    """Return a ``(title, body)`` tuple for *file_path*.
+% ----- Header / Footer -----
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\thepage}
+\fancyfoot[L]{Innovista}
+\fancyfoot[R]{\today}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 
-    The title is derived from the filename using a human-friendly format, while
-    the body is the raw Markdown content read as UTF-8.
-    """
+% ----- Header Spacing -----
+\titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{0.8ex}
+\titlespacing*{\subsection}{0pt}{1.3ex plus 1ex minus .2ex}{0.6ex}
+\titlespacing*{\subsubsection}{0pt}{1ex plus 1ex minus .2ex}{0.5ex}
 
-    if not file_path.exists():
-        raise FileNotFoundError(f"Markdown file not found: {file_path}")
-    if file_path.suffix.lower() != ".md":
-        raise ValueError(f"Expected a Markdown file (.md): {file_path}")
+% ----- Header Font Sizes -----
+\sectionfont{\fontsize{16}{18}\selectfont\bfseries}
+\subsectionfont{\fontsize{14}{16}\selectfont\bfseries}
+\subsubsectionfont{\fontsize{12}{14}\selectfont\bfseries}
+"""
 
-    title = file_path.stem.replace("_", " ").replace("-", " ").strip().title()
-    content = file_path.read_text(encoding="utf-8")
-    return title or "Document", content
+# ----- COVER PAGE -----
+cover_page = r"""
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    {\Huge\bfseries \thetitle \par}
+    \vspace{1.5cm}
+    {\Large \theauthor \par}
+    \vspace{0.5cm}
+    {\large \today \par}
+    \vfill
+    {\Large \textbf{Innovista}}
+\end{titlepage}
+"""
 
-
-def _convert_single_markdown(markdown_path: Path, output_dir: Path) -> Path:
-    """Convert *markdown_path* into a PDF stored under *output_dir*.
-
-    Returns the path to the generated PDF.
-    """
-
-    title, body = _read_markdown(markdown_path)
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-    output_path = output_dir / f"{markdown_path.stem}.pdf"
-
-    generate_pdf(
-        output=output_path,
-        sections=[(title, body)],
-        title=title,
-        footer=None,
-    )
-    return output_path
-
-
-def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--source",
-        type=Path,
-        default=Path.cwd(),
-        help="Directory that will be scanned for Markdown files (default: CWD).",
-    )
-    parser.add_argument(
-        "--destination",
-        type=Path,
-        default=Path.cwd() / "docs",
-        help="Directory where generated PDFs will be saved (default: ./docs).",
-    )
-    return parser.parse_args(argv)
+# Write LaTeX helpers to disk
+Path("header.tex").write_text(header_includes, encoding="utf-8")
+Path("cover.tex").write_text(cover_page, encoding="utf-8")
 
 
-def main(argv: list[str] | None = None) -> None:
-    args = _parse_args(argv)
-
-    markdown_files = sorted(p for p in args.source.glob("*.md") if p.is_file())
-    if not markdown_files:
-        raise SystemExit(f"No Markdown files found in {args.source}")
-
-    for markdown_file in markdown_files:
-        _convert_single_markdown(markdown_file, args.destination)
+# ----- Markdown cleaner -----
+def clean_markdown(content: str) -> str:
+    # Collapses multiple blank lines to a single one to avoid big gaps in PDF
+    return re.sub(r'\n\s*\n\s*\n+', '\n\n', content)
 
 
+# ----- Main converter -----
+def convert_md_to_pdf(input_dir: str, output_dir: str, author="Author Name"):
+    input_path = Path(input_dir)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    md_files = list(input_path.glob("*.md"))
+    if not md_files:
+        print(f"No markdown files found in {input_dir}")
+        return
+
+    for md_file in md_files:
+        # Read and clean markdown content
+        content = clean_markdown(md_file.read_text(encoding="utf-8"))
+
+        # Use filename as the document title (replace underscores with spaces)
+        title = md_file.stem.replace("_", " ").title()
+
+        # Build output path
+        pdf_filepath = output_path / (md_file.stem + ".pdf")
+
+        # Convert to PDF with Pandoc
+        try:
+            pypandoc.convert_text(
+                content,
+                to='pdf',
+                format='md',
+                outputfile=str(pdf_filepath),
+                extra_args=[
+                    '--standalone',
+                    '--pdf-engine=xelatex',
+                    '--variable', 'mainfont=Georgia',
+                    '--variable', 'geometry:margin=1in',
+                    '--variable', 'fontsize=12pt',
+                    '--variable', 'parskip=0pt',
+                    '--variable', 'secnumdepth=3',
+                    '--include-in-header=header.tex',
+                    '--include-before-body=cover.tex',
+                    f'--metadata=title:{title}',
+                    f'--metadata=author:{author}'
+                ]
+            )
+            print(f"✅ Converted: {md_file.name} → {pdf_filepath.name}")
+        except Exception as e:
+            print(f"❌ Failed to convert {md_file.name}: {e}")
+
+    print(f"\n📂 All PDFs saved to: {output_path.resolve()}")
+
+
+# ----- Entry point -----
 if __name__ == "__main__":
-    main()
+    # You can change these defaults or pass arguments if you like
+    input_folder = "input"
+    output_folder = "output"
+    author_name = "Jane Doe"
+
+    convert_md_to_pdf(input_folder, output_folder, author=author_name)
