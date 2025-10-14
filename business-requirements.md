@@ -21,6 +21,12 @@ Acceptance Criteria:
 - Onboarding docs and Makefile/Taskfile allow new devs to bootstrap in < 15 minutes.
 
 ### 1.1. [ User Story ] - Monorepo and Tooling Setup
+As a developer, I want a well-structured monorepo with shared tooling so that I can build, test, and collaborate consistently across apps and packages.
+
+Acceptance Criteria:
+- Workspace scripts run lint, type-check, test, and build across all packages from the root.
+- Shared TypeScript, ESLint, and Prettier configs are enforced via pre-commit hooks.
+- New developers can bootstrap the environment in under 15 minutes using documented scripts.
 #### 1.1.1. [ Task ] - Initialize monorepo (pnpm or yarn workspaces)
 **1.1.1.1. [ Subtask ] - Create structure: apps/api, apps/web, packages/ui, packages/config, packages/tsconfig, packages/eslint-config, infra/terraform, ops**
 
@@ -39,6 +45,12 @@ Acceptance Criteria:
 **1.1.4.2. [ Subtask ] - Define branch protection and PR template**
 
 ### 1.2. [ User Story ] - Local Dev Environment
+As a developer, I want a one-command local environment so that I can run all dependent services reliably and start coding quickly.
+
+Acceptance Criteria:
+- Docker Compose brings up Postgres, Redis, Mailhog, and utilities with healthy checks.
+- Environment variables are managed via .env files and validated at startup.
+- Bootstrap scripts handle install, migrations, seeds, and starting dev servers.
 #### 1.2.1. [ Task ] - Docker Compose services
 **1.2.1.1. [ Subtask ] - postgres (15), redis, mailhog, localstack (optional)**
 **1.2.1.2. [ Subtask ] - Seed volumes and healthchecks; named networks**
@@ -59,6 +71,12 @@ Acceptance Criteria:
 - Secrets structure in Secrets Manager/SSM; CloudWatch log retention and alarms wired to Slack/webhook.
 
 ### 2.1. [ User Story ] - Core Networking & Security
+As a platform engineer, I want secure networking foundations so that services are isolated, reachable, and compliant.
+
+Acceptance Criteria:
+- VPC with public/private subnets and NAT is provisioned via Terraform.
+- Security groups follow least privilege; access via SSM Session Manager.
+- DNS/CDN (Route53, ACM, CloudFront, WAF) configured for public workloads.
 #### 2.1.1. [ Task ] - VPC with public/private subnets and NAT
 **2.1.1.1. [ Subtask ] - Terraform module for VPC, subnet, route tables**
 **2.1.1.2. [ Subtask ] - Security groups least privilege; SSM Session Manager access**
@@ -67,6 +85,12 @@ Acceptance Criteria:
 **2.1.2.2. [ Subtask ] - CloudFront for web with S3 origin and WAF**
 
 ### 2.2. [ User Story ] - Compute & Containers
+As a platform engineer, I want containerized compute with health-checked deployments so that API and web run reliably and scale predictably.
+
+Acceptance Criteria:
+- ECR repos created with immutability and scanning; lifecycle policies applied.
+- ECS Fargate services for API/web deploy with passing health/readiness checks.
+- SSR vs SSG deployment path is chosen and documented.
 #### 2.2.1. [ Task ] - ECR repositories and lifecycle policies
 **2.2.1.1. [ Subtask ] - Private ECR with immutability and tag scanning**
 #### 2.2.2. [ Task ] - ECS Fargate services
@@ -74,17 +98,35 @@ Acceptance Criteria:
 **2.2.2.2. [ Subtask ] - Web SSR service (if Next SSR) or static S3 hosting**
 
 ### 2.3. [ User Story ] - Data Stores
+As a platform engineer, I want managed data stores configured securely so that application data is durable, performant, and recoverable.
+
+Acceptance Criteria:
+- RDS Postgres Multi-AZ with encryption, backups, and tuned parameters is provisioned.
+- Redis cluster for sessions/cache is available with appropriate limits and alerts.
+- Monitoring and alerts exist for connections, storage, replication, and failures.
 #### 2.3.1. [ Task ] - RDS PostgreSQL (Multi-AZ) with security
 **2.3.1.1. [ Subtask ] - Parameter groups, backups, encryption at rest**
 **2.3.1.2. [ Subtask ] - Read replica plan; connection limits and alerts**
 #### 2.3.2. [ Task ] - ElastiCache Redis for sessions/cache
 
 ### 2.4. [ User Story ] - Secrets & Keys
+As a security engineer, I want centralized secret management so that credentials are rotated, scoped by environment, and never hard-coded.
+
+Acceptance Criteria:
+- Secrets are organized by environment in Secrets Manager/SSM Parameter Store.
+- Rotation policies and IAM boundaries are applied; access is logged and auditable.
+- Applications read secrets at runtime without storing plaintext in code or images.
 #### 2.4.1. [ Task ] - Secrets Manager/SSM Parameter Store structure
 **2.4.1.1. [ Subtask ] - Namespace by env (dev/stage/prod)**
 **2.4.1.2. [ Subtask ] - Rotation policy and IAM access boundaries**
 
 ### 2.5. [ User Story ] - Observability Base
+As an SRE, I want baseline logs, metrics, and alerts so that issues are detectable and actionable from day one.
+
+Acceptance Criteria:
+- CloudWatch log groups have retention set; error/latency metric filters exist.
+- Key alarms route to Slack/webhook with actionable thresholds and runbooks.
+- Health and metrics endpoints are instrumented and visible in dashboards.
 #### 2.5.1. [ Task ] - CloudWatch log groups and metrics
 **2.5.1.1. [ Subtask ] - Log retention policies; metric filters for errors/latency**
 #### 2.5.2. [ Task ] - Alarms and notifications
@@ -100,6 +142,12 @@ Acceptance Criteria:
 - Per-PR preview environments spin up and tear down automatically.
 
 ### 3.1. [ User Story ] - Continuous Integration
+As a developer, I want consistent CI checks so that code quality and builds are validated on every change.
+
+Acceptance Criteria:
+- Lint, type-check, unit tests, and build jobs run in GitHub Actions with caching.
+- Security scans (dependencies, images, secrets) gate merges.
+- PR status reflects all checks; failures block merges until fixed.
 #### 3.1.1. [ Task ] - GitHub Actions workflows
 **3.1.1.1. [ Subtask ] - Jobs: lint, type-check, unit tests, build**
 **3.1.1.2. [ Subtask ] - Cache node modules and build artifacts**
@@ -108,6 +156,12 @@ Acceptance Criteria:
 **3.1.2.2. [ Subtask ] - Secret scanning (gitleaks)**
 
 ### 3.2. [ User Story ] - Build & Release Artifacts
+As a release engineer, I want reproducible images and artifacts so that deployments are consistent and traceable.
+
+Acceptance Criteria:
+- Multi-stage Dockerfiles produce minimal non-root images with healthcheck and SIGTERM handling.
+- Images are tagged with SHA/semver; SBOMs are generated and stored.
+- Versioning and changelogs follow semantic versioning.
 #### 3.2.1. [ Task ] - Dockerfiles (multi-stage) for api and web
 **3.2.1.1. [ Subtask ] - Non-root user, minimal base (alpine or distroless)**
 **3.2.1.2. [ Subtask ] - Healthcheck and SIGTERM handling**
@@ -115,6 +169,12 @@ Acceptance Criteria:
 **3.2.2.1. [ Subtask ] - Tagging with sha/semver; syft/grype SBOM**
 
 ### 3.3. [ User Story ] - Continuous Delivery
+As a release manager, I want automated, safe deployments so that releases roll out quickly with rollback safety.
+
+Acceptance Criteria:
+- API deploys via blue/green with auto-rollback on health check failure.
+- Web deploys via S3+CloudFront invalidations (SSG) or ECS (SSR) as appropriate.
+- Per-PR preview environments spin up and shut down automatically; DB migrations are gated.
 #### 3.3.1. [ Task ] - Deploy API to ECS with blue/green
 **3.3.1.1. [ Subtask ] - Auto rollback on health check failure**
 #### 3.3.2. [ Task ] - Deploy Web
@@ -134,6 +194,12 @@ Acceptance Criteria:
 - Pre/post-payment risk scoring with actions (hold/cancel/manual review) enabled.
 
 ### 4.1. [ User Story ] - AppSec Baseline
+As a security engineer, I want application security controls enforced so that common vulnerabilities are prevented and threats are mitigated early.
+
+Acceptance Criteria:
+- Input/output validation is enforced (Zod); queries are parameterized to prevent injection.
+- Security headers (Helmet/CSP, HSTS) and a strict CORS allowlist are configured.
+- Rate limiting and circuit breakers are applied to sensitive routes with safe errors.
 #### 4.1.1. [ Task ] - OWASP top 10 controls
 **4.1.1.1. [ Subtask ] - Input/output validation (Zod) and parameterized queries**
 **4.1.1.2. [ Subtask ] - Helmet/CSP, HSTS, CORS allowlist**
@@ -141,12 +207,24 @@ Acceptance Criteria:
 **4.1.2.1. [ Subtask ] - Per-IP and per-token quotas; circuit breaker**
 
 ### 4.2. [ User Story ] - Privacy & DPDP/GDPR
+As a privacy officer, I want consent and data rights tooling so that we comply with DPDP/GDPR and respect user choices.
+
+Acceptance Criteria:
+- Consent is captured and enforced; SDKs and pixels are gated by preferences.
+- Data rights portal supports export/delete within 7 days with audit logs.
+- Preference changes propagate across channels and are honored in downstream systems.
 #### 4.2.1. [ Task ] - Consent management and preferences store
 **4.2.1.1. [ Subtask ] - Cookie banner and SDK gating**
 #### 4.2.2. [ Task ] - Data rights portal
 **4.2.2.1. [ Subtask ] - Export/delete with audit log; SLA ≤ 7 days**
 
 ### 4.3. [ User Story ] - Penetration Testing & Remediation
+As a security lead, I want a repeatable pen-test remediation workflow so that findings are triaged, fixed, and verified within SLA.
+
+Acceptance Criteria:
+- Findings are classified by severity with owners and documented SLAs.
+- Remediations are verified with re-tests and CI regression coverage.
+- Reports, approvals, and changes are tracked with an auditable trail.
 #### 4.3.1. [ Task ] - Triage and severity classification
 **4.3.1.1. [ Subtask ] - SLAs by severity; owner assignment and tracking**
 #### 4.3.2. [ Task ] - Remediation and verification
@@ -155,6 +233,12 @@ Acceptance Criteria:
 **4.3.3.1. [ Subtask ] - Approvals, audit trail, and post-mortems**
 
 ### 4.4. [ User Story ] - Fraud & Risk Scoring Hooks
+As a risk analyst, I want risk scoring hooks so that suspicious orders trigger review, holds, or cancellations before loss occurs.
+
+Acceptance Criteria:
+- Pre/post-payment risk evaluation uses device/IP/email heuristics and velocity.
+- A manual review queue exists; actions include auto-hold/cancel with audit logs.
+- Decisions and outcomes are recorded with reasons for reporting and tuning.
 #### 4.4.1. [ Task ] - Pre/post-payment risk evaluation
 **4.4.1.1. [ Subtask ] - Signals: device/IP/email heuristics, velocity, coupon abuse**
 #### 4.4.2. [ Task ] - Actions & workflows
@@ -170,6 +254,12 @@ Acceptance Criteria:
 - Automated backups configured; quarterly restore drill documented.
 
 ### 5.1. [ User Story ] - Schema Foundation
+As a backend engineer, I want robust relational models so that data integrity and performance are ensured across core entities.
+
+Acceptance Criteria:
+- Prisma schema defines core models with enums, keys, and constraints.
+- Migrations apply cleanly across environments; FKs, cascades, and unique constraints enforced.
+- Indexes cover search/facets and hot queries to meet performance targets.
 #### 5.1.1. [ Task ] - Define core models (User, Address, Product, Collection, Inventory, Cart, CartItem, Order, Payment, Review, Subscription, Article, Media)
 **5.1.1.1. [ Subtask ] - Prisma schema and enums; migrations**
 **5.1.1.2. [ Subtask ] - Foreign keys, cascades, unique constraints**
@@ -177,6 +267,12 @@ Acceptance Criteria:
 **5.1.2.1. [ Subtask ] - B-tree/GiST indexes for search/facets; partial indexes**
 
 ### 5.2. [ User Story ] - Data Lifecycle
+As a data engineer, I want seed data, backups, and restore procedures so that environments are consistent and recoverable.
+
+Acceptance Criteria:
+- Dev/test fixtures and anonymized sample content exist and are easy to load.
+- Automated snapshots are configured; quarterly restore drill is documented and tested.
+- Backup retention meets policy with monitoring for failures.
 #### 5.2.1. [ Task ] - Seed data for dev/test
 **5.2.1.1. [ Subtask ] - Factories and fixtures; anonymized sample content**
 #### 5.2.2. [ Task ] - Backups and restore drills
@@ -192,22 +288,46 @@ Acceptance Criteria:
 - Metrics and structured logs available in CloudWatch/Sentry.
 
 ### 6.1. [ User Story ] - API Server Scaffolding
+As a backend engineer, I want a modular API with logging and health endpoints so that services are maintainable and observable.
+
+Acceptance Criteria:
+- Express app is structured by routes/controllers/services/repos with pino logging.
+- Request IDs are correlated; health, readiness, and metrics endpoints are exposed.
+- Basic metrics are visible in CloudWatch/Sentry dashboards.
 #### 6.1.1. [ Task ] - Express app with modular structure (routes/controllers/services/repos)
 **6.1.1.1. [ Subtask ] - Request ID correlation and structured logging (pino)**
 **6.1.1.2. [ Subtask ] - Health, readiness, and metrics endpoints**
 
 ### 6.2. [ User Story ] - Error Handling & Validation
+As a developer, I want standardized error handling and input validation so that failures are predictable and safe.
+
+Acceptance Criteria:
+- Global error handler returns a standardized error shape and codes.
+- DTO validation and sanitization via Zod; inputs normalized and safe.
+- Errors include correlation IDs; 4xx/5xx split is consistent and logged.
 #### 6.2.1. [ Task ] - Global error handler and error shape
 **6.2.1.1. [ Subtask ] - Map to codes: AUTH_FAILED, FORBIDDEN, NOT_FOUND, VALIDATION_ERROR, RATE_LIMITED**
 #### 6.2.2. [ Task ] - DTO validation
 **6.2.2.1. [ Subtask ] - Zod schemas; sanitize and normalize inputs**
 
 ### 6.3. [ User Story ] - Auth Endpoints
+As a customer, I want to sign up, sign in, and manage my session so that I can securely access my account.
+
+Acceptance Criteria:
+- JWT access/refresh with rotation and a revocation store (Redis) is implemented.
+- Email verification and password reset flows work end-to-end with tokens.
+- Refresh and logout endpoints invalidate tokens correctly and log events.
 #### 6.3.1. [ Task ] - /auth/signup, /auth/login, /auth/refresh, /auth/logout
 **6.3.1.1. [ Subtask ] - JWT (RS256) access/refresh; rotation and revocation store (Redis)**
 **6.3.1.2. [ Subtask ] - Email verification, password reset tokens**
 
 ### 6.4. [ User Story ] - Rate Limiting & Security
+As a security engineer, I want IP/user throttles so that abuse is contained without hurting legitimate traffic.
+
+Acceptance Criteria:
+- Redis-backed token bucket enforces per-route and per-identity limits.
+- Configurable quotas return safe errors and expose metrics for tuning.
+- Limit events are logged and observable to detect abuse patterns.
 #### 6.4.1. [ Task ] - IP and user-based throttles
 **6.4.1.1. [ Subtask ] - Redis-backed token bucket; per-route configs**
 
@@ -220,22 +340,46 @@ Acceptance Criteria:
 - API permissions enforced for protected profile endpoints.
 
 ### 7.1. [ User Story ] - User Profile & Address Book
+As a customer, I want to manage my profile and addresses so that checkout is fast and accurate.
+
+Acceptance Criteria:
+- Profile and address CRUD works with Indian address validation and default selection.
+- Default address is persisted and used at checkout; changes reflect immediately.
+- Authorization is enforced; users can only view/edit their own data.
 #### 7.1.1. [ Task ] - CRUD profile and addresses
 **7.1.1.1. [ Subtask ] - Indian address validation; default selection**
 #### 7.1.2. [ Task ] - Session/device management
 **7.1.2.1. [ Subtask ] - List/revoke active sessions**
 
 ### 7.2. [ User Story ] - Account Lifecycle (Delete/Close)
+As a customer, I want to delete my account and export my data so that I control my information.
+
+Acceptance Criteria:
+- Deletion/export requests require identity verification and are queued with SLA.
+- Soft-delete window and purge job with audit logging are implemented.
+- Users receive status updates and confirmations for each step.
 #### 7.2.1. [ Task ] - Account deletion and data export requests
 **7.2.1.1. [ Subtask ] - Identity verification; queue with SLA**
 **7.2.1.2. [ Subtask ] - Soft-delete window; purge job and audit log**
 
 ### 7.3. [ User Story ] - Contact Changes & Reverification
+As a customer, I want to change my email or phone with re-verification so that my account stays secure.
+
+Acceptance Criteria:
+- New contact is verified before switch; login identifiers migrate safely.
+- Old contact is notified; a recovery lockout window is enforced.
+- All attempts and outcomes are audited for security.
 #### 7.3.1. [ Task ] - Change email/phone with re-verification
 **7.3.1.1. [ Subtask ] - Verify new contact; migrate login identifiers**
 **7.3.1.2. [ Subtask ] - Notify old contact; recovery lockout window**
 
 ### 7.4. [ User Story ] - Anti-automation on Auth
+As a security engineer, I want anti-automation on auth endpoints so that bots and attackers are throttled without harming good users.
+
+Acceptance Criteria:
+- CAPTCHA or risk checks protect signup/login/forgot; global rate limits applied.
+- Device/IP heuristic scoring drives graduated challenges and throttles.
+- Accessible fallbacks exist for legitimate users who fail challenges.
 #### 7.4.1. [ Task ] - CAPTCHA/risk checks on auth endpoints
 **7.4.1.1. [ Subtask ] - Apply to signup/login/forgot; global rate limits (see 6.4)**
 **7.4.1.2. [ Subtask ] - Device/IP heuristic scoring and throttles**
@@ -249,28 +393,64 @@ Acceptance Criteria:
 - JSON-LD structured data present for PDP and breadcrumbs.
 
 ### 8.1. [ User Story ] - Catalog Browse (PLP)
+As a shopper, I want to browse products with filters and sorting so that I can find relevant items quickly.
+
+Acceptance Criteria:
+- PLP supports facets, sorting, and pagination with empty-state handling.
+- Performance meets budgets; analytics events are tracked for browse actions.
+- Zero-result state suggests alternative intents or searches.
 #### 8.1.1. [ Task ] - Products list with facets (type, intention, chakra, price, size, origin, rating)
 **8.1.1.1. [ Subtask ] - Cursor/offset pagination; sort options**
 **8.1.1.2. [ Subtask ] - Zero-result handling with suggested intents**
 
 ### 8.2. [ User Story ] - Product Detail (PDP)
+As a shopper, I want detailed product information so that I can buy confidently.
+
+Acceptance Criteria:
+- PDP shows images, price, origin, authenticity, and energy tags.
+- Related products and structured data (JSON-LD) are present.
+- Stock and variants are selectable and reflected accurately.
 #### 8.2.1. [ Task ] - PDP data: images, price, origin, authenticity, energy tags
 **8.2.1.1. [ Subtask ] - Related products by intent/type; JSON-LD**
 
 ### 8.3. [ User Story ] - Search Service
+As a shopper, I want fast, relevant search so that I can find products by name, intent, or tags.
+
+Acceptance Criteria:
+- Typeahead and full-text search support synonyms and fuzzy matching.
+- Recent searches are stored with a clear option for the user.
+- Results paginate and meet performance targets.
 #### 8.3.1. [ Task ] - Typeahead and full-text search
 **8.3.1.1. [ Subtask ] - Synonyms (e.g., Amethyst <-> Jamunia); fuzzy match**
 **8.3.1.2. [ Subtask ] - Recent searches and clear history**
 
 ### 8.4. [ User Story ] - Variants & Options
+As a shopper, I want to select variants and options so that I purchase the exact SKU I need.
+
+Acceptance Criteria:
+- Variant modeling supports option swatches and canonical SKU selection.
+- Selected options update price and availability consistently across the UI.
+- Invalid combinations are disabled or clearly indicated.
 #### 8.4.1. [ Task ] - Variant modeling and selection UI
 **8.4.1.1. [ Subtask ] - Option swatches; canonical SKU selection**
 
 ### 8.5. [ User Story ] - Indexing Pipeline
+As a shopper, I want new and updated products to appear in search quickly so that catalog changes reflect promptly.
+
+Acceptance Criteria:
+- Incremental indexing runs on publish; background reindex available.
+- Partial updates are supported; failures are retried with logging.
+- Index freshness is monitored with alerts.
 #### 8.5.1. [ Task ] - Incremental indexing and reindex jobs
 **8.5.1.1. [ Subtask ] - Publish hooks; background reindex; partial updates**
 
 ### 8.6. [ User Story ] - Search Analytics & Curation
+As a merchandiser, I want zero-result analytics and synonym curation so that search outcomes improve over time.
+
+Acceptance Criteria:
+- Zero-result queries are tracked; synonyms/redirects can be curated.
+- Promote/demote rules are configurable and auditable.
+- Impact of curation is measured with analytics.
 #### 8.6.1. [ Task ] - Zero-result analytics and synonyms curation
 **8.6.1.1. [ Subtask ] - Curate synonyms/redirects; promote/demote rules**
 
