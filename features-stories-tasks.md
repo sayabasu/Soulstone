@@ -34,13 +34,13 @@ Acceptance Criteria:
 
 **1.1.1.3. [ Subtask ] - Add .editorconfig, .nvmrc, .gitattributes, .gitignore**
 
-#### 1.1.2. [ Task ] - TypeScript baselines
+#### 1.1.2. [ Task ] - Configure TypeScript baselines
 **1.1.2.1. [ Subtask ] - Define shared tsconfig in packages/tsconfig and extend in apps**
 **1.1.2.2. [ Subtask ] - Enable strict mode, path aliases, incremental builds**
-#### 1.1.3. [ Task ] - Linting/formatting standards
+#### 1.1.3. [ Task ] - Establish linting and formatting standards
 **1.1.3.1. [ Subtask ] - ESLint with TypeScript rules; Prettier with import/order**
 **1.1.3.2. [ Subtask ] - Add lint-staged + Husky pre-commit hooks**
-#### 1.1.4. [ Task ] - Commit and branch conventions
+#### 1.1.4. [ Task ] - Define commit and branch conventions
 **1.1.4.1. [ Subtask ] - Configure commitlint (Conventional Commits)**
 **1.1.4.2. [ Subtask ] - Define branch protection and PR template**
 
@@ -51,13 +51,13 @@ Acceptance Criteria:
 - Docker Compose brings up Postgres, Redis, Mailhog, and utilities with healthy checks.
 - Environment variables are managed via .env files and validated at startup.
 - Bootstrap scripts handle install, migrations, seeds, and starting dev servers.
-#### 1.2.1. [ Task ] - Docker Compose services
+#### 1.2.1. [ Task ] - Provision Docker Compose services
 **1.2.1.1. [ Subtask ] - postgres (15), redis, mailhog, localstack (optional)**
 **1.2.1.2. [ Subtask ] - Seed volumes and healthchecks; named networks**
-#### 1.2.2. [ Task ] - Env management
+#### 1.2.2. [ Task ] - Implement environment management
 **1.2.2.1. [ Subtask ] - .env.example with required vars; dotenv-safe loading**
 **1.2.2.2. [ Subtask ] - Split envs: .env.dev, .env.test, .env.local**
-#### 1.2.3. [ Task ] - Developer bootstrap script
+#### 1.2.3. [ Task ] - Create developer bootstrap scripts
 **1.2.3.1. [ Subtask ] - Makefile/Taskfile for install, db:up, db:migrate, db:seed, dev**
 **1.2.3.2. [ Subtask ] - Onboarding doc covering prerequisites and commands**
 
@@ -77,10 +77,10 @@ Acceptance Criteria:
 - VPC with public/private subnets and NAT is provisioned via Terraform.
 - Security groups follow least privilege; access via SSM Session Manager.
 - DNS/CDN (Route53, ACM, CloudFront, WAF) configured for public workloads.
-#### 2.1.1. [ Task ] - VPC with public/private subnets and NAT
+#### 2.1.1. [ Task ] - Provision VPC with public/private subnets and NAT
 **2.1.1.1. [ Subtask ] - Terraform module for VPC, subnet, route tables**
 **2.1.1.2. [ Subtask ] - Security groups least privilege; SSM Session Manager access**
-#### 2.1.2. [ Task ] - DNS/CDN
+#### 2.1.2. [ Task ] - Configure DNS and CDN
 **2.1.2.1. [ Subtask ] - Route 53 hosted zones; ACM certs**
 **2.1.2.2. [ Subtask ] - CloudFront for web with S3 origin and WAF**
 
@@ -91,9 +91,9 @@ Acceptance Criteria:
 - ECR repos created with immutability and scanning; lifecycle policies applied.
 - ECS Fargate services for API/web deploy with passing health/readiness checks.
 - SSR vs SSG deployment path is chosen and documented.
-#### 2.2.1. [ Task ] - ECR repositories and lifecycle policies
+#### 2.2.1. [ Task ] - Create ECR repositories and lifecycle policies
 **2.2.1.1. [ Subtask ] - Private ECR with immutability and tag scanning**
-#### 2.2.2. [ Task ] - ECS Fargate services
+#### 2.2.2. [ Task ] - Provision ECS Fargate services
 **2.2.2.1. [ Subtask ] - API service behind ALB; health/readiness checks**
 **2.2.2.2. [ Subtask ] - Web SSR service (if Next SSR) or static S3 hosting**
 
@@ -104,10 +104,10 @@ Acceptance Criteria:
 - RDS Postgres Multi-AZ with encryption, backups, and tuned parameters is provisioned.
 - Redis cluster for sessions/cache is available with appropriate limits and alerts.
 - Monitoring and alerts exist for connections, storage, replication, and failures.
-#### 2.3.1. [ Task ] - RDS PostgreSQL (Multi-AZ) with security
+#### 2.3.1. [ Task ] - Provision RDS PostgreSQL (Multi-AZ) with security
 **2.3.1.1. [ Subtask ] - Parameter groups, backups, encryption at rest**
 **2.3.1.2. [ Subtask ] - Read replica plan; connection limits and alerts**
-#### 2.3.2. [ Task ] - ElastiCache Redis for sessions/cache
+#### 2.3.2. [ Task ] - Provision ElastiCache Redis for sessions/cache
 
 ### 2.4. [ User Story ] - Secrets & Keys
 As a security engineer, I want centralized secret management so that credentials are rotated, scoped by environment, and never hard-coded.
@@ -116,7 +116,7 @@ Acceptance Criteria:
 - Secrets are organized by environment in Secrets Manager/SSM Parameter Store.
 - Rotation policies and IAM boundaries are applied; access is logged and auditable.
 - Applications read secrets at runtime without storing plaintext in code or images.
-#### 2.4.1. [ Task ] - Secrets Manager/SSM Parameter Store structure
+#### 2.4.1. [ Task ] - Define Secrets Manager/SSM Parameter Store structure
 **2.4.1.1. [ Subtask ] - Namespace by env (dev/stage/prod)**
 **2.4.1.2. [ Subtask ] - Rotation policy and IAM access boundaries**
 
@@ -127,9 +127,9 @@ Acceptance Criteria:
 - CloudWatch log groups have retention set; error/latency metric filters exist.
 - Key alarms route to Slack/webhook with actionable thresholds and runbooks.
 - Health and metrics endpoints are instrumented and visible in dashboards.
-#### 2.5.1. [ Task ] - CloudWatch log groups and metrics
+#### 2.5.1. [ Task ] - Create CloudWatch log groups and metrics
 **2.5.1.1. [ Subtask ] - Log retention policies; metric filters for errors/latency**
-#### 2.5.2. [ Task ] - Alarms and notifications
+#### 2.5.2. [ Task ] - Configure alarms and notifications
 **2.5.2.1. [ Subtask ] - SNS + Slack/webhook integration for alerts**
 
 ## 3. [ Feature ] - CI/CD Pipelines
@@ -148,10 +148,10 @@ Acceptance Criteria:
 - Lint, type-check, unit tests, and build jobs run in GitHub Actions with caching.
 - Security scans (dependencies, images, secrets) gate merges.
 - PR status reflects all checks; failures block merges until fixed.
-#### 3.1.1. [ Task ] - GitHub Actions workflows
+#### 3.1.1. [ Task ] - Implement GitHub Actions workflows
 **3.1.1.1. [ Subtask ] - Jobs: lint, type-check, unit tests, build**
 **3.1.1.2. [ Subtask ] - Cache node modules and build artifacts**
-#### 3.1.2. [ Task ] - Security scanning in CI
+#### 3.1.2. [ Task ] - Integrate security scanning in CI
 **3.1.2.1. [ Subtask ] - eslint-plugin-security, npm audit, trivy image scan**
 **3.1.2.2. [ Subtask ] - Secret scanning (gitleaks)**
 
@@ -162,10 +162,10 @@ Acceptance Criteria:
 - Multi-stage Dockerfiles produce minimal non-root images with healthcheck and SIGTERM handling.
 - Images are tagged with SHA/semver; SBOMs are generated and stored.
 - Versioning and changelogs follow semantic versioning.
-#### 3.2.1. [ Task ] - Dockerfiles (multi-stage) for api and web
+#### 3.2.1. [ Task ] - Create multi-stage Dockerfiles for API and Web
 **3.2.1.1. [ Subtask ] - Non-root user, minimal base (alpine or distroless)**
 **3.2.1.2. [ Subtask ] - Healthcheck and SIGTERM handling**
-#### 3.2.2. [ Task ] - Image versioning and SBOM
+#### 3.2.2. [ Task ] - Implement image versioning and SBOM generation
 **3.2.2.1. [ Subtask ] - Tagging with sha/semver; syft/grype SBOM**
 
 ### 3.3. [ User Story ] - Continuous Delivery
@@ -179,9 +179,9 @@ Acceptance Criteria:
 **3.3.1.1. [ Subtask ] - Auto rollback on health check failure**
 #### 3.3.2. [ Task ] - Deploy Web
 **3.3.2.1. [ Subtask ] - S3+CloudFront invalidations (SSG) or ECS (SSR)**
-#### 3.3.3. [ Task ] - Database migrations
+#### 3.3.3. [ Task ] - Gate database migrations in deploys
 **3.3.3.1. [ Subtask ] - Gate deploy on successful migrate; rollback plan**
-#### 3.3.4. [ Task ] - Preview environments per PR
+#### 3.3.4. [ Task ] - Provision preview environments per PR
 **3.3.4.1. [ Subtask ] - Ephemeral API + web URLs; tear-down job**
 
 ## 4. [ Feature ] - Security & Compliance
@@ -200,10 +200,10 @@ Acceptance Criteria:
 - Input/output validation is enforced (Zod); queries are parameterized to prevent injection.
 - Security headers (Helmet/CSP, HSTS) and a strict CORS allowlist are configured.
 - Rate limiting and circuit breakers are applied to sensitive routes with safe errors.
-#### 4.1.1. [ Task ] - OWASP top 10 controls
+#### 4.1.1. [ Task ] - Enforce OWASP Top 10 controls
 **4.1.1.1. [ Subtask ] - Input/output validation (Zod) and parameterized queries**
 **4.1.1.2. [ Subtask ] - Helmet/CSP, HSTS, CORS allowlist**
-#### 4.1.2. [ Task ] - Rate limiting and abuse prevention
+#### 4.1.2. [ Task ] - Implement rate limiting and abuse prevention
 **4.1.2.1. [ Subtask ] - Per-IP and per-token quotas; circuit breaker**
 
 ### 4.2. [ User Story ] - Privacy & DPDP/GDPR
@@ -213,9 +213,9 @@ Acceptance Criteria:
 - Consent is captured and enforced; SDKs and pixels are gated by preferences.
 - Data rights portal supports export/delete within 7 days with audit logs.
 - Preference changes propagate across channels and are honored in downstream systems.
-#### 4.2.1. [ Task ] - Consent management and preferences store
+#### 4.2.1. [ Task ] - Implement consent management and preferences store
 **4.2.1.1. [ Subtask ] - Cookie banner and SDK gating**
-#### 4.2.2. [ Task ] - Data rights portal
+#### 4.2.2. [ Task ] - Build data rights portal
 **4.2.2.1. [ Subtask ] - Export/delete with audit log; SLA ≤ 7 days**
 
 ### 4.3. [ User Story ] - Penetration Testing & Remediation
@@ -225,11 +225,11 @@ Acceptance Criteria:
 - Findings are classified by severity with owners and documented SLAs.
 - Remediations are verified with re-tests and CI regression coverage.
 - Reports, approvals, and changes are tracked with an auditable trail.
-#### 4.3.1. [ Task ] - Triage and severity classification
+#### 4.3.1. [ Task ] - Establish triage and severity classification
 **4.3.1.1. [ Subtask ] - SLAs by severity; owner assignment and tracking**
-#### 4.3.2. [ Task ] - Remediation and verification
+#### 4.3.2. [ Task ] - Execute remediation and verification
 **4.3.2.1. [ Subtask ] - Re-test and regression tests wired into CI**
-#### 4.3.3. [ Task ] - Reporting and change management
+#### 4.3.3. [ Task ] - Implement reporting and change management
 **4.3.3.1. [ Subtask ] - Approvals, audit trail, and post-mortems**
 
 ### 4.4. [ User Story ] - Fraud & Risk Scoring Hooks
@@ -239,9 +239,9 @@ Acceptance Criteria:
 - Pre/post-payment risk evaluation uses device/IP/email heuristics and velocity.
 - A manual review queue exists; actions include auto-hold/cancel with audit logs.
 - Decisions and outcomes are recorded with reasons for reporting and tuning.
-#### 4.4.1. [ Task ] - Pre/post-payment risk evaluation
+#### 4.4.1. [ Task ] - Implement pre/post-payment risk evaluation
 **4.4.1.1. [ Subtask ] - Signals: device/IP/email heuristics, velocity, coupon abuse**
-#### 4.4.2. [ Task ] - Actions & workflows
+#### 4.4.2. [ Task ] - Configure actions and workflows
 **4.4.2.1. [ Subtask ] - Manual review queue; auto-cancel/hold rules; audit logs**
 
 ## 5. [ Feature ] - Database & Data Modeling (PostgreSQL + Prisma)
@@ -263,7 +263,7 @@ Acceptance Criteria:
 #### 5.1.1. [ Task ] - Define core models (User, Address, Product, Collection, Inventory, Cart, CartItem, Order, Payment, Review, Subscription, Article, Media)
 **5.1.1.1. [ Subtask ] - Prisma schema and enums; migrations**
 **5.1.1.2. [ Subtask ] - Foreign keys, cascades, unique constraints**
-#### 5.1.2. [ Task ] - Indexing and performance
+#### 5.1.2. [ Task ] - Implement indexing for performance
 **5.1.2.1. [ Subtask ] - B-tree/GiST indexes for search/facets; partial indexes**
 
 ### 5.2. [ User Story ] - Data Lifecycle
@@ -273,9 +273,9 @@ Acceptance Criteria:
 - Dev/test fixtures and anonymized sample content exist and are easy to load.
 - Automated snapshots are configured; quarterly restore drill is documented and tested.
 - Backup retention meets policy with monitoring for failures.
-#### 5.2.1. [ Task ] - Seed data for dev/test
+#### 5.2.1. [ Task ] - Create seed data for dev/test
 **5.2.1.1. [ Subtask ] - Factories and fixtures; anonymized sample content**
-#### 5.2.2. [ Task ] - Backups and restore drills
+#### 5.2.2. [ Task ] - Configure backups and run restore drills
 **5.2.2.1. [ Subtask ] - Automated snapshots; quarterly restore test**
 
 ## 6. [ Feature ] - API Platform (Express/Node, TypeScript)
@@ -294,7 +294,7 @@ Acceptance Criteria:
 - Express app is structured by routes/controllers/services/repos with pino logging.
 - Request IDs are correlated; health, readiness, and metrics endpoints are exposed.
 - Basic metrics are visible in CloudWatch/Sentry dashboards.
-#### 6.1.1. [ Task ] - Express app with modular structure (routes/controllers/services/repos)
+#### 6.1.1. [ Task ] - Implement Express app with modular structure (routes/controllers/services/repos)
 **6.1.1.1. [ Subtask ] - Request ID correlation and structured logging (pino)**
 **6.1.1.2. [ Subtask ] - Health, readiness, and metrics endpoints**
 
@@ -305,9 +305,9 @@ Acceptance Criteria:
 - Global error handler returns a standardized error shape and codes.
 - DTO validation and sanitization via Zod; inputs normalized and safe.
 - Errors include correlation IDs; 4xx/5xx split is consistent and logged.
-#### 6.2.1. [ Task ] - Global error handler and error shape
+#### 6.2.1. [ Task ] - Implement global error handler and error shape
 **6.2.1.1. [ Subtask ] - Map to codes: AUTH_FAILED, FORBIDDEN, NOT_FOUND, VALIDATION_ERROR, RATE_LIMITED**
-#### 6.2.2. [ Task ] - DTO validation
+#### 6.2.2. [ Task ] - Add DTO validation
 **6.2.2.1. [ Subtask ] - Zod schemas; sanitize and normalize inputs**
 
 ### 6.3. [ User Story ] - Auth Endpoints
@@ -317,7 +317,7 @@ Acceptance Criteria:
 - JWT access/refresh with rotation and a revocation store (Redis) is implemented.
 - Email verification and password reset flows work end-to-end with tokens.
 - Refresh and logout endpoints invalidate tokens correctly and log events.
-#### 6.3.1. [ Task ] - /auth/signup, /auth/login, /auth/refresh, /auth/logout
+#### 6.3.1. [ Task ] - Implement auth endpoints: /auth/signup, /auth/login, /auth/refresh, /auth/logout
 **6.3.1.1. [ Subtask ] - JWT (RS256) access/refresh; rotation and revocation store (Redis)**
 **6.3.1.2. [ Subtask ] - Email verification, password reset tokens**
 
@@ -328,7 +328,7 @@ Acceptance Criteria:
 - Redis-backed token bucket enforces per-route and per-identity limits.
 - Configurable quotas return safe errors and expose metrics for tuning.
 - Limit events are logged and observable to detect abuse patterns.
-#### 6.4.1. [ Task ] - IP and user-based throttles
+#### 6.4.1. [ Task ] - Implement IP and user-based throttles
 **6.4.1.1. [ Subtask ] - Redis-backed token bucket; per-route configs**
 
 ## 7. [ Feature ] - Authentication & Accounts
@@ -346,9 +346,9 @@ Acceptance Criteria:
 - Profile and address CRUD works with Indian address validation and default selection.
 - Default address is persisted and used at checkout; changes reflect immediately.
 - Authorization is enforced; users can only view/edit their own data.
-#### 7.1.1. [ Task ] - CRUD profile and addresses
+#### 7.1.1. [ Task ] - Implement profile and address CRUD
 **7.1.1.1. [ Subtask ] - Indian address validation; default selection**
-#### 7.1.2. [ Task ] - Session/device management
+#### 7.1.2. [ Task ] - Implement session and device management
 **7.1.2.1. [ Subtask ] - List/revoke active sessions**
 
 ### 7.2. [ User Story ] - Account Lifecycle (Delete/Close)
@@ -358,7 +358,7 @@ Acceptance Criteria:
 - Deletion/export requests require identity verification and are queued with SLA.
 - Soft-delete window and purge job with audit logging are implemented.
 - Users receive status updates and confirmations for each step.
-#### 7.2.1. [ Task ] - Account deletion and data export requests
+#### 7.2.1. [ Task ] - Implement account deletion and data export requests
 **7.2.1.1. [ Subtask ] - Identity verification; queue with SLA**
 **7.2.1.2. [ Subtask ] - Soft-delete window; purge job and audit log**
 
@@ -369,7 +369,7 @@ Acceptance Criteria:
 - New contact is verified before switch; login identifiers migrate safely.
 - Old contact is notified; a recovery lockout window is enforced.
 - All attempts and outcomes are audited for security.
-#### 7.3.1. [ Task ] - Change email/phone with re-verification
+#### 7.3.1. [ Task ] - Implement contact change with re-verification
 **7.3.1.1. [ Subtask ] - Verify new contact; migrate login identifiers**
 **7.3.1.2. [ Subtask ] - Notify old contact; recovery lockout window**
 
@@ -380,7 +380,7 @@ Acceptance Criteria:
 - CAPTCHA or risk checks protect signup/login/forgot; global rate limits applied.
 - Device/IP heuristic scoring drives graduated challenges and throttles.
 - Accessible fallbacks exist for legitimate users who fail challenges.
-#### 7.4.1. [ Task ] - CAPTCHA/risk checks on auth endpoints
+#### 7.4.1. [ Task ] - Add CAPTCHA and risk checks to auth endpoints
 **7.4.1.1. [ Subtask ] - Apply to signup/login/forgot; global rate limits (see 6.4)**
 **7.4.1.2. [ Subtask ] - Device/IP heuristic scoring and throttles**
 
@@ -399,7 +399,7 @@ Acceptance Criteria:
 - PLP supports facets, sorting, and pagination with empty-state handling.
 - Performance meets budgets; analytics events are tracked for browse actions.
 - Zero-result state suggests alternative intents or searches.
-#### 8.1.1. [ Task ] - Products list with facets (type, intention, chakra, price, size, origin, rating)
+#### 8.1.1. [ Task ] - Implement products list with facets (type, intention, chakra, price, size, origin, rating)
 **8.1.1.1. [ Subtask ] - Cursor/offset pagination; sort options**
 **8.1.1.2. [ Subtask ] - Zero-result handling with suggested intents**
 
@@ -410,7 +410,7 @@ Acceptance Criteria:
 - PDP shows images, price, origin, authenticity, and energy tags.
 - Related products and structured data (JSON-LD) are present.
 - Stock and variants are selectable and reflected accurately.
-#### 8.2.1. [ Task ] - PDP data: images, price, origin, authenticity, energy tags
+#### 8.2.1. [ Task ] - Implement PDP data display: images, price, origin, authenticity, energy tags
 **8.2.1.1. [ Subtask ] - Related products by intent/type; JSON-LD**
 
 ### 8.3. [ User Story ] - Search Service
@@ -420,7 +420,7 @@ Acceptance Criteria:
 - Typeahead and full-text search support synonyms and fuzzy matching.
 - Recent searches are stored with a clear option for the user.
 - Results paginate and meet performance targets.
-#### 8.3.1. [ Task ] - Typeahead and full-text search
+#### 8.3.1. [ Task ] - Implement typeahead and full-text search
 **8.3.1.1. [ Subtask ] - Synonyms (e.g., Amethyst <-> Jamunia); fuzzy match**
 **8.3.1.2. [ Subtask ] - Recent searches and clear history**
 
@@ -431,7 +431,7 @@ Acceptance Criteria:
 - Variant modeling supports option swatches and canonical SKU selection.
 - Selected options update price and availability consistently across the UI.
 - Invalid combinations are disabled or clearly indicated.
-#### 8.4.1. [ Task ] - Variant modeling and selection UI
+#### 8.4.1. [ Task ] - Implement variant modeling and selection UI
 **8.4.1.1. [ Subtask ] - Option swatches; canonical SKU selection**
 
 ### 8.5. [ User Story ] - Indexing Pipeline
@@ -441,7 +441,7 @@ Acceptance Criteria:
 - Incremental indexing runs on publish; background reindex available.
 - Partial updates are supported; failures are retried with logging.
 - Index freshness is monitored with alerts.
-#### 8.5.1. [ Task ] - Incremental indexing and reindex jobs
+#### 8.5.1. [ Task ] - Implement incremental indexing and reindex jobs
 **8.5.1.1. [ Subtask ] - Publish hooks; background reindex; partial updates**
 
 ### 8.6. [ User Story ] - Search Analytics & Curation
@@ -451,7 +451,7 @@ Acceptance Criteria:
 - Zero-result queries are tracked; synonyms/redirects can be curated.
 - Promote/demote rules are configurable and auditable.
 - Impact of curation is measured with analytics.
-#### 8.6.1. [ Task ] - Zero-result analytics and synonyms curation
+#### 8.6.1. [ Task ] - Implement zero-result analytics and synonyms curation
 **8.6.1.1. [ Subtask ] - Curate synonyms/redirects; promote/demote rules**
 
 ## 9. [ Feature ] - Cart & Pricing
@@ -469,9 +469,9 @@ Acceptance Criteria:
 - Add/update/remove recalculates subtotal, tax, shipping, and discounts deterministically.
 - Server cart persists for auth users; guest cart persists locally; merge-on-login resolves conflicts.
 - Cart mutations are idempotent and pricing is consistent across sessions.
-#### 9.1.1. [ Task ] - Add/update/remove items; totals (subtotal, tax, shipping, discounts)
+#### 9.1.1. [ Task ] - Implement add/update/remove items and totals (subtotal, tax, shipping, discounts)
 **9.1.1.1. [ Subtask ] - Server cart persistence; guest cart local persistence**
-#### 9.1.2. [ Task ] - Merge-on-login
+#### 9.1.2. [ Task ] - Implement merge-on-login
 **9.1.2.1. [ Subtask ] - Conflict resolution and price recalc**
 
 ### 9.2. [ User Story ] - Inventory Reservations
@@ -481,7 +481,7 @@ Acceptance Criteria:
 - Reservation occurs on add-to-cart with a clear TTL and release on abandon.
 - Oversell guardrails and alerts prevent negative stock situations.
 - Reservations are reflected in availability checks during checkout.
-#### 9.2.1. [ Task ] - Reserve items on add-to-cart
+#### 9.2.1. [ Task ] - Implement reservation on add-to-cart
 **9.2.1.1. [ Subtask ] - TTL and release on abandon**
 **9.2.1.2. [ Subtask ] - Oversell guardrails and alerts**
 
@@ -492,9 +492,9 @@ Acceptance Criteria:
 - PIN estimator shows shipping/tax estimates prior to login.
 - Gift wrap and message options include fees and a preview.
 - Packing slip/receipt handles gift messaging correctly.
-#### 9.3.1. [ Task ] - Shipping/tax estimate pre-login
+#### 9.3.1. [ Task ] - Implement shipping/tax estimate pre-login
 **9.3.1.1. [ Subtask ] - Pin code estimator on cart**
-#### 9.3.2. [ Task ] - Gift wrap and messages
+#### 9.3.2. [ Task ] - Implement gift wrap and messages
 **9.3.2.1. [ Subtask ] - Fees, preview, and packing slip handling**
 
 ## 10. [ Feature ] - Checkout & Payments (Razorpay/Stripe)
@@ -513,7 +513,7 @@ Acceptance Criteria:
 - Address capture validates PIN/phone with clear, localized errors.
 - Shipping methods are selectable with prices and delivery windows.
 - Reused address validation engine; data persists to profile where applicable.
-#### 10.1.1. [ Task ] - Address capture and validation; shipping methods
+#### 10.1.1. [ Task ] - Implement address capture and validation; shipping methods
 **10.1.1.1. [ Subtask ] - Pin code and phone validation**
 **10.1.1.2. [ Subtask ] - Reuse address validation engine (see 7.1.1.1)**
 
@@ -526,7 +526,7 @@ Acceptance Criteria:
 - Clear error states and recovery paths are presented to users.
 #### 10.2.1. [ Task ] - Create payment intent; handle success/failure
 **10.2.1.1. [ Subtask ] - Idempotency keys on writes**
-#### 10.2.2. [ Task ] - Webhooks
+#### 10.2.2. [ Task ] - Implement payment webhooks
 **10.2.2.1. [ Subtask ] - Signature validation; retries and DLQ**
 
 ### 10.3. [ User Story ] - Regulatory & Risk Controls
@@ -536,10 +536,10 @@ Acceptance Criteria:
 - 3DS/SCA challenges function; terms/return policy acceptance is captured and logged.
 - COD eligibility is enforced by PIN serviceability, order value caps, and fee toggles.
 - Risk actions are logged with an auditable trail.
-#### 10.3.1. [ Task ] - 3DS/SCA and terms acceptance
+#### 10.3.1. [ Task ] - Implement 3DS/SCA and terms acceptance
 **10.3.1.1. [ Subtask ] - Provider challenge UI; error states**
 **10.3.1.2. [ Subtask ] - Terms/return policy checkbox and logging**
-#### 10.3.2. [ Task ] - COD eligibility and fees
+#### 10.3.2. [ Task ] - Implement COD eligibility and fees
 **10.3.2.1. [ Subtask ] - PIN serviceability, order value caps, fee toggles**
 
 ### 10.4. [ User Story ] - Provider Resilience & Retries
@@ -549,7 +549,7 @@ Acceptance Criteria:
 - Retry/backoff strategy handles transient failures; fallback provider routing is available.
 - Payment attempts are idempotent to avoid double charges.
 - Users see accurate payment status with guidance on next steps.
-#### 10.4.1. [ Task ] - Payment provider failover and retry logic
+#### 10.4.1. [ Task ] - Implement payment provider failover and retry logic
 **10.4.1.1. [ Subtask ] - Retry/backoff; fallback provider routing**
 
 ## 11. [ Feature ] - Orders, Fulfillment & Returns
@@ -567,9 +567,9 @@ Acceptance Criteria:
 - Order state transitions are tracked with domain events and timestamps.
 - Shipment tracking syncs from carrier and is visible in account.
 - Notifications are sent on key transitions (created, paid, shipped, delivered).
-#### 11.1.1. [ Task ] - Order states and transitions (created, paid, fulfilled, refunded)
+#### 11.1.1. [ Task ] - Implement order states and transitions (created, paid, fulfilled, refunded)
 **11.1.1.1. [ Subtask ] - Event emission for state changes**
-#### 11.1.2. [ Task ] - Shipment tracking
+#### 11.1.2. [ Task ] - Implement shipment tracking
 **11.1.2.1. [ Subtask ] - Carrier tracking link and status sync**
 
 ### 11.2. [ User Story ] - Returns & Refunds
@@ -579,7 +579,7 @@ Acceptance Criteria:
 - RMA creation checks eligibility and provides status updates.
 - Refunds are processed and posted to the ledger; customer is notified.
 - SLA targets are communicated and met for common cases.
-#### 11.2.1. [ Task ] - RMA creation and eligibility checks
+#### 11.2.1. [ Task ] - Implement RMA creation and eligibility checks
 **11.2.1.1. [ Subtask ] - Refund processing and ledger updates**
 
 ### 11.3. [ User Story ] - Split Shipments & Partial Fulfillment
@@ -589,7 +589,7 @@ Acceptance Criteria:
 - Split shipments are supported with multiple tracking numbers.
 - Shipment items and aggregated status are clear in the order timeline.
 - Price/tax adjustments for partials are handled correctly.
-#### 11.3.1. [ Task ] - Partial fulfillment and multi-tracking
+#### 11.3.1. [ Task ] - Implement partial fulfillment and multi-tracking
 **11.3.1.1. [ Subtask ] - Shipment items and status aggregation**
 
 ### 11.4. [ User Story ] - Cancellations & Exchanges
@@ -599,9 +599,9 @@ Acceptance Criteria:
 - Cancellation windows and fees are enforced by pre/after-ship rules.
 - Exchange flow creates the new order and validates stock.
 - Notifications confirm actions and next steps.
-#### 11.4.1. [ Task ] - Cancellation windows and fees
+#### 11.4.1. [ Task ] - Implement cancellation windows and fees
 **11.4.1.1. [ Subtask ] - Pre-ship/after-ship rules; notifications**
-#### 11.4.2. [ Task ] - Exchange flow
+#### 11.4.2. [ Task ] - Implement exchange flow
 **11.4.2.1. [ Subtask ] - Exchange order creation; stock checks**
 
 ### 11.5. [ User Story ] - Guest Tracking & Invoices
@@ -611,7 +611,7 @@ Acceptance Criteria:
 - Guest lookup via email/phone with OTP verification.
 - Invoice PDF includes GST details and is downloadable.
 - Rate limits and abuse protections apply to guest lookup.
-#### 11.5.1. [ Task ] - Guest order lookup via email/phone + OTP
+#### 11.5.1. [ Task ] - Implement guest order lookup via email/phone + OTP
 **11.5.1.1. [ Subtask ] - Invoice PDF download with GST details**
 
 ## 12. [ Feature ] - Reviews & UGC
@@ -629,9 +629,9 @@ Acceptance Criteria:
 - Review CRUD is restricted to verified purchasers with moderation queue.
 - Media uploads use presigned URLs and pass AV scanning.
 - Anti-spam is enforced leveraging global rate limits.
-#### 12.1.1. [ Task ] - Review CRUD with verification and moderation
+#### 12.1.1. [ Task ] - Implement review CRUD with verification and moderation
 **12.1.1.1. [ Subtask ] - Media uploads via presigned URLs; virus scan**
-#### 12.1.2. [ Task ] - Anti-spam (uses global rate limiting; see 6.4)
+#### 12.1.2. [ Task ] - Implement anti-spam (uses global rate limiting; see 6.4)
 
 ### 12.2. [ User Story ] - Quality Signals & Merchant Replies
 As a customer, I want helpful review signals and merchant replies so that I can evaluate products better.
@@ -640,9 +640,9 @@ Acceptance Criteria:
 - Helpful votes are one-per-user; reply moderation is enforced.
 - Flagged content workflow includes reasons, SLAs, and takedown audit.
 - Merchant replies display clearly on PDP.
-#### 12.2.1. [ Task ] - Helpful votes and merchant replies
+#### 12.2.1. [ Task ] - Implement helpful votes and merchant replies
 **12.2.1.1. [ Subtask ] - One-vote-per-user; reply moderation**
-#### 12.2.2. [ Task ] - Flagged content workflow
+#### 12.2.2. [ Task ] - Implement flagged content workflow
 **12.2.2.1. [ Subtask ] - Reasons, SLAs, takedown audit**
 
 ### 12.3. [ User Story ] - Media Handling
@@ -652,7 +652,7 @@ Acceptance Criteria:
 - EXIF stripping, size limits, and safety checks are applied to uploads.
 - Image processing and virus scanning occur before publish.
 - Non-compliant media is rejected with clear error messages.
-#### 12.3.1. [ Task ] - EXIF strip, size limits, and safety
+#### 12.3.1. [ Task ] - Implement EXIF stripping, size limits, and safety
 **12.3.1.1. [ Subtask ] - Image processing and AV scanning**
 
 ## 13. [ Feature ] - Subscriptions, Loyalty & Referrals
@@ -670,7 +670,7 @@ Acceptance Criteria:
 - Create/pause/resume/cancel supported with a reliable billing scheduler.
 - Provider webhook reconciliation keeps subscription state accurate.
 - Upcoming charges and changes are communicated proactively.
-#### 13.1.1. [ Task ] - Create/pause/resume/cancel; billing scheduler
+#### 13.1.1. [ Task ] - Implement subscription create/pause/resume/cancel; billing scheduler
 **13.1.1.1. [ Subtask ] - Provider webhook reconciliation**
 
 ### 13.2. [ User Story ] - Loyalty & Referrals
@@ -680,7 +680,7 @@ Acceptance Criteria:
 - Referral links generate attribution; fraud checks block abuse.
 - Points accrual/redeem rules are persisted and visible in UI.
 - Suspicious activity is detected and prevented.
-#### 13.2.1. [ Task ] - Referral link generation and attribution
+#### 13.2.1. [ Task ] - Implement referral link generation and attribution
 **13.2.1.1. [ Subtask ] - Fraud checks (device/IP/email heuristics)**
 
 ## 14. [ Feature ] - Web Frontend (React/Next.js)
@@ -699,7 +699,7 @@ Acceptance Criteria:
 - Next.js app shell/routing works with error boundaries and i18n baseline.
 - Core pages load within performance budgets; SEO basics configured.
 - Accessibility checks pass on core navigations.
-#### 14.1.1. [ Task ] - Next.js app with SSR/SSG where applicable
+#### 14.1.1. [ Task ] - Implement Next.js app with SSR/SSG where applicable
 **14.1.1.1. [ Subtask ] - Layouts, error boundaries, i18n baseline (en-IN)**
 
 ### 14.2. [ User Story ] - Design System
@@ -709,7 +709,7 @@ Acceptance Criteria:
 - Tokens, theming, and core components meet WCAG AA.
 - Keyboard focus states and semantics are verified.
 - Components are adopted across pages and documented.
-#### 14.2.1. [ Task ] - Tokens, theming, components (buttons, cards, inputs, modals, nav)
+#### 14.2.1. [ Task ] - Implement UI tokens, theming, and components (buttons, cards, inputs, modals, nav)
 **14.2.1.1. [ Subtask ] - Accessibility-first (WCAG AA), keyboard focus states**
 
 ### 14.3. [ User Story ] - Core Pages
@@ -719,13 +719,13 @@ Acceptance Criteria:
 - PLP supports facets/sort with responsive grid and skeleton loaders.
 - PDP includes gallery, sourcing block, and required structured data.
 - Cart/Checkout flows cover address, shipping, and payment steps end-to-end.
-#### 14.3.1. [ Task ] - PLP with facets and sort
+#### 14.3.1. [ Task ] - Implement PLP with facets and sort
 **14.3.1.1. [ Subtask ] - Responsive grid and skeleton loaders**
-#### 14.3.2. [ Task ] - PDP with gallery and sourcing block
+#### 14.3.2. [ Task ] - Implement PDP with gallery and sourcing block
 **14.3.2.1. [ Subtask ] - JSON-LD Product and Breadcrumb**
-#### 14.3.3. [ Task ] - Cart and Checkout flows
+#### 14.3.3. [ Task ] - Implement cart and checkout flows
 **14.3.3.1. [ Subtask ] - Address, shipping, payment steps**
-#### 14.3.4. [ Task ] - Account (orders, addresses, returns)
+#### 14.3.4. [ Task ] - Implement account pages (orders, addresses, returns)
 
 ### 14.4. [ User Story ] - Performance & SEO
 As a shopper, I want fast pages and clear search results so that I can find and complete purchases easily.
@@ -734,9 +734,9 @@ Acceptance Criteria:
 - Image optimization, prefetching, and code splitting meet Core Web Vitals budgets.
 - Sitemaps, robots.txt, canonical URLs are present and correct.
 - Structured data (Article, FAQ, Organization) validates without errors.
-#### 14.4.1. [ Task ] - Image optimization (AVIF/WebP), prefetching, code splitting
+#### 14.4.1. [ Task ] - Implement image optimization (AVIF/WebP), prefetching, and code splitting
 **14.4.1.1. [ Subtask ] - Core Web Vitals budgets and monitoring**
-#### 14.4.2. [ Task ] - Sitemaps, robots.txt, canonical URLs
+#### 14.4.2. [ Task ] - Implement sitemaps, robots.txt, and canonical URLs
 **14.4.2.1. [ Subtask ] - Structured data (Article, FAQ, Organization)**
 
 ## 15. [ Feature ] - Analytics & Telemetry
@@ -765,9 +765,9 @@ Acceptance Criteria:
 - ETL to the warehouse is operational; dbt models apply consent/retention filters.
 - Alerts exist for checkout CR dip, payment failure rate, and LCP breaches.
 - KPI dashboards are available with documented refresh cadence.
-#### 15.2.1. [ Task ] - ETL to warehouse and BI
+#### 15.2.1. [ Task ] - Implement ETL to warehouse and BI
 **15.2.1.1. [ Subtask ] - dbt models; retention and consent filters**
-#### 15.2.2. [ Task ] - Alerts
+#### 15.2.2. [ Task ] - Configure alerts
 **15.2.2.1. [ Subtask ] - Checkout CR dip > 20%, payment failure > 2%, LCP > 3s**
 
 ### 15.3. [ User Story ] - Experimentation & Feature Flags
@@ -777,11 +777,11 @@ Acceptance Criteria:
 - Deterministic bucketing with exposure events and holdouts is implemented.
 - A/B test lifecycle includes hypothesis, guardrails, rollout/rollback.
 - Analysis and governance rules are defined and documented.
-#### 15.3.1. [ Task ] - Feature flag SDK and bucketing
+#### 15.3.1. [ Task ] - Implement feature flag SDK and bucketing
 **15.3.1.1. [ Subtask ] - Deterministic assignment; exposure events and holdouts**
-#### 15.3.2. [ Task ] - A/B test lifecycle
+#### 15.3.2. [ Task ] - Define A/B test lifecycle
 **15.3.2.1. [ Subtask ] - Hypothesis, guardrails, rollout/rollback procedures**
-#### 15.3.3. [ Task ] - Analysis & governance
+#### 15.3.3. [ Task ] - Define analysis and governance
 **15.3.3.1. [ Subtask ] - Segmentation and stats checks; archive of results**
 
 ## 16. [ Feature ] - Notifications & Communications
@@ -799,7 +799,7 @@ Acceptance Criteria:
 - Templates exist for order confirmation, shipping, and refund; localized where needed.
 - Previews render correctly on major clients and devices.
 - Links deep link into app/web where applicable.
-#### 16.1.1. [ Task ] - Transactional emails (order confirmation, shipping, refund)
+#### 16.1.1. [ Task ] - Build transactional emails (order confirmation, shipping, refund)
 **16.1.1.1. [ Subtask ] - Template system and localization hooks**
 
 ### 16.2. [ User Story ] - Push & SMS
@@ -809,7 +809,7 @@ Acceptance Criteria:
 - Topics are configured for orders/content/offers; preferences and consent respected with quiet hours.
 - Delivery metrics are tracked; graceful fallbacks exist.
 - Opt-out flows work across channels.
-#### 16.2.1. [ Task ] - Push topics (orders, content, offers) and SMS for order events (where applicable)
+#### 16.2.1. [ Task ] - Configure push topics (orders, content, offers) and SMS for order events (where applicable)
 **16.2.1.1. [ Subtask ] - Preferences and consent toggles**
 
 ### 16.3. [ User Story ] - Notifications Center
@@ -819,11 +819,11 @@ Acceptance Criteria:
 - Unified inbox shows read/unread status, categories, and deep links.
 - Preferences and digests support quiet hours and batching.
 - De-duplication and channel failover orchestrate delivery across push/email/SMS.
-#### 16.3.1. [ Task ] - Unified in-app inbox (web/mobile)
+#### 16.3.1. [ Task ] - Build unified in-app inbox (web/mobile)
 **16.3.1.1. [ Subtask ] - Read/unread, categories, deep links**
-#### 16.3.2. [ Task ] - Preferences and digests
+#### 16.3.2. [ Task ] - Implement preferences and digests
 **16.3.2.1. [ Subtask ] - Per-channel/topic; quiet hours and batching**
-#### 16.3.3. [ Task ] - Delivery orchestration
+#### 16.3.3. [ Task ] - Implement delivery orchestration
 **16.3.3.1. [ Subtask ] - De-duplication and channel failover (push/email/SMS)**
 
 ### 16.4. [ User Story ] - India DLT & Templates
@@ -843,7 +843,7 @@ Acceptance Criteria:
 - WhatsApp templates are configured for key events; opt-in is respected.
 - Fallback to SMS/email occurs when WhatsApp fails or is unavailable.
 - Quiet hours and preferences are enforced across channels.
-#### 16.5.1. [ Task ] - WhatsApp notifications for key events
+#### 16.5.1. [ Task ] - Implement WhatsApp notifications for key events
 **16.5.1.1. [ Subtask ] - Fallback to SMS/email; opt-in and quiet hours**
 
 ## 17. [ Feature ] - Support & Help Center
@@ -861,7 +861,7 @@ Acceptance Criteria:
 - CMS-driven articles support categories, search, and feedback.
 - Editorial workflow supports preview and publish with versioning.
 - Article helpfulness is tracked for continuous improvement.
-#### 17.1.1. [ Task ] - CMS-driven articles and categories
+#### 17.1.1. [ Task ] - Build CMS-driven articles and categories
 **17.1.1.1. [ Subtask ] - Search and feedback on articles**
 
 ### 17.2. [ User Story ] - Chat & Escalation
@@ -900,7 +900,7 @@ Acceptance Criteria:
 - RPO/RTO targets are defined; snapshots and cross-region read replica plan exist.
 - Quarterly restore and failover drills are executed and documented.
 - Backup failures trigger alerts and are remediated.
-#### 18.2.1. [ Task ] - RPO/RTO targets, snapshots, cross-region read replica plan
+#### 18.2.1. [ Task ] - Define RPO/RTO targets, snapshots, and cross-region read replica plan
 **18.2.1.1. [ Subtask ] - Quarterly restore and failover drills**
 
 ### 18.3. [ User Story ] - Cost Guardrails & FinOps
@@ -910,9 +910,9 @@ Acceptance Criteria:
 - Budgets and anomaly alerts are set; per-service cost allocation uses tags/accounts.
 - Dashboards show unit economics KPIs for monthly reviews.
 - Review outcomes produce cost actions tracked to closure.
-#### 18.3.1. [ Task ] - Budgets and anomaly alerts
+#### 18.3.1. [ Task ] - Configure budgets and anomaly alerts
 **18.3.1.1. [ Subtask ] - Per-service cost allocation via tags and accounts**
-#### 18.3.2. [ Task ] - Dashboards and reports
+#### 18.3.2. [ Task ] - Create dashboards and reports
 **18.3.2.1. [ Subtask ] - Unit economics KPIs; monthly reviews and actions**
 
 ### 18.4. [ User Story ] - Incident Automation
@@ -922,9 +922,9 @@ Acceptance Criteria:
 - Auto-remediation playbooks trigger via ChatOps with approvals.
 - Post-incident reviews are blameless; action items tracked to closure.
 - MTTR trends improve and are reported.
-#### 18.4.1. [ Task ] - Runbook automation for common failures
+#### 18.4.1. [ Task ] - Automate runbooks for common failures
 **18.4.1.1. [ Subtask ] - Auto-remediation playbooks; ChatOps triggers and approvals**
-#### 18.4.2. [ Task ] - Post-incident follow-ups
+#### 18.4.2. [ Task ] - Conduct post-incident follow-ups
 **18.4.2.1. [ Subtask ] - Blameless postmortems; action items tracked to closure**
 
 ## 19. [ Feature ] - Content & CMS
@@ -942,7 +942,7 @@ Acceptance Criteria:
 - Article/ritual/glossary types render with preview flows.
 - Webhook ingestion triggers cache invalidation within seconds.
 - SEO pillar templates support internal linking and metadata.
-#### 19.1.1. [ Task ] - Article, ritual, glossary types and rendering
+#### 19.1.1. [ Task ] - Implement article, ritual, and glossary types and rendering
 **19.1.1.1. [ Subtask ] - Webhook ingestion and cache invalidation**
 **19.1.1.2. [ Subtask ] - SEO pillar pages templates and internal linking**
 
@@ -961,7 +961,7 @@ Acceptance Criteria:
 - Unit/integration/e2e tests meet agreed thresholds for critical paths.
 - Factories and fixtures provide reliable test data.
 - CI blocks merges when quality gates fail.
-#### 20.1.1. [ Task ] - Unit tests (critical paths ≥ 80%), integration (API), e2e (checkout smoke)
+#### 20.1.1. [ Task ] - Implement unit tests (critical paths ≥ 80%), integration (API), and e2e (checkout smoke)
 **20.1.1.1. [ Subtask ] - Test data factories and fixtures**
 
 ### 20.2. [ User Story ] - Release & Versioning
@@ -971,7 +971,7 @@ Acceptance Criteria:
 - Semantic versioning and automated changelog generation run in CI.
 - Release notes are produced and distributed each release.
 - Rollback procedure is documented and verified.
-#### 20.2.1. [ Task ] - Semantic versioning and changelog automation
+#### 20.2.1. [ Task ] - Implement semantic versioning and changelog automation
 **20.2.1.1. [ Subtask ] - Release notes template and distribution**
 
 ## 21. [ Feature ] - Mobile App (React Native)
@@ -1001,9 +1001,9 @@ Acceptance Criteria:
 - Onboarding variants work and completion state persists across sessions.
 - Deep links route correctly to target screens.
 - Tab/stack navigation structure implemented with back behavior defined.
-#### 21.2.1. [ Task ] - Onboarding screens with variant flags (education-first/quick-start)
+#### 21.2.1. [ Task ] - Build onboarding screens with variant flags (education-first/quick-start)
 **21.2.1.1. [ Subtask ] - Persist onboarding completion; deep link routing**
-#### 21.2.2. [ Task ] - Tab/stack structure (Home, Shop, Learn, Account, Cart)
+#### 21.2.2. [ Task ] - Implement tab/stack structure (Home, Shop, Learn, Account, Cart)
 
 ### 21.3. [ User Story ] - Mobile Catalog & PDP
 As a mobile shopper, I want performant PLP/PDP so that shopping feels native and responsive.
@@ -1012,9 +1012,9 @@ Acceptance Criteria:
 - PLP supports facets/sort and infinite scroll with skeletons and empty states.
 - PDP includes gallery, energy tags, origin/certification, share/wishlist/related.
 - Performance meets mobile budgets on low-end devices.
-#### 21.3.1. [ Task ] - PLP with facets/sort and infinite scroll
+#### 21.3.1. [ Task ] - Implement PLP with facets/sort and infinite scroll
 **21.3.1.1. [ Subtask ] - Facet drawer UX, skeletons, empty state**
-#### 21.3.2. [ Task ] - PDP with gallery, energy tags, origin/certification
+#### 21.3.2. [ Task ] - Implement PDP with gallery, energy tags, and origin/certification
 **21.3.2.1. [ Subtask ] - Share, wishlist, related products modules**
 
 ### 21.4. [ User Story ] - Mobile Cart & Checkout
@@ -1024,9 +1024,9 @@ Acceptance Criteria:
 - Cart screens show items, totals, and coupons; persisted securely and merge-on-login.
 - Checkout integrates payment SDKs and handles success/failure callbacks.
 - Errors are recoverable and status is visible to the user.
-#### 21.4.1. [ Task ] - Cart screens (items, totals, coupons)
+#### 21.4.1. [ Task ] - Build cart screens (items, totals, coupons)
 **21.4.1.1. [ Subtask ] - Persist cart securely (async storage) and merge-on-login**
-#### 21.4.2. [ Task ] - Checkout flow (address, shipping, payment)
+#### 21.4.2. [ Task ] - Build checkout flow (address, shipping, payment)
 **21.4.2.1. [ Subtask ] - Integrate Razorpay/Stripe RN SDKs; handle success/failure callbacks**
 
 ### 21.5. [ User Story ] - Push, Deep Links, and Device Metrics
@@ -1036,9 +1036,9 @@ Acceptance Criteria:
 - Permission prompts include a value proposition; topic subscriptions are configured.
 - Deep links/universal links route correctly on cold and warm starts.
 - Device performance metrics are tracked with alerts.
-#### 21.5.1. [ Task ] - Push notifications (orders, content, offers)
+#### 21.5.1. [ Task ] - Implement push notifications (orders, content, offers)
 **21.5.1.1. [ Subtask ] - Permission prompts with value proposition; topic subscriptions**
-#### 21.5.2. [ Task ] - Deep links and universal links/app links
+#### 21.5.2. [ Task ] - Implement deep links and universal/app links
 **21.5.2.1. [ Subtask ] - Cold/warm start routing tests**
 
 ### 21.6. [ User Story ] - Store Readiness & Compliance
@@ -1048,9 +1048,9 @@ Acceptance Criteria:
 - Device QA and performance targets met (crash-free > 99.5%, ANR ≤ 0.3%, cold start ≤ 2.5s).
 - Store listings and release pipelines are configured for staged rollout.
 - Post-release monitoring is in place with alerting.
-#### 21.6.1. [ Task ] - Device matrix QA (Android 8–14, iOS 15+); performance targets
+#### 21.6.1. [ Task ] - Perform device matrix QA (Android 8–14, iOS 15+); meet performance targets
 **21.6.1.1. [ Subtask ] - Crash-free > 99.5%, ANR ≤ 0.3%, cold start ≤ 2.5s**
-#### 21.6.2. [ Task ] - App Store/Play store listings and release pipeline
+#### 21.6.2. [ Task ] - Prepare App Store/Play listings and release pipeline
 **21.6.2.1. [ Subtask ] - TestFlight/Play internal tracks; staged rollout and monitoring**
 
 ## 22. [ Feature ] - Admin Portal & Backoffice
@@ -1068,7 +1068,7 @@ Acceptance Criteria:
 - Roles/scopes and permissions enforced server-side for admin actions.
 - Audit logs capture who/what/when with immutable storage.
 - Permission checks are validated with tests.
-#### 22.1.1. [ Task ] - Roles/scopes (staff, admin) and permissions
+#### 22.1.1. [ Task ] - Implement roles/scopes (staff, admin) and permissions
 **22.1.1.1. [ Subtask ] - API guard middleware; audit logs for admin actions**
 
 ### 22.2. [ User Story ] - Catalog Management
@@ -1078,7 +1078,7 @@ Acceptance Criteria:
 - Product/variant/pricing/collections CRUD with validation and preview.
 - Bulk CSV upload validates and provides a preview before publish.
 - Publish workflow and versioning are documented.
-#### 22.2.1. [ Task ] - Product CRUD, variants, pricing, collections
+#### 22.2.1. [ Task ] - Implement product CRUD, variants, pricing, and collections
 **22.2.1.1. [ Subtask ] - Bulk upload (CSV) and validation; preview before publish**
 
 ### 22.3. [ User Story ] - Inventory & Fulfillment
@@ -1088,7 +1088,7 @@ Acceptance Criteria:
 - Inventory adjustments and reservations are supported with audit.
 - Stock thresholds and alerts notify when levels dip.
 - Ops views support quick corrections and exports.
-#### 22.3.1. [ Task ] - Inventory adjustments and reservations
+#### 22.3.1. [ Task ] - Implement inventory adjustments and reservations
 **22.3.1.1. [ Subtask ] - Stock thresholds and alerts**
 
 ### 22.4. [ User Story ] - Orders & Returns Ops
@@ -1098,7 +1098,7 @@ Acceptance Criteria:
 - Order search, status updates, and refunds/RMA approvals are available with permission checks.
 - Each order shows a notes/timeline for context.
 - Refund exports (CSV) exist for finance reconciliation.
-#### 22.4.1. [ Task ] - Order search, status updates, refunds/RMA approvals
+#### 22.4.1. [ Task ] - Implement order search, status updates, and refunds/RMA approvals
 **22.4.1.1. [ Subtask ] - Notes/timeline per order; permission checks**
 **22.4.1.2. [ Subtask ] - Refunds export (CSV) for finance reconciliation**
 
@@ -1109,7 +1109,7 @@ Acceptance Criteria:
 - Create/disable coupons with stacking and eligibility rules.
 - Limits and schedules are enforced; misuse prevented.
 - Audit trail exists for all changes.
-#### 22.5.1. [ Task ] - Create/disable coupons, rules, limits
+#### 22.5.1. [ Task ] - Implement create/disable coupons, rules, and limits
 **22.5.1.1. [ Subtask ] - Stacking rules and eligibility conditions**
 
 ### 22.6. [ User Story ] - Reviews Moderation
@@ -1119,7 +1119,7 @@ Acceptance Criteria:
 - Moderation queue supports approve/reject with reasons; media review workflow.
 - Policy enforcement and takedowns are audited.
 - SLAs exist for response times.
-#### 22.6.1. [ Task ] - Queue, approve/reject with reasons; policy enforcement
+#### 22.6.1. [ Task ] - Implement queue with approve/reject (reasons) and policy enforcement
 **22.6.1.1. [ Subtask ] - Media review and takedown workflow**
 
 ### 22.7. [ User Story ] - Customer Support Tools
@@ -1129,7 +1129,7 @@ Acceptance Criteria:
 - Customer search and impersonation available with consent banner.
 - All actions are audited and permission-checked.
 - Sensitive data views are gated.
-#### 22.7.1. [ Task ] - Customer search and impersonation
+#### 22.7.1. [ Task ] - Implement customer search and impersonation
 **22.7.1.1. [ Subtask ] - Audit logs; impersonation consent banner**
 
 ### 22.8. [ User Story ] - Fraud Review Queue
@@ -1139,7 +1139,7 @@ Acceptance Criteria:
 - Queue supports approve/hold/cancel with notes and SLAs.
 - Decisions integrate with order state and notifications.
 - Metrics track hit rates and outcomes.
-#### 22.8.1. [ Task ] - Manual review for risky orders
+#### 22.8.1. [ Task ] - Implement manual review for risky orders
 **22.8.1.1. [ Subtask ] - Decisions (approve/hold/cancel); notes and SLAs**
 
 ### 22.9. [ User Story ] - Bulk Operations
@@ -1149,7 +1149,7 @@ Acceptance Criteria:
 - Bulk price/inventory updates via CSV with validation and preview.
 - Rollback or correction flow exists for mistakes.
 - Audit and notifications for bulk jobs.
-#### 22.9.1. [ Task ] - Bulk price/inventory updates
+#### 22.9.1. [ Task ] - Implement bulk price/inventory updates
 **22.9.1.1. [ Subtask ] - CSV upload with validation; preview + rollback**
 
 ### 22.10. [ User Story ] - Feature Flags & Toggles
@@ -1159,7 +1159,7 @@ Acceptance Criteria:
 - Admin UI controls flags with targeting rules and approvals.
 - Changes are audited; server-side enforcement is authoritative.
 - Safety checks prevent locking out critical paths.
-#### 22.10.1. [ Task ] - Admin control of flags
+#### 22.10.1. [ Task ] - Implement admin control of flags
 **22.10.1.1. [ Subtask ] - Targeting rules; audit and approvals**
 
 ## 23. [ Feature ] - Tax & Invoicing (India GST)
@@ -1187,7 +1187,7 @@ Acceptance Criteria:
 - GSTIN capture/validation (B2B) and invoice numbering scheme are enforced.
 - PDF invoices are generated, emailed, and stored for download.
 - Invoice data is searchable and auditable.
-#### 23.2.1. [ Task ] - Capture GSTIN (B2B), validate formats; invoice numbering scheme
+#### 23.2.1. [ Task ] - Capture GSTIN (B2B), validate formats; define invoice numbering scheme
 **23.2.1.1. [ Subtask ] - Generate PDF invoices; email to customer; store for download**
 
 ### 23.3. [ User Story ] - Reports & Reconciliation
@@ -1197,7 +1197,7 @@ Acceptance Criteria:
 - Tax summary reports by period are exportable (CSV) with audit trail.
 - Filters for B2B/B2C and tax categories exist.
 - Data matches ledger records.
-#### 23.3.1. [ Task ] - Tax summary reports by period
+#### 23.3.1. [ Task ] - Generate tax summary reports by period
 **23.3.1.1. [ Subtask ] - Export CSV for filing and audit trail**
 
 ### 23.4. [ User Story ] - Cross-border Duties & Taxes
@@ -1207,9 +1207,9 @@ Acceptance Criteria:
 - Landed cost estimates use HS codes, duties, and VAT with provider fallback.
 - Commercial invoice and customs declarations are generated when required.
 - Region-specific rules are documented and enforced.
-#### 23.4.1. [ Task ] - Landed cost estimation (HS codes, duties, VAT)
+#### 23.4.1. [ Task ] - Implement landed cost estimation (HS codes, duties, VAT)
 **23.4.1.1. [ Subtask ] - Provider integration and fallback rate tables**
-#### 23.4.2. [ Task ] - Compliance documents
+#### 23.4.2. [ Task ] - Generate compliance documents
 **23.4.2.1. [ Subtask ] - Commercial invoice and customs declarations**
 
 ### 23.5. [ User Story ] - Rounding & Labels
@@ -1219,7 +1219,7 @@ Acceptance Criteria:
 - India rounding policies and GST labels are applied consistently.
 - MRP/compare-at display adheres to Indian guidelines.
 - SEO and UX reflect inclusive/exclusive tax notes appropriately.
-#### 23.5.1. [ Task ] - India rounding policies and GST labels
+#### 23.5.1. [ Task ] - Implement India rounding policies and GST labels
 **23.5.1.1. [ Subtask ] - MRP/compare-at display with GST notes**
 
 ### 23.6. [ User Story ] - GST Filing Exports
@@ -1229,7 +1229,7 @@ Acceptance Criteria:
 - GSTR-1/3B exports include required fields with period selection.
 - CSV exports have an audit trail and integrity checks.
 - Reconciliation notes can be attached.
-#### 23.6.1. [ Task ] - GSTR-1/3B exports
+#### 23.6.1. [ Task ] - Generate GSTR-1/3B exports
 **23.6.1.1. [ Subtask ] - Period selection; CSV with audit trail**
 
 ### 23.7. [ User Story ] - TCS/TDS & COD Nuances
@@ -1239,7 +1239,7 @@ Acceptance Criteria:
 - TCS/TDS logic is applied where applicable with correct reporting.
 - COD-specific tax reporting adjustments are implemented and tested.
 - Documentation covers scenarios and thresholds.
-#### 23.7.1. [ Task ] - Handle TCS/TDS where applicable
+#### 23.7.1. [ Task ] - Implement TCS/TDS handling where applicable
 **23.7.1.1. [ Subtask ] - COD-specific tax reporting adjustments**
 
 ## 24. [ Feature ] - Shipping & Logistics Integration
@@ -1267,7 +1267,7 @@ Acceptance Criteria:
 - Label generation and manifesting function reliably; reprints are supported.
 - Tracking webhooks update orders and notify customers.
 - Exceptions are visible in ops views.
-#### 24.2.1. [ Task ] - Label generation and manifesting
+#### 24.2.1. [ Task ] - Implement label generation and manifesting
 **24.2.1.1. [ Subtask ] - Tracking webhooks → order updates and notifications**
 
 ### 24.3. [ User Story ] - Exceptions Handling
@@ -1277,7 +1277,7 @@ Acceptance Criteria:
 - RTO/failed delivery flows create tickets and customer communications.
 - Refund/Reship options are presented and tracked.
 - SLAs are defined and monitored.
-#### 24.3.1. [ Task ] - RTO/failed delivery flows and customer comms
+#### 24.3.1. [ Task ] - Implement RTO/failed delivery flows and customer communications
 **24.3.1.1. [ Subtask ] - Automatic ticket creation and refund/Reship options**
 
 ### 24.4. [ User Story ] - International Shipping Pilot
@@ -1287,11 +1287,11 @@ Acceptance Criteria:
 - Country/zone serviceability and carriers are configured with region restrictions.
 - International address validation and postal verification are integrated.
 - Cross-border returns flow and customer comms are defined.
-#### 24.4.1. [ Task ] - Country/zone serviceability and carriers
+#### 24.4.1. [ Task ] - Configure country/zone serviceability and carriers
 **24.4.1.1. [ Subtask ] - Region-based SKU restrictions and lead times**
-#### 24.4.2. [ Task ] - Address validation (international formats)
+#### 24.4.2. [ Task ] - Implement address validation (international formats)
 **24.4.2.1. [ Subtask ] - Postal code and address verification APIs**
-#### 24.4.3. [ Task ] - Cross-border returns & CX
+#### 24.4.3. [ Task ] - Define cross-border returns and CX
 **24.4.3.1. [ Subtask ] - RTO and refund SLAs; customer communications**
 
 ### 24.5. [ User Story ] - Packaging & DIM Weight
@@ -1301,7 +1301,7 @@ Acceptance Criteria:
 - Packaging rules and DIM calculations are applied with auto-boxing.
 - Rate selection considers dimensional weight vs actual weight.
 - Exceptions are logged for tuning.
-#### 24.5.1. [ Task ] - Packaging rules and DIM calculations
+#### 24.5.1. [ Task ] - Implement packaging rules and DIM calculations
 **24.5.1.1. [ Subtask ] - Auto-boxing and rate selection impact**
 
 ### 24.6. [ User Story ] - NDR & Delivery Retries
@@ -1311,7 +1311,7 @@ Acceptance Criteria:
 - NDR workflows define retry attempts and RTO handling with notifications.
 - Customer communications templates are localized and tracked.
 - Outcomes feed into risk and carrier performance dashboards.
-#### 24.6.1. [ Task ] - NDR workflows and customer comms
+#### 24.6.1. [ Task ] - Implement NDR workflows and customer communications
 **24.6.1.1. [ Subtask ] - Retry attempts; return-to-origin handling**
 
 ### 24.7. [ User Story ] - COD Remittance Tracking
@@ -1321,7 +1321,7 @@ Acceptance Criteria:
 - Expected vs received amounts are tracked with aging reports.
 - Discrepancies trigger alerts and follow-up tasks.
 - Exports support reconciliation with bank statements.
-#### 24.7.1. [ Task ] - Track COD settlements and reconciliation
+#### 24.7.1. [ Task ] - Implement tracking for COD settlements and reconciliation
 **24.7.1.1. [ Subtask ] - Expected vs received; aging reports**
 
 ### 24.8. [ User Story ] - Aggregator Failover
@@ -1331,7 +1331,7 @@ Acceptance Criteria:
 - Health-based routing switches providers automatically with alerts.
 - Credentials and service mappings are maintained for alternates.
 - Post-failover reconciliation is documented.
-#### 24.8.1. [ Task ] - Provider failover rules
+#### 24.8.1. [ Task ] - Configure provider failover rules
 **24.8.1.1. [ Subtask ] - Health-based routing and alerts**
 
 ## 25. [ Feature ] - Media & CDN Pipeline
@@ -1349,8 +1349,8 @@ Acceptance Criteria:
 - Signed uploads to S3 use role-limited access with time-bound URLs.
 - Image variants (AVIF/WebP) are generated and cached for thumb/PDP/zoom.
 - Access is least-privileged; unauthorized access is blocked.
-#### 25.1.1. [ Task ] - Signed uploads to S3; image variants (thumb, PDP, zoom)
-**25.1.1.1. [ Subtask ] - Lambda/Image CDN transformation; AVIF/WebP**
+#### 25.1.1. [ Task ] - Implement signed uploads to S3 and image variants (thumb, PDP, zoom)
+**25.1.1.1. [ Subtask ] - Implement image transformation via Lambda/Image CDN; support AVIF/WebP**
 
 ### 25.2. [ User Story ] - Caching & Invalidations
 As a performance engineer, I want effective CDN caching so that media loads quickly without stale content.
@@ -1359,8 +1359,8 @@ Acceptance Criteria:
 - CloudFront cache keys vary by DPR/format; hit/miss metrics tracked.
 - Invalidation hooks fire on publish/update for affected paths only.
 - Tuning decisions are informed by observability dashboards.
-#### 25.2.1. [ Task ] - CloudFront caching strategy and invalidation hooks
-**25.2.1.1. [ Subtask ] - Cache keys by device DPR and format**
+#### 25.2.1. [ Task ] - Implement CloudFront caching strategy and invalidation hooks
+**25.2.1.1. [ Subtask ] - Configure cache keys by device DPR and format**
 
 ### 25.3. [ User Story ] - Safety Pipeline
 As a compliance owner, I want a safety pipeline for uploads so that harmful content is blocked.
@@ -1369,8 +1369,8 @@ Acceptance Criteria:
 - Malware/virus scan and content-type validation run on upload.
 - Quarantine bucket and review workflow handle flagged assets.
 - Moderation decisions are audited with reasons.
-#### 25.3.1. [ Task ] - Malware scan and content-type validation for uploads
-**25.3.1.1. [ Subtask ] - Quarantine bucket and review workflow**
+#### 25.3.1. [ Task ] - Implement malware scan and content-type validation for uploads
+**25.3.1.1. [ Subtask ] - Set up quarantine bucket and review workflow**
 
 ## 26. [ Feature ] - Performance & Load Testing
 Description: Validate performance budgets and scale under load with synthetic checks and alerts.
@@ -1387,7 +1387,7 @@ Acceptance Criteria:
 - k6/Artillery scenarios cover browse, PDP, and checkout with thresholds.
 - Scripts and pass/fail thresholds run in CI; reports are archived.
 - Bottlenecks and recommendations are documented per run.
-#### 26.1.1. [ Task ] - k6/Artillery scenarios for hot paths (browse, PDP, checkout)
+#### 26.1.1. [ Task ] - Create k6/Artillery scenarios for hot paths (browse, PDP, checkout)
 **26.1.1.1. [ Subtask ] - Targets: p95 < 200ms cached reads; 5k concurrent users baseline**
 
 ### 26.2. [ User Story ] - Web Performance Budgets
@@ -1397,7 +1397,7 @@ Acceptance Criteria:
 - Lighthouse CI budgets are enforced; regressions trigger alerts.
 - JS size budgets for the critical path are monitored in CI.
 - PRs surface performance deltas for review.
-#### 26.2.1. [ Task ] - Lighthouse CI and budgets in CI
+#### 26.2.1. [ Task ] - Enforce Lighthouse CI and budgets in CI
 **26.2.1.1. [ Subtask ] - LCP ≤ 2.5s P75; JS ≤ 200KB gz critical path**
 
 ### 26.3. [ User Story ] - Synthetic Monitoring
@@ -1407,7 +1407,7 @@ Acceptance Criteria:
 - Uptime and transaction scripts run from multiple regions with alert thresholds.
 - On-call rotation integration pages the right team.
 - Incidents auto-create tickets with context for triage.
-#### 26.3.1. [ Task ] - Uptime and transaction checks from multiple regions
+#### 26.3.1. [ Task ] - Configure uptime and transaction checks from multiple regions
 **26.3.1.1. [ Subtask ] - Alert thresholds and on-call rotation**
 
 ## 27. [ Feature ] - Mobile Crash & Performance Analytics
@@ -1435,7 +1435,7 @@ Acceptance Criteria:
 - Cold start, TTI, memory, and ANR metrics have dashboards and alerts.
 - Regression alarms are configured; thresholds are documented.
 - Remediation work is tracked to completion.
-#### 27.2.1. [ Task ] - Track cold start, TTI, memory, ANR
+#### 27.2.1. [ Task ] - Track cold start, TTI, memory, and ANR
 **27.2.1.1. [ Subtask ] - Dashboards and alerts for regressions**
 
 ## 28. [ Feature ] - Creator/Influencer Marketplace
@@ -1453,7 +1453,7 @@ Acceptance Criteria:
 - Profiles/listings support availability, rates, and content formats.
 - Briefs define deliverables, timelines, and approvals.
 - Changes are tracked with an audit trail.
-#### 28.1.1. [ Task ] - Creator profiles, listings, and campaign briefs
+#### 28.1.1. [ Task ] - Build creator profiles, listings, and campaign briefs
 **28.1.1.1. [ Subtask ] - Availability, rates, and supported content formats**
 
 ### 28.2. [ User Story ] - Deliverables & Attribution
@@ -1473,7 +1473,7 @@ Acceptance Criteria:
 - Contract terms, approvals, and policy checks are enforced and recorded.
 - Audit trail and dispute workflow are defined.
 - Takedown process is documented and exercised.
-#### 28.3.1. [ Task ] - Contract terms, approvals, and policy checks
+#### 28.3.1. [ Task ] - Implement contract terms, approvals, and policy checks
 **28.3.1.1. [ Subtask ] - Audit trail and dispute workflow**
 
 ## 29. [ Feature ] - Community & Gamification
@@ -1491,7 +1491,7 @@ Acceptance Criteria:
 - Topics/threads/comments/reactions exist with moderation tools.
 - Abuse checks and reporting with rate limits protect the community.
 - Notifications for mentions and replies are delivered.
-#### 29.1.1. [ Task ] - Topics, threads, comments, reactions
+#### 29.1.1. [ Task ] - Build topics, threads, comments, and reactions
 **29.1.1.1. [ Subtask ] - Moderation tools and community reports**
 
 ### 29.2. [ User Story ] - Gamification
@@ -1501,7 +1501,7 @@ Acceptance Criteria:
 - Points, badges, levels, and streaks are granted by a rules engine.
 - Anti-abuse checks, caps, and cooldowns prevent gaming the system.
 - Profiles show progress; users can opt out.
-#### 29.2.1. [ Task ] - Points, badges, levels, streaks
+#### 29.2.1. [ Task ] - Implement points, badges, levels, and streaks
 **29.2.1.1. [ Subtask ] - Rules engine and abuse checks**
 
 ### 29.3. [ User Story ] - Notifications & Moderation
@@ -1511,7 +1511,7 @@ Acceptance Criteria:
 - Role-based moderation actions and escalation workflows exist.
 - Community notifications are delivered with user preferences.
 - CSAT on resolutions is measured.
-#### 29.3.1. [ Task ] - Community notifications and role-based moderation
+#### 29.3.1. [ Task ] - Implement community notifications and role-based moderation
 **29.3.1.1. [ Subtask ] - Escalation workflows; CSAT on resolutions**
 
 ## 30. [ Feature ] - Internationalization & Localization
@@ -1529,7 +1529,7 @@ Acceptance Criteria:
 - Server-side locale negotiation and message/date/number formatting work consistently.
 - Missing-key monitoring and fallback behavior are defined.
 - Localized routes and SEO signals are honored.
-#### 30.1.1. [ Task ] - Locale-aware messages, dates, and numbers
+#### 30.1.1. [ Task ] - Implement locale-aware messages, dates, and numbers
 **30.1.1.1. [ Subtask ] - Server-side locale negotiation and formatting**
 
 ### 30.2. [ User Story ] - Content & Translation Pipeline
@@ -1539,7 +1539,7 @@ Acceptance Criteria:
 - Export/import tooling and translation status tracking exist.
 - Fallbacks are configured; missing keys are monitored.
 - QA checks validate translation quality.
-#### 30.2.1. [ Task ] - Translation management and fallbacks
+#### 30.2.1. [ Task ] - Implement translation management and fallbacks
 **30.2.1.1. [ Subtask ] - Missing-key monitoring; export/import tooling**
 
 ## 31. [ Feature ] - Identity Enhancements
@@ -1567,7 +1567,7 @@ Acceptance Criteria:
 - SAML/OIDC with JIT provisioning and role mapping works.
 - Optional SCIM sync updates roles; logout/invalidate flows exist.
 - Audit and alerts monitor login anomalies.
-#### 31.2.1. [ Task ] - SAML/OIDC SSO with JIT provisioning
+#### 31.2.1. [ Task ] - Implement SAML/OIDC SSO with JIT provisioning
 **31.2.1.1. [ Subtask ] - Role mapping to RBAC; optional SCIM sync**
 
 ### 31.3. [ User Story ] - Passwordless & Device Trust
@@ -1577,7 +1577,7 @@ Acceptance Criteria:
 - OTP/magic link flows exist; mobile biometric unlock where supported.
 - Trusted devices and anomalous session detection implemented.
 - Step-up re-auth required for sensitive actions.
-#### 31.3.1. [ Task ] - OTP/email magic link; mobile biometric unlock
+#### 31.3.1. [ Task ] - Implement OTP/email magic link and mobile biometric unlock
 **31.3.1.1. [ Subtask ] - Trusted devices, anomalous session detection; re-auth for sensitive actions**
 
 ## 32. [ Feature ] - Wishlists, Alerts & Recovery
@@ -1595,7 +1595,7 @@ Acceptance Criteria:
 - Guest and auth modes supported with merge-on-login.
 - Recently viewed shows last items with privacy controls.
 - API and UI meet performance targets.
-#### 32.1.1. [ Task ] - API + UI for wishlist and recently viewed
+#### 32.1.1. [ Task ] - Implement API and UI for wishlist and recently viewed
 **32.1.1.1. [ Subtask ] - Guest + auth modes; merge-on-login**
 
 ### 32.2. [ User Story ] - Back-in-Stock & Price-Drop Alerts
@@ -1605,7 +1605,7 @@ Acceptance Criteria:
 - Subscriptions and routing exist with frequency caps; consent integrated.
 - Opt-out and pause controls available to users.
 - Attribution of lift is measured.
-#### 32.2.1. [ Task ] - Subscriptions and notifications routing
+#### 32.2.1. [ Task ] - Implement subscriptions and notifications routing
 **32.2.1.1. [ Subtask ] - Frequency caps; consent/preferences integration**
 
 ### 32.3. [ User Story ] - Abandoned Cart/Checkout Recovery
@@ -1615,7 +1615,7 @@ Acceptance Criteria:
 - Triggers across email/SMS/push operate with guardrails.
 - Suppression rules for recency and discount limits applied.
 - Attribution is tracked in analytics.
-#### 32.3.1. [ Task ] - Triggered journeys via email/SMS/push
+#### 32.3.1. [ Task ] - Implement triggered journeys via email/SMS/push
 **32.3.1.1. [ Subtask ] - Guardrails: frequency, recency, discount limits**
 
 ## 33. [ Feature ] - Payments Advanced
@@ -1633,7 +1633,7 @@ Acceptance Criteria:
 - UPI, NetBanking, cards, and COD options are available with regional toggles.
 - Fraud guardrails exist for COD; provider fallback is documented.
 - UX shows applicable fees or limitations clearly.
-#### 33.1.1. [ Task ] - UPI, NetBanking, Cards, COD toggle
+#### 33.1.1. [ Task ] - Implement UPI, NetBanking, card, and COD toggles
 **33.1.1.1. [ Subtask ] - COD fraud guardrails; provider fallback**
 
 ### 33.2. [ User Story ] - Saved Methods & PCI Scope
@@ -1643,7 +1643,7 @@ Acceptance Criteria:
 - Tokenized storage via provider vault keeps us in SAQ A scope.
 - Add/remove flows and default method management exist.
 - Clear error states and recovery paths are presented.
-#### 33.2.1. [ Task ] - Tokenized storage via provider vault
+#### 33.2.1. [ Task ] - Implement tokenized storage via provider vault
 **33.2.1.1. [ Subtask ] - SAQ A scope; vault lifecycle (add/remove)**
 
 ### 33.3. [ User Story ] - Capture, Refunds, Retries
@@ -1653,7 +1653,7 @@ Acceptance Criteria:
 - Partial capture and split refunds implemented with audit.
 - Retry strategies configured with idempotency protections.
 - Subscription dunning logic and notifications implemented.
-#### 33.3.1. [ Task ] - Partial capture/split refunds; payment retry
+#### 33.3.1. [ Task ] - Implement partial capture, split refunds, and payment retry
 **33.3.1.1. [ Subtask ] - Subscription dunning logic and notifications**
 
 ## 34. [ Feature ] - Marketing & CRM
@@ -1671,7 +1671,7 @@ Acceptance Criteria:
 - SPF/DKIM/DMARC are configured; DMARC reports monitored; warmup plan executed.
 - BIMI (optional) considered; deliverability metrics tracked.
 - Policy docs maintained for send practices.
-#### 34.1.1. [ Task ] - SPF, DKIM, DMARC (+BIMI optional)
+#### 34.1.1. [ Task ] - Configure SPF, DKIM, DMARC (+BIMI optional)
 **34.1.1.1. [ Subtask ] - DMARC reporting and warmup plan**
 
 ### 34.2. [ User Story ] - CRM/ESP Integration
@@ -1681,7 +1681,7 @@ Acceptance Criteria:
 - Profiles/events sync bidirectionally; segments and consent states align.
 - List hygiene (bounces/unsubscribes) enforced automatically.
 - Sync errors are retried and surfaced for resolution.
-#### 34.2.1. [ Task ] - Klaviyo/Mailchimp sync for profiles/events
+#### 34.2.1. [ Task ] - Implement Klaviyo/Mailchimp sync for profiles/events
 **34.2.1.1. [ Subtask ] - Segments, list hygiene, consent states**
 
 ### 34.3. [ User Story ] - Tag Management & Server-Side Tagging
@@ -1691,7 +1691,7 @@ Acceptance Criteria:
 - GTM setup gates pixels by consent; server-side tagging explored for key tags.
 - PII redaction is enforced; tag changes are audited.
 - Tag catalog and ownership are documented.
-#### 34.3.1. [ Task ] - GTM setup + server-side tagging options
+#### 34.3.1. [ Task ] - Configure GTM and evaluate server-side tagging options
 **34.3.1.1. [ Subtask ] - Consent-gated pixels; PII redaction**
 
 ### 34.4. [ User Story ] - Post-Purchase Automations
@@ -1701,7 +1701,7 @@ Acceptance Criteria:
 - Journeys are configured with holdouts and attribution tagging.
 - Frequency caps and suppression rules are enforced.
 - Reporting shows uplift and ROI.
-#### 34.4.1. [ Task ] - Review requests, winback, replenishment
+#### 34.4.1. [ Task ] - Implement review requests, winback, and replenishment
 **34.4.1.1. [ Subtask ] - Holdouts and attribution tagging**
 
 ### 34.5. [ User Story ] - UTM Governance
@@ -1711,7 +1711,7 @@ Acceptance Criteria:
 - UTM validation and mapping rules exist; auto-tagging applies where possible.
 - PII stripping is applied to inbound links.
 - Mis-tag detection alerts are configured.
-#### 34.5.1. [ Task ] - UTM validation and mapping
+#### 34.5.1. [ Task ] - Implement UTM validation and mapping
 **34.5.1.1. [ Subtask ] - Auto-tagging rules; PII stripping**
 
 ### 34.6. [ User Story ] - WhatsApp CRM Integration
@@ -1721,7 +1721,7 @@ Acceptance Criteria:
 - Profiles and events sync with consent/opt-out handling.
 - Channel routing and de-duplication rules enforced.
 - Errors are retried and surfaced to ops.
-#### 34.6.1. [ Task ] - Sync profiles and events
+#### 34.6.1. [ Task ] - Implement syncing of profiles and events
 **34.6.1.1. [ Subtask ] - Consent sync and opt-out handling (integrates with 4.2.1)**
 
 ## 35. [ Feature ] - Eventing & Tracing
@@ -1739,7 +1739,7 @@ Acceptance Criteria:
 - Outbox pattern with SNS/SQS is implemented with retries and DLQs.
 - Idempotency protects against duplicate processing.
 - Monitoring covers lag, retries, and dead letters.
-#### 35.1.1. [ Task ] - Outbox pattern + SNS/SQS backbone
+#### 35.1.1. [ Task ] - Implement outbox pattern and SNS/SQS backbone
 **35.1.1.1. [ Subtask ] - Idempotency, retries, and DLQs**
 
 ### 35.2. [ User Story ] - Distributed Tracing
@@ -1749,7 +1749,7 @@ Acceptance Criteria:
 - OpenTelemetry spans exist across API/web/jobs with propagation headers.
 - Sampling policy is set; traces visible in APM.
 - Key spans instrumented for hot paths.
-#### 35.2.1. [ Task ] - OpenTelemetry across API/web/jobs
+#### 35.2.1. [ Task ] - Instrument OpenTelemetry across API/web/jobs
 **35.2.1.1. [ Subtask ] - Trace propagation headers; sampling policy**
 
 ### 35.3. [ User Story ] - Web Error Tracking
@@ -1759,7 +1759,7 @@ Acceptance Criteria:
 - Sentry instrumentation includes release tagging and source maps.
 - PII scrubbing is applied to events.
 - Alerting thresholds are configured by severity.
-#### 35.3.1. [ Task ] - Sentry instrumentation for web
+#### 35.3.1. [ Task ] - Add Sentry instrumentation for web
 **35.3.1.1. [ Subtask ] - Release tagging and source maps**
 
 ### 35.4. [ User Story ] - Log Scrubbing & Retention
@@ -1769,7 +1769,7 @@ Acceptance Criteria:
 - PII redaction filters applied; access controls enforced.
 - Retention policies set by log type; exports controlled.
 - Access and changes are audited.
-#### 35.4.1. [ Task ] - PII redaction filters; retention policies
+#### 35.4.1. [ Task ] - Implement PII redaction filters and retention policies
 **35.4.1.1. [ Subtask ] - Access controls and audit trail**
 
 ## 36. [ Feature ] - Legal & Compliance
@@ -1787,7 +1787,7 @@ Acceptance Criteria:
 - Terms/Privacy/Returns/Shipping pages are managed via CMS with version history.
 - /.well-known/security.txt is published; VDP intake defined with SLAs.
 - Change approvals and edits have an audit trail.
-#### 36.1.1. [ Task ] - Terms, Privacy, Returns, Shipping via CMS
+#### 36.1.1. [ Task ] - Publish Terms, Privacy, Returns, and Shipping via CMS
 **36.1.1.1. [ Subtask ] - Footer links, versioning, approval workflow**
 
 ### 36.2. [ User Story ] - Security.txt & VDP
@@ -1797,7 +1797,7 @@ Acceptance Criteria:
 - security.txt is published with intake instructions; optional public key provided.
 - Triage SLAs and secure inbox are set up.
 - Reports are tracked to closure.
-#### 36.2.1. [ Task ] - /.well-known/security.txt and intake process
+#### 36.2.1. [ Task ] - Publish /.well-known/security.txt and define intake process
 **36.2.1.1. [ Subtask ] - Triage SLAs; optional public key**
 
 ### 36.3. [ User Story ] - India E-Invoicing/E-Way Bill Readiness
@@ -1807,7 +1807,7 @@ Acceptance Criteria:
 - Threshold evaluation is documented; provider integrations sandbox-tested.
 - Fallback procedures are defined for outages.
 - Monitoring of thresholds and compliance status exists.
-#### 36.3.1. [ Task ] - Threshold evaluation and provider integration
+#### 36.3.1. [ Task ] - Implement threshold evaluation and provider integration
 **36.3.1.1. [ Subtask ] - Sandbox tests and fallback procedures**
 
 ### 36.4. [ User Story ] - Data Retention & Purges
@@ -1817,7 +1817,7 @@ Acceptance Criteria:
 - Retention schedule implemented with automated purge jobs.
 - Legal holds are supported with overrides.
 - Reporting on deletions is available to compliance.
-#### 36.4.1. [ Task ] - Retention schedule + automated purge jobs
+#### 36.4.1. [ Task ] - Implement retention schedule and automated purge jobs
 **36.4.1.1. [ Subtask ] - Legal holds and reporting**
 
 ## 37. [ Feature ] - Quality Gates & Visual Testing
@@ -1835,7 +1835,7 @@ Acceptance Criteria:
 - Manual and automated checks pass on critical flows.
 - Screen reader and keyboard-only flows are validated.
 - Issues are tracked and fixed before release.
-#### 37.1.1. [ Task ] - Manual + automated (axe/Pa11y)
+#### 37.1.1. [ Task ] - Run manual and automated (axe/Pa11y) accessibility tests
 **37.1.1.1. [ Subtask ] - Screen reader checks; keyboard-only flows**
 
 ### 37.2. [ User Story ] - Visual Regression Testing
@@ -1845,7 +1845,7 @@ Acceptance Criteria:
 - Storybook/Chromatic or Playwright snapshots are configured.
 - Baseline management is documented; PR checks are mandatory.
 - Visual diffs are reviewed and approved.
-#### 37.2.1. [ Task ] - Storybook/Chromatic or Playwright snapshots
+#### 37.2.1. [ Task ] - Set up Storybook/Chromatic or Playwright snapshots
 **37.2.1.1. [ Subtask ] - Baseline management and PR checks**
 
 ### 37.3. [ User Story ] - Contract Testing
@@ -1855,7 +1855,7 @@ Acceptance Criteria:
 - Pact provider/consumer tests exist with a contracts registry.
 - CI verification pipeline enforces compatibility.
 - Backward compatibility checks are in place.
-#### 37.3.1. [ Task ] - Pact provider/consumer tests
+#### 37.3.1. [ Task ] - Implement Pact provider/consumer tests
 **37.3.1.1. [ Subtask ] - CI verification and contracts registry**
 
 ### 37.4. [ User Story ] - Release/UAT Gates
@@ -1865,7 +1865,7 @@ Acceptance Criteria:
 - UAT checklist and sign-off criteria are defined and used.
 - Rollback plan is verified for each release.
 - Blocking conditions are enforced in CI/CD.
-#### 37.4.1. [ Task ] - UAT checklist and sign-off criteria
+#### 37.4.1. [ Task ] - Define UAT checklist and sign-off criteria
 **37.4.1.1. [ Subtask ] - Verified rollback plan**
 
 ## 38. [ Feature ] - Catalog Extensions
@@ -1883,7 +1883,7 @@ Acceptance Criteria:
 - Bundle SKUs and pricing rules work in cart and checkout.
 - Cross-sell and upsell placements are configured.
 - Analytics track attach rates and performance.
-#### 38.1.1. [ Task ] - Bundle SKUs and pricing rules
+#### 38.1.1. [ Task ] - Implement bundle SKUs and pricing rules
 **38.1.1.1. [ Subtask ] - Cross-sell/upsell placements**
 
 ### 38.2. [ User Story ] - Inventory Models
@@ -1893,7 +1893,7 @@ Acceptance Criteria:
 - Multi-warehouse, backorder, and preorder flows include reservations and lead times.
 - UI indicates availability dates for preorders.
 - Alerts and exceptions are surfaced to ops.
-#### 38.2.1. [ Task ] - Multi-warehouse, backorder, preorder
+#### 38.2.1. [ Task ] - Implement multi-warehouse, backorder, and preorder
 **38.2.1.1. [ Subtask ] - Reservations and lead times**
 
 ### 38.3. [ User Story ] - PDP Q&A
@@ -1903,7 +1903,7 @@ Acceptance Criteria:
 - Questions support moderation and notifications for answers.
 - Merchant answers are highlighted and trustworthy.
 - Abuse controls and rate limits apply.
-#### 38.3.1. [ Task ] - Customer questions and moderation
+#### 38.3.1. [ Task ] - Implement customer questions and moderation
 **38.3.1.1. [ Subtask ] - Notifications and reporting**
 
 ### 38.4. [ User Story ] - India Pricing Display
@@ -1913,7 +1913,7 @@ Acceptance Criteria:
 - MRP, compare-at, and GST inclusive labels display per policy.
 - UX toggles and SEO tags are correct.
 - Tests verify presentation.
-#### 38.4.1. [ Task ] - MRP, compare-at, GST inclusive labels
+#### 38.4.1. [ Task ] - Implement MRP, compare-at, and GST inclusive labels
 **38.4.1.1. [ Subtask ] - UX toggles and SEO tags**
 
 ## 39. [ Feature ] - Mobile Store Compliance
@@ -1931,7 +1931,7 @@ Acceptance Criteria:
 - iOS ATT prompt implemented; Play Data Safety declarations are accurate.
 - Consent logging and audit exist.
 - Onboarding messaging is consistent across platforms.
-#### 39.1.1. [ Task ] - iOS ATT and Play Data Safety
+#### 39.1.1. [ Task ] - Implement iOS ATT and Play Data Safety
 **39.1.1.1. [ Subtask ] - Consent logging and audit**
 
 ### 39.2. [ User Story ] - Ratings & Reviews
@@ -1941,7 +1941,7 @@ Acceptance Criteria:
 - In-app review prompts and deep links honor frequency caps and locales.
 - Prompts avoid poor-experience moments (e.g., after crashes).
 - Metrics for ratings are tracked over time.
-#### 39.2.1. [ Task ] - In-app review prompts and deep links
+#### 39.2.1. [ Task ] - Implement in-app review prompts and deep links
 **39.2.1.1. [ Subtask ] - Frequency caps and locales**
 
 ### 39.3. [ User Story ] - Version Gating
@@ -1951,7 +1951,7 @@ Acceptance Criteria:
 - Force-upgrade and soft prompts are controlled via remote config.
 - Kill switches exist for critical issues.
 - Compatibility matrix is documented and enforced.
-#### 39.3.1. [ Task ] - Force-upgrade and soft prompts
+#### 39.3.1. [ Task ] - Implement force-upgrade and soft prompts
 **39.3.1.1. [ Subtask ] - Remote config and kill switches**
 
 ## 40. [ Feature ] - Multi-Currency Pricing
@@ -1969,7 +1969,7 @@ Acceptance Criteria:
 - FX rates are fetched with fallback; rounding rules applied.
 - Display is consistent across web and mobile.
 - Automated tests verify math and formatting.
-#### 40.1.1. [ Task ] - Currency rates and rounding rules
+#### 40.1.1. [ Task ] - Implement currency rates and rounding rules
 **40.1.1.1. [ Subtask ] - Cadence, provider fallback**
 
 ### 40.2. [ User Story ] - Price Presentation
@@ -1979,7 +1979,7 @@ Acceptance Criteria:
 - Multi-currency UI and SEO tags (canonicals/hreflang) are correct.
 - Localized currency symbols and formats are applied.
 - Performance is unaffected by currency switching.
-#### 40.2.1. [ Task ] - Multi-currency UI and SEO tags
+#### 40.2.1. [ Task ] - Implement multi-currency UI and SEO tags
 **40.2.1.1. [ Subtask ] - Canonicals and hreflang updates**
 
 ## 41. [ Feature ] - Ethical Sourcing & Provenance
@@ -2027,5 +2027,5 @@ Acceptance Criteria:
 - Audit scheduling and outcomes are recorded with SLAs.
 - Findings and remediation are tracked; transparency notes maintained.
 - Status dashboards are available to stakeholders.
-#### 41.4.1. [ Task ] - Audit scheduling and outcomes
+#### 41.4.1. [ Task ] - Track audit scheduling and outcomes
 **41.4.1.1. [ Subtask ] - Findings, remediation, and public transparency notes**
