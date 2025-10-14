@@ -5,10 +5,6 @@ services:
     build:
       context: .
       dockerfile: server/Dockerfile
-    env_file:
-      - path: .env
-        required: false
-      - .env.example
     ports:
       - '${PORT:-4000}:${PORT:-4000}'
 
@@ -19,8 +15,6 @@ services:
     depends_on:
       - server
     env_file:
-      - path: .env
-        required: false
       - .env.example
     ports:
       - '${CLIENT_PORT:-5173}:${CLIENT_PORT:-5173}'
