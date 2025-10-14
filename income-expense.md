@@ -1,6 +1,39 @@
-# Soulstone — Income & Expense Projections (Runway‑Aligned)
+# Soulstone Income & Expense Plan
+
+Status: Final
+Version: v1.0
+Last Updated: 2023-10-14
+
+<a id="sec-overview"></a>
+
+## Overview
 
 This document translates the business and financial context in `project.md`, `business-requirements.md`, and `timeline.md` into a pragmatic, runway‑aligned income/expense plan. It uses the stated unit economics and market‑standard Indian pricing for D2C e‑commerce.
+
+<a id="sec-table-of-contents"></a>
+
+## Table of Contents
+
+- [Soulstone Income & Expense Plan](#soulstone-income--expense-plan)
+  - [Overview](#sec-overview)
+  - [Table of Contents](#table-of-contents)
+  - [Executive Snapshot](#sec-executive-snapshot)
+  - [Core Assumptions](#sec-core-assumptions)
+  - [Revenue Plan (Year 1)](#sec-revenue-plan-year-1)
+  - [Unit Economics (Illustrative, per order)](#sec-unit-economics-illustrative-per-order)
+  - [Expenses — Categorized](#sec-expenses-categorized)
+  - [Quarterly Hiring Ramp & Payroll (Per Role)](#sec-quarterly-hiring-ramp-payroll-per-role)
+  - [Office Cost Sensitivity (City)](#sec-office-cost-sensitivity-city)
+  - [Year 1 P&L Roll‑Up (₹ Lakh)](#sec-year-1-p-l-roll-up-lakh)
+  - [Month‑By‑Month (Concise View)](#sec-month-by-month-concise-view)
+  - [What Counts As “Upfront” vs “Monthly”](#sec-what-counts-as-upfront-vs-monthly)
+  - [Market‑Standard Pricing References (India)](#sec-market-standard-pricing-references-india)
+  - [Risks & Sensitivities](#sec-risks-sensitivities)
+  - [Suggested Guardrails & KPIs](#sec-suggested-guardrails-kpis)
+  - [Year 2 (Directional)](#sec-year-2-directional)
+  - [Version History](#sec-version-history)
+
+<a id="sec-executive-snapshot"></a>
 
 ## Executive Snapshot
 - Year 1 revenue target: ₹1.5 Cr (ref: Project.md 4.4)
@@ -9,6 +42,8 @@ This document translates the business and financial context in `project.md`, `bu
 - Marketing spend: ~30% of revenue in early stage (ref: Project.md 4.1/2.7)
 - Target runway: 18 months post‑seed (₹1.5 Cr seed) (ref: Project.md 4.5/4.6)
 - Strategy: Lean headcount ramp in Year 1 to protect runway; scale hiring as revenue grows.
+
+<a id="sec-core-assumptions"></a>
 
 ## Core Assumptions
 - Demand: Year 1 monthly revenue ramp (₹ Lakh): 5, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20 → ~₹1.49–₹1.50 Cr.
@@ -22,10 +57,14 @@ This document translates the business and financial context in `project.md`, `bu
 - Hiring: Year 1 prioritizes lean core (founders cover PM/Brand in early months), then stage‑gated hires as revenue scales (ref: Project.md 7.1, Timeline.md).
 - Infra/SaaS: AWS (Fargate/RDS/S3/CloudFront), email/SMS/WhatsApp, analytics, CI/CD, design/dev tools per market rates.
 
+<a id="sec-revenue-plan-year-1"></a>
+
 ## Revenue Plan (Year 1)
 - Monthly GMV (₹ Lakh): 5, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20
 - Orders/month ≈ GMV ÷ 1,800 (e.g., ₹5L → ~278 orders; ₹20L → ~1,111 orders)
 - Mix target by channel: 70% catalog sales, 20% subscriptions (grows from Q3), 10% workshops/events.
+
+<a id="sec-unit-economics-illustrative-per-order"></a>
 
 ## Unit Economics (Illustrative, per order)
 - Revenue (AOV): ₹1,800
@@ -36,6 +75,8 @@ This document translates the business and financial context in `project.md`, `bu
 - Gross after variable ops (pre‑marketing): ~₹817 (~45.4%)
 - Less Marketing (30%): ₹540
 - Contribution after marketing: ~₹277 (~15.4%)
+
+<a id="sec-expenses-categorized"></a>
 
 ## Expenses — Categorized
 
@@ -73,6 +114,8 @@ Lean baseline to sustain ~18‑month runway; hires are staged.
 - Legal/compliance/audit (retainer): ~₹0.2 L/month
 - Misc/Travel/Community: ~₹0.3 L/month
 - Fixed opex baseline (blended average): ~₹9.4 L/month in Y1
+
+<a id="sec-quarterly-hiring-ramp-payroll-per-role"></a>
 
 ## Quarterly Hiring Ramp & Payroll (Per Role)
 The table below lists indicative monthly cash compensation by role (cash component only; exclude ~10% employer on‑costs). See Project.md 7.1 for bands; these cash figures target the lower‑mid of bands with ESOPs to stay runway‑friendly.
@@ -122,6 +165,8 @@ Guidance
 - Average payroll cash across Y1 ≈ ₹7.7 L/mo (≈ ₹8.5–8.6 L incl. on‑costs). To hit the earlier ~₹7.2 L/mo average, either shift the PM/Designer/Marketer by one quarter or tilt further toward ESOPs/contracting in Q3–Q4.
 - All Q3+ additions are hiring‑gate controlled: unlock only if contribution and CAC/LTV are on or ahead of plan.
 
+<a id="sec-office-cost-sensitivity-city"></a>
+
 ## Office Cost Sensitivity (City)
 Baseline assumes Bengaluru. Sensitivity below shows typical monthly rent + utilities for a small office (6–8 cowork seats) plus micro‑warehouse (~1,000 sq ft) in major Indian cities.
 
@@ -137,6 +182,8 @@ Baseline assumes Bengaluru. Sensitivity below shows typical monthly rent + utili
 Notes
 - If HQ is Mumbai, fixed opex rises by ~₹0.3 L/mo at identical footprint; conversely, Hyderabad/Pune reduce by ~₹0.1 L/mo.
 - Use flexible warehousing (3PL) early to defer deposits; commit to dedicated space only when order density justifies it.
+
+<a id="sec-year-1-p-l-roll-up-lakh"></a>
 
 ## Year 1 P&L Roll‑Up (₹ Lakh)
 - Revenue (target): 150.0
@@ -158,6 +205,8 @@ Notes
 - The above supports ~5 additional months of runway at the baseline net monthly burn (~₹7–8 L after contribution) → ~17–18 months total runway, consistent with target.
 - Hiring beyond this model (e.g., the full 15–18 FTE org in Project.md) requires either higher Year 1 revenue, lower CAC, or more capital.
 
+<a id="sec-month-by-month-concise-view"></a>
+
 ## Month‑By‑Month (Concise View)
 For each month, Contribution ≈ 15.4% × Revenue; Fixed ≈ ₹9.4 L (avg); Net Burn ≈ Fixed − Contribution.
 
@@ -178,9 +227,13 @@ For each month, Contribution ≈ 15.4% × Revenue; Fixed ≈ ₹9.4 L (avg); Net
 
 Notes: Fixed opex grows modestly with hires and infra; exact ramp by quarter can be tuned.
 
+<a id="sec-what-counts-as-upfront-vs-monthly"></a>
+
 ## What Counts As “Upfront” vs “Monthly”
 - Upfront: legal setup, IP filings, brand/packaging design, initial inventory and packaging bulk, equipment, deposits, compliance onboarding, contingency.
 - Monthly: salaries/on‑costs, AWS + SaaS, rent/utilities, legal retainer, marketing (variable), logistics (variable), payment fees (variable), returns reserve (variable).
+
+<a id="sec-market-standard-pricing-references-india"></a>
 
 ## Market‑Standard Pricing References (India)
 - Shipping (surface/air) for ≤1 kg intra‑zone: ₹60–₹120; packaging (box + fillers + label): ₹20–₹35.
@@ -188,17 +241,23 @@ Notes: Fixed opex grows modestly with hires and infra; exact ramp by quarter can
 - D2C early stage marketing: 25–35% of revenue (front‑loaded), tapering with loyalty/referrals by Y2.
 - Compensation bands (Bengaluru): SDE‑2 ₹18–28 LPA; PM ₹18–28 LPA; Designer ₹12–20 LPA; Ops ₹8–14 LPA; CX ₹4–8 LPA (ref: Project.md 7.1).
 
+<a id="sec-risks-sensitivities"></a>
+
 ## Risks & Sensitivities
 - CAC creep or lower conversion → raises marketing %; guardrails via CAC/LTV gates.
 - Shipping/returns volatility → monitor DIM weight, packaging optimization, and return reason codes.
 - Subscription adoption slower/faster → impacts repeat purchase and CAC amortization.
 - Hiring timing → strict gates tied to revenue contribution and runway checks.
 
+<a id="sec-suggested-guardrails-kpis"></a>
+
 ## Suggested Guardrails & KPIs
 - Maintain LTV:CAC ≥ 8:1 (target 10:1 per plan); CAC ≤ ₹500 by Q3.
 - Keep product gross margin ≥ 55%; contribution after marketing ≥ 12% while scaling.
 - Returns ≤ 4%; payment success ≥ 90%; checkout success ≥ 65% (ref: Project.md OKRs).
 - Burn discipline: monthly runway review; hires unlocked only when contribution trend > plan.
+
+<a id="sec-year-2-directional"></a>
 
 ## Year 2 (Directional)
 - Mix shifts: subscriptions to ~25–30% GMV; marketing % tapers toward 22–25% with loyalty/referrals.
@@ -207,3 +266,9 @@ Notes: Fixed opex grows modestly with hires and infra; exact ramp by quarter can
 
 ---
 Appendix: This model can be re‑parameterized by changing AOV, CAC, marketing %, and headcount ramp to produce conservative/base/aggressive scenarios for board updates.
+
+<a id="sec-version-history"></a>
+
+## Version History
+
+- v1.0 (2023-10-14) — Finalized: added status header, anchors, table of contents, and aligned terminology with project.md conventions.

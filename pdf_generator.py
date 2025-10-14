@@ -1,5 +1,6 @@
 """Utility to combine Markdown files into a professionally formatted PDF.
 
+
 This module exposes a command line interface. Example usage::
 
     # Generate ``MyProject.pdf`` from every Markdown file in the directory
@@ -10,6 +11,7 @@ This module exposes a command line interface. Example usage::
 
     # Preserve the legacy calling convention
     python pdf_generator.py release-notes.pdf section1.md section2.md
+
 """
 from __future__ import annotations
 
@@ -48,6 +50,7 @@ def _parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
         )
     )
     parser.add_argument(
+
         "inputs",
         type=Path,
         nargs="*",
@@ -62,6 +65,7 @@ def _parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
         help=(
             "Optional output PDF file path. Defaults to '<cwd name>.pdf' when not provided."
         ),
+
     )
     parser.add_argument(
         "--title",
@@ -87,11 +91,13 @@ def _load_content(files: Iterable[Path]) -> List[Section]:
     return sections
 
 
+
 def _discover_markdown_files(directory: Path) -> List[Path]:
     """Return a sorted list of Markdown files in *directory*."""
 
     files = sorted(p for p in directory.iterdir() if p.suffix.lower() == ".md" and p.is_file())
     return files
+
 
 
 def _inner_html(element: ET.Element) -> str:
@@ -392,6 +398,7 @@ def main(argv: Iterable[str] | None = None) -> None:
 
     generate_pdf(
         output,
+
         sections,
         title=args.title,
         footer=args.footer,
