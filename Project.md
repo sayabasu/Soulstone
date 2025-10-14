@@ -774,5 +774,73 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Abandoned cart (2–3 parts): reminder; benefits; scarcity.
   - Post‑purchase (3 parts): care; ritual; review/referral.
 
-- Creative checklist:
-  - Clear headline, benefit‑first copy, brand cues, CTA above fold, mobile‑first layout, alt text, schema where applicable.
+  - Creative checklist:
+    - Clear headline, benefit‑first copy, brand cues, CTA above fold, mobile‑first layout, alt text, schema where applicable.
+
+---
+
+## 9. Investor & Growth Reporting Templates
+
+### 9.1 Executive Summary
+
+- Purpose: one-page snapshot for investors/board; highlights results, risks, and asks for the period.
+- Cadence: monthly (investor email) and quarterly (board pre-read).
+- Template (one-page layout):
+  - Company: Soulstone | Period: MMM YYYY | Prepared by: Owner
+  - Highlights (3–5 bullets): major wins, launches, partnerships.
+  - Scorecard (this month → prior → target): Revenue, MoM growth %, Orders, AOV, CVR, Repeat %, CAC, LTV, LTV:CAC, Gross margin %, Burn, Runway (months).
+  - Customers/Partnerships: count, notable logos, pipeline summary.
+  - Product/Tech: key releases, performance/a11y KPIs, incidents/resolution.
+  - Risks & Mitigations: top 3 with owners and timelines.
+  - Asks & Next 30/60/90: hiring, intros, budget shifts, experiments.
+
+### 9.2 Board Decks / Investor Updates
+
+- Cadence & hygiene:
+  - Monthly investor email (<= 10 bullets + scorecard); quarterly board deck (20–30 slides) with 48h pre-read.
+  - Lock numbers 24h before send; versioned link; footnote data sources/definitions.
+
+- Deck outline:
+  - Title & agenda; Executive summary; Company scorecard; Financials (P&L snapshot, cash, burn, runway); Growth & Marketing (channels, ROAS, cohorts);
+  - Product & Tech (roadmap progress, velocity, quality KPIs); Ops & Supply (SLAs, returns, defects); People (org, hiring, attrition);
+  - Risks & mitigations; Plan & OKRs (next quarter); Asks; Appendices (unit economics, experiments, cohorts, detailed funnels).
+
+- Update email outline (monthly):
+  - Top wins; KPIs; growth/campaign notes; product launches; hiring; risks/blockers; asks; links to dashboards.
+
+### 9.3 Metrics & Traction Dashboards
+
+- Principles:
+  - Single source of truth; clear definitions; owner per dashboard; auto-refresh schedule; change log for metric definitions.
+
+- Core executive scorecard:
+  - Revenue (net), MoM growth %, Orders, AOV, CVR, Repeat purchase %, CAC (blended), LTV (12m), LTV:CAC, Gross margin %, Cash, Burn, Runway.
+
+- Growth & retention:
+  - New vs. repeat mix, cohorts by acquisition month, time-to-second-order, subscription MRR, churn %, active subscribers.
+
+- Marketing & SEO:
+  - Spend, ROAS by channel, CPA, CTR, CVR, share of voice, organic sessions, top keywords, email list growth, deliverability.
+
+- Product & tech quality:
+  - Web CWV (LCP/CLS/FID), app crash‑free %, p95 API latency, error rate, uptime (SLO), search zero‑results %.
+
+- Ops & CX:
+  - OTD %, return %, defect %, ticket volume, CSAT, NPS, first response time (FRT), average resolution time (ART).
+
+- Implementation notes:
+  - Link to analytics (see 6.6): event taxonomy, ETL, warehouse; owner responsibilities; alert thresholds and escalation.
+
+### 9.4 Partnership Proposals & MOUs
+
+- Proposal one‑pager (template):
+  - Parties & contacts; Objectives; Audience/Reach; Value exchange; Deliverables & timelines; Responsibilities; Pricing/Revenue share; Legal/Compliance; Success metrics; Reporting cadence; Term.
+
+- MOU key clauses:
+  - Scope; Deliverables/SLAs; Exclusivity/territory (if any); Pricing & payment terms; IP & brand use; Confidentiality & data protection; Compliance (consumer protection, DPDP); Indemnity; Liability cap; Term/termination; Dispute resolution; Jurisdiction; Notices; Signatures.
+
+- Process & SLAs:
+  - Outreach → discovery → proposal → redlines → sign → kickoff; legal review within 5 business days; procurement checklist; onboarding pack (brand assets, product specs, authenticity docs).
+
+- Partnership KPIs:
+  - Leads, conversions, revenue share, CPA, repeat rate, brand search uplift, content reach/engagement.
