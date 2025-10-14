@@ -13,8 +13,9 @@ export const prisma = new PrismaClient({
   log: ['error'],
 });
 
-prisma.$on('beforeExit', async () => {
-  logger.info('prisma.beforeExit');
+process.once('beforeExit', async () => {
+  logger.info('process.beforeExit.prismaDisconnect');
+  await prisma.$disconnect();
 });
 
 export default prisma;
