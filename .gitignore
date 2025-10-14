@@ -1,2 +1,8 @@
-features-stories-tasks.backup.md
+node_modules/
+dist/
+.env
+client/node_modules/
+server/node_modules/
 .DS_Store
+coverage/
+.prisma/
