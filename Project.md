@@ -10,7 +10,7 @@ Owners/Reviewers: CEO (Aarav Mehta), COO (Kavya Iyer), CMO (Rohan Deshmukh), PM 
 - Purpose: Build India’s trusted, modern spiritual lifestyle brand with ethically sourced crystals, education-first content, and community-led experiences.
 - Market: Strong tailwinds in India’s wellness and e-commerce growth; target 25,000 paying users in Year 1 with healthy repeat (≥30%).
 - Differentiation: Authentic sourcing, transparent storytelling, premium design, and responsible marketing; education and community as durable moats.
-- Product: Web + mobile app MVP in Q2 2026; 100+ SKUs at launch; subscriptions, loyalty, and referrals as retention engines.
+- Product: Web + mobile app MVP in Q2 2024; 100+ SKUs at launch; subscriptions, loyalty, and referrals as retention engines.
 - Tech/Ops: TypeScript stack (Next.js/React Native/Node), robust SLOs, secure payments, analytics taxonomy, and documented APIs.
 - Unit economics: AOV ~₹1,800, CAC ≤₹500, LTV ~₹4,500; LTV:CAC ≥ 8–10:1 with improving cohorts via subscriptions and content.
 - GTM: Tier‑1 focus initially, creator partnerships, content/SEO, and community events; transparent reviews and ethics lead brand trust.
@@ -98,7 +98,7 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 
 ### 2.7 Go-To-Market Strategy
 
-- **Launch Timeline**: Target launch of e-commerce platform in Q2 2026 with aggressive rollout over the first 12 months.
+- **Launch Timeline**: Target launch of e-commerce platform in Q2 2024 with aggressive rollout over the first 12 months.
 - **Partner Milestones**: 50 wellness partners (yoga studios, healers, influencers) onboarded by Year 1; 120+ partners by Year 2.
 - **Marketing Spend Allocation**:
   - Digital Ads: 40% of total marketing budget focused on performance channels (Meta, Google, YouTube)
@@ -110,7 +110,7 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
   - Influencer campaigns projected to generate 5M+ organic impressions and 250K engagements.
   - Conversion goal: 25,000 paying users with 30% repeat purchase rate in Year 1.
 - **Strategic Rollouts**:
-  - Early focus on Tier 1 cities with 70% of ad spend, expanding to Tier 2 in Q3 2026.
+  - Early focus on Tier 1 cities with 70% of ad spend, expanding to Tier 2 in Q3 2024.
   - Target CAC under ₹500 with LTV:CAC ratio maintained above 8:1.
   - Retention uplift through loyalty and referral programs by end of Year 1.
 
@@ -136,11 +136,11 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 
 ### 3.1 Legal Compliance Timeline & Milestones
 
-- **Q4 2025**: Initiate IP audit, legal consultation, and pre-filing preparations.
-- **Q1 2026**: File for trademark registration, initiate MCA LLP registration, PAN/TAN allocation, and GST filing.
-- **Q2 2026**: Completion of incorporation and basic compliance ahead of MVP launch. All core legal entities established.
-- **Q3 2026**: Trademark examination and publication stage, ongoing MCA annual filings set up.
-- **Q4 2026 – Q2 2027**: Trademark registration finalization, renewal calendar setup, and compliance reporting maturity.
+- **Q4 2023**: Initiate IP audit, legal consultation, and pre-filing preparations.
+- **Q1 2024**: File for trademark registration, initiate MCA LLP registration, PAN/TAN allocation, and GST filing.
+- **Q2 2024**: Completion of incorporation and basic compliance ahead of MVP launch. All core legal entities established.
+- **Q3 2024**: Trademark examination and publication stage, ongoing MCA annual filings set up.
+- **Q4 2024 – Q2 2025**: Trademark registration finalization, renewal calendar setup, and compliance reporting maturity.
 
 This phased legal timeline aligns closely with Soulstone’s MVP and funding milestones to ensure full compliance and IP protection well before scaling.
 
@@ -149,7 +149,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - **GST Registration**: 5–10 days; ₹2,000–₹5,000
 - **PAN/TAN Allocation**: 2–5 days
 - **Annual MCA Filings**: ₹15,000–₹25,000/year
-- Timeline: All registrations completed by **Q2 2026** before MVP launch.
+- Timeline: All registrations completed by **Q2 2024** before MVP launch.
 
 ### 3.2 IP & Trademark Strategy
 
@@ -251,7 +251,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 ### 5.1 Product Strategy Snapshot
 
 - Platform: E-commerce website and mobile app
-- MVP Launch: Q2 2026
+- MVP Launch: Q2 2024
 - Initial Catalog: 100+ SKUs
 - Year 1 Target: 25,000 active users
 - Vision: Wellness ecosystem with personalization and community
@@ -264,9 +264,9 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ### 5.3 Product Roadmap
 
-- Phase 1 (Q2 2026): Launch core e-commerce and storytelling pages.
-- Phase 2 (Q4 2026): Subscription box, influencer marketplace.
-- Phase 3 (Q2 2027): Community forums and gamification.
+- Phase 1 (Q2 2024): Launch core e-commerce and storytelling pages.
+- Phase 2 (Q4 2024): Subscription box, influencer marketplace.
+- Phase 3 (Q2 2025): Community forums and gamification.
 - Feature targets: **250 SKUs by Year 2**, community engagement 50K MAUs.
 
 ### 5.4 Architecture & Tech Stack
@@ -918,22 +918,22 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ## 11. Cross-Functional Milestones
 
-- Q4 2025
+- Q4 2023
   - Legal prep, IP audit, partner discovery, initial brand system, analytics taxonomy draft.
 
-- Q1 2026
+- Q1 2024
   - LLP/GST/PAN/TAN filings complete; MVP scope lock; design system v1; supplier shortlist; creator pipeline seeded.
 
-- Q2 2026 (MVP Launch)
+- Q2 2024 (MVP Launch)
   - Web + app MVP live; 100+ SKUs; payments live; Learn hub v1; analytics dashboards; first 10 partners activated.
 
-- Q3 2026
+- Q3 2024
   - Subscriptions v1; loyalty/referrals; Tier‑2 expansion; 50 partners; CAC ≤₹500; repeat rate ≥25%.
 
-- Q4 2026
+- Q4 2024
   - Influencer marketplace pilot; 120+ partners; contribution margin positive cohorts; SEO pillar pages live.
 
-- H1 2027
+- H1 2025
   - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%.
 
 ## 12. Next Steps & Sign-Off
