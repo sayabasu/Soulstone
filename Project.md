@@ -5,6 +5,8 @@ Version: v1.0
 Last Updated: 2023-10-14
 Owners/Reviewers: CEO (Aarav Mehta), COO (Kavya Iyer), CMO (Rohan Deshmukh), PM (TBD), Eng Lead (TBD)
 
+<a id="sec-executive-summary"></a>
+
 ## Executive Summary
 
 - Purpose: Build India’s trusted, modern spiritual lifestyle brand with ethically sourced crystals, education-first content, and community-led experiences.
@@ -18,30 +20,87 @@ Owners/Reviewers: CEO (Aarav Mehta), COO (Kavya Iyer), CMO (Rohan Deshmukh), PM 
 
 ## Table of Contents
 
-- Executive Summary
-- 1. Preface
-- 2. Vision & Strategy Docs
-- 3. Founders’ & Legal Docs
-- 4. Pitch Deck & Financial Model
-- 5. Product Roadmap & PRD
-- 6. Mobile App & Website Documentation
-- 7. Internal Policies & Hiring Plan
-- 8. Marketing and Sales Materials
-- 9. Investor & Growth Reporting Templates
-- 10. Risks & Mitigations
-- 11. Cross-Functional Milestones
-- 12. Next Steps & Sign-Off
-- Appendix A: Glossary
-- Appendix B: Source Notes & Disclaimers
-- Version History
+- [Executive Summary](#sec-executive-summary)
+- [1. Preface](#sec-1-preface)
+- [2. Vision & Strategy Docs](#sec-2)
+  - [2.1 Quantitative Snapshot (India — sourced)](#sec-2-1)
+  - [2.2 Vision & Mission Statement](#sec-2-2)
+  - [2.3 Problem Statement](#sec-2-3)
+  - [2.4 Value Proposition](#sec-2-4)
+  - [2.5 Business Model Canvas](#sec-2-5)
+  - [2.6 Market Research Highlights](#sec-2-6)
+  - [2.7 Go-To-Market Strategy](#sec-2-7)
+  - [2.8 OKRs (Objectives & Key Results)](#sec-2-8)
+- [3. Founders’ & Legal Docs](#sec-3)
+  - [3.1 Legal Compliance Timeline & Milestones](#sec-3-1)
+  - [3.2 IP & Trademark Strategy](#sec-3-2)
+  - [3.3 Founders’ Agreement](#sec-3-3)
+  - [3.4 Articles of Incorporation](#sec-3-4)
+  - [3.5 NDAs & Privacy](#sec-3-5)
+  - [3.6 Cap Table](#sec-3-6)
+- [4. Pitch Deck & Financial Model](#sec-4)
+  - [4.1 Key Unit Economics & Metrics](#sec-4-1)
+  - [4.2 Pitch Deck](#sec-4-2)
+  - [4.3 Investor One-Pager](#sec-4-3)
+  - [4.4 Financial Projections](#sec-4-4)
+  - [4.5 Budget Allocation](#sec-4-5)
+  - [4.6 Funding Strategy](#sec-4-6)
+- [5. Product Roadmap & PRD](#sec-5)
+  - [5.1 Product Strategy Snapshot](#sec-5-1)
+  - [5.2 Product Requirements Document](#sec-5-2)
+  - [5.3 Product Roadmap](#sec-5-3)
+  - [5.4 Architecture & Tech Stack](#sec-5-4)
+  - [5.5 Design System & Brand Guidelines](#sec-5-5)
+  - [5.6 QA / Testing Plans](#sec-5-6)
+  - [5.7 User Onboarding & Support Docs](#sec-5-7)
+- [6. Mobile App & Website Documentation](#sec-6)
+  - [6.1 Product Feature Specifications](#sec-6-1)
+  - [6.2 UI/UX Design Mockups & Wireframes](#sec-6-2)
+  - [6.3 User Flow Diagrams](#sec-6-3)
+  - [6.4 Information Architecture (IA)](#sec-6-4)
+  - [6.5 API Documentation](#sec-6-5)
+  - [6.6 Analytics & Telemetry](#sec-6-6)
+  - [6.7 Frontend & Backend Development Guidelines](#sec-6-7)
+  - [6.8 Content & SEO Strategy (for websites)](#sec-6-8)
+  - [6.9 App Store / Play Store Launch Checklist](#sec-6-9)
+  - [6.10 Web Hosting & Deployment Plans](#sec-6-10)
+  - [6.11 Maintenance & Update Logs](#sec-6-11)
+- [7. Internal Policies & Hiring Plan](#sec-7)
+  - [7.1 Org Chart & Hiring Plan](#sec-7-1)
+  - [7.2 Company Policies (Remote Work, Expenses, Security)](#sec-7-2)
+  - [7.3 Code of Conduct](#sec-7-3)
+  - [7.4 Team Onboarding Documents](#sec-7-4)
+- [8. Marketing and Sales Materials](#sec-8)
+  - [8.1 Marketing Plan](#sec-8-1)
+  - [8.2 Brand Messaging & Content Strategy](#sec-8-2)
+  - [8.3 Sales Playbook](#sec-8-3)
+  - [8.4 Customer Journey Map](#sec-8-4)
+  - [8.5 Campaign Templates](#sec-8-5)
+- [9. Investor & Growth Reporting Templates](#sec-9)
+  - [9.1 Executive Summary](#sec-9-1)
+  - [9.2 Board Decks / Investor Updates](#sec-9-2)
+  - [9.3 Metrics & Traction Dashboards](#sec-9-3)
+  - [9.4 Partnership Proposals & MOUs](#sec-9-4)
+- [10. Risks & Mitigations](#sec-10)
+- [11. Cross-Functional Milestones](#sec-11)
+- [12. Next Steps & Sign-Off](#sec-12)
+- [Appendix A: Glossary](#sec-appendix-a)
+- [Appendix B: Source Notes & Disclaimers](#sec-appendix-b)
+- [Version History](#sec-version-history)
 
+
+<a id="sec-1-preface"></a>
 
 ## 1. Preface
 
 Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’s rich heritage and mindful living philosophy. It effectively bridges the gap between traditional energy practices and contemporary lifestyles, offering ethically sourced crystals and gemstones that carry both meaning and beauty. Beyond just products, Soulstone is committed to building a trusted ecosystem of education, storytelling, and community — empowering individuals to embrace balance, wellness, and spiritual connection in their daily lives.
 
 
+<a id="sec-2"></a>
+
 ## 2. Vision & Strategy Docs
+
+<a id="sec-2-1"></a>
 
 ### 2.1 Quantitative Snapshot (India — sourced)
 
@@ -50,6 +109,8 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 - **E-Commerce Market**: USD 123B (FY24) → USD 292.3B (FY28) (CAGR ~18.7%)
 - **Wellness Subsegment**: Personalized retail nutrition & wellness CAGR ~17.7% (2023–2030)
 - **Gemstone & Jewellery Market**: Expected ~12.6% CAGR to 2032 (proxy for crystal accessories)
+
+<a id="sec-2-2"></a>
 
 ### 2.2 Vision & Mission Statement
 
@@ -60,6 +121,8 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
   - Demographic tailwinds: 65% of the Indian population is under 35, with rising disposable income and heightened interest in wellness and spirituality.
   - Soulstone aligns its mission with these shifts by offering **authentic, ethically sourced**, and **transparently marketed** crystal products.
 - **Tagline**: “Awaken the energy within.”
+
+<a id="sec-2-3"></a>
 
 ### 2.3 Problem Statement
 
@@ -72,12 +135,16 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 - Urban wellness consumers spend **₹2,000–₹5,000 annually** on spiritual and holistic products but lack a single credible brand.
 - This growing **trust deficit** presents a strong opportunity for Soulstone to position itself as the **authentic and verified source** of spiritual wellness products in India.
 
+<a id="sec-2-4"></a>
+
 ### 2.4 Value Proposition
 
 - **Ethically sourced**, carefully curated crystals with transparent sourcing.
 - **Over 90% of SKUs** sourced directly from certified miners and artisans.
 - **Energy alignment**, mindful craftsmanship, and **community storytelling**.
 - Deep Indian spiritual heritage with modern design and global appeal.
+
+<a id="sec-2-5"></a>
 
 ### 2.5 Business Model Canvas
 
@@ -89,12 +156,16 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 - **Cost Structure**: Product sourcing (30%), packaging and logistics (25%), marketing campaigns (30%), influencer partnerships (10%), tech infrastructure (5%).
 - **Key Metrics**: CAC ₹450, LTV ₹4,500, Conversion Rate 4.2%, Repeat Purchase Rate 30%, NPS > 80.
 
+<a id="sec-2-6"></a>
+
 ### 2.6 Market Research Highlights
 
 - **Competitor Analysis**: Few organized players like *Mystic Crystals India* and *WellnessKart* dominate low-trust segment.
 - **Positioning**: Soulstone differentiates with ethics, education, and aesthetics — targeting the **premium wellness tier**.
 - **Market Behavior**: Urban millennials and Gen Zs spend **15–20% more** on wellness products annually compared to 2021.
 - **Category Tailwinds**: 50% YoY growth in **spiritual content consumption** online.
+
+<a id="sec-2-7"></a>
 
 ### 2.7 Go-To-Market Strategy
 
@@ -114,6 +185,8 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
   - Target CAC under ₹500 with LTV:CAC ratio maintained above 8:1.
   - Retention uplift through loyalty and referral programs by end of Year 1.
 
+<a id="sec-2-8"></a>
+
 ### 2.8 OKRs (Objectives & Key Results)
 
 - Objective 1: Launch platform within 3 months of incorporation.
@@ -132,7 +205,11 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
   - KR3: Product returns ≤ 4% with < 2% defect rate (measured monthly).
 
 
+<a id="sec-3"></a>
+
 ## 3. Founders’ & Legal Docs
+
+<a id="sec-3-1"></a>
 
 ### 3.1 Legal Compliance Timeline & Milestones
 
@@ -151,6 +228,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - **Annual MCA Filings**: ₹15,000–₹25,000/year
 - Timeline: All registrations completed by **Q2 2024** before MVP launch.
 
+<a id="sec-3-2"></a>
+
 ### 3.2 IP & Trademark Strategy
 
 - Trademarks: word mark “Soulstone”, logomark, and tagline; classes covering jewelry, decor, retail, education content, and mobile apps.
@@ -158,6 +237,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - IP ownership: all creative, code, photos, and content assigned to Soulstone India LLP.
 - Contracts: standard IP assignment; work‑for‑hire language; moral rights waivers where enforceable.
 - Enforcement: watch service; takedown SOP; counterfeit monitoring on marketplaces; quarterly audit of misuse.
+
+<a id="sec-3-3"></a>
 
 ### 3.3 Founders’ Agreement
 
@@ -168,11 +249,15 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Decision process: Majority vote + CEO tie-breaker
 - Quarterly founder reviews to align milestones and funding.
 
+<a id="sec-3-4"></a>
+
 ### 3.4 Articles of Incorporation
 
 - Registered as Soulstone India LLP, Bengaluru
 - Capital Contribution: ₹15,00,000
 - Governance structure with **future board seats** for investors in Series A.
+
+<a id="sec-3-5"></a>
 
 ### 3.5 NDAs & Privacy
 
@@ -182,13 +267,19 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Retention: data deletion on request ≤ 7 days; vendor offboarding includes verified deletion; annual privacy review.
 - Incident response: notify within 72 hours of confirmed breach; maintain audit trails and access logs.
 
+<a id="sec-3-6"></a>
+
 ### 3.6 Cap Table
 
 - Aarav 40% | Kavya 35% | Rohan 25%
 - 10% ESOP pool reserved for early team.
 
 
+<a id="sec-4"></a>
+
 ## 4. Pitch Deck & Financial Model
+
+<a id="sec-4-1"></a>
 
 ### 4.1 Key Unit Economics & Metrics
 
@@ -211,12 +302,16 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - **CAC to LTV Efficiency**: With an LTV:CAC ratio of 10:1, the cost base supports aggressive growth while maintaining profitability within 18 months.
 - **Break-even Assumption**: Targeting contribution margin positive within Year 2 based on repeat purchase cohorts and scaling marketing spend as a fixed percentage of revenue.
 
+<a id="sec-4-2"></a>
+
 ### 4.2 Pitch Deck
 
 - Position Soulstone as India’s trusted spiritual lifestyle brand.
 - Tap into **₹20B+** wellness economy with a story-driven approach.
 - Target ₹1.5 Cr in revenue within 18 months.
 - Emphasize brand IP, ethical sourcing, and influencer partnerships.
+
+<a id="sec-4-3"></a>
 
 ### 4.3 Investor One-Pager
 
@@ -225,12 +320,16 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Seed round target: ₹1.2–₹2 Cr.
 - Target valuation: ₹12 Cr pre-money.
 
+<a id="sec-4-4"></a>
+
 ### 4.4 Financial Projections
 
 - Year 1 Revenue: ₹1.5 Cr
 - Year 3 Revenue: ₹7.5 Cr
 - Subscription revenue share: 30% by Year 2
 - EBITDA positive by Year 3.
+
+<a id="sec-4-5"></a>
 
 ### 4.5 Budget Allocation
 
@@ -240,13 +339,19 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - 15% HR and Team
 - Runway goal: 18 months post-seed round.
 
+<a id="sec-4-6"></a>
+
 ### 4.6 Funding Strategy
 
 - Raise ₹1.5 Cr seed at ₹12 Cr pre-money.
 - Future Series A: ₹5–₹7 Cr for international expansion.
 - SAFE/Convertible Notes for early investors.
 
+<a id="sec-5"></a>
+
 ## 5. Product Roadmap & PRD
+
+<a id="sec-5-1"></a>
 
 ### 5.1 Product Strategy Snapshot
 
@@ -256,11 +361,15 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Year 1 Target: 25,000 active users
 - Vision: Wellness ecosystem with personalization and community
 
+<a id="sec-5-2"></a>
+
 ### 5.2 Product Requirements Document
 
 - Fast product discovery and secure checkout.
 - Personalized energy guides and storytelling modules.
 - Target load capacity: 5,000 concurrent users at MVP.
+
+<a id="sec-5-3"></a>
 
 ### 5.3 Product Roadmap
 
@@ -268,6 +377,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Phase 2 (Q4 2024): Subscription box, influencer marketplace.
 - Phase 3 (Q2 2025): Community forums and gamification.
 - Feature targets: **250 SKUs by Year 2**, community engagement 50K MAUs.
+
+<a id="sec-5-4"></a>
 
 ### 5.4 Architecture & Tech Stack
 
@@ -278,6 +389,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Security: 2FA, encrypted storage, audit logs
 - Infra scaling to **100K MAUs**.
 
+<a id="sec-5-5"></a>
+
 ### 5.5 Design System & Brand Guidelines
 
 - Minimalist UI with nature-inspired colors.
@@ -285,11 +398,15 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Accessibility-first approach.
 - Modular components to scale with product growth.
 
+<a id="sec-5-6"></a>
+
 ### 5.6 QA / Testing Plans
 
 - End-to-end coverage for key flows.
 - Load and regression testing pre-launch.
 - Stress testing up to 2x expected traffic.
+
+<a id="sec-5-7"></a>
 
 ### 5.7 User Onboarding & Support Docs
 
@@ -299,7 +416,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Premium tier: Expert consultation support.
 
 
+<a id="sec-6"></a>
+
 ## 6. Mobile App & Website Documentation
+
+<a id="sec-6-1"></a>
 
 ### 6.1 Product Feature Specifications
 
@@ -321,6 +442,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - KPIs:
   - AOV ₹1,800; Conversion 3.5–4.5%; Repeat rate 30%; Bounce rate < 40%; App crash-free sessions > 99.5%.
 
+<a id="sec-6-2"></a>
+
 ### 6.2 UI/UX Design Mockups & Wireframes
 
 - Deliverables: Low-fidelity wireframes (site map coverage), high-fidelity mockups for key flows (home, PLP, PDP, cart, checkout, account, content), interactive prototypes (Figma) for usability testing.
@@ -331,11 +454,15 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Onboarding variant: long-form education vs. quick-start; target uplift +8% activation.
   - PDP layout variant: energy tags prominence; target +5% add-to-cart.
 
+<a id="sec-6-3"></a>
+
 ### 6.3 User Flow Diagrams
 
 - Flows: Onboarding, browse→filter→PDP, PDP→cart→checkout, subscription create/edit/cancel, loyalty enrollment, returns/refunds, support chat escalation, content exploration.
 - Edge cases: OOS handling with back-in-stock alerts; payment failure retries; partial returns for bundles.
 - Artifacts: BPMN diagrams and click-through prototypes; gating with design reviews and security checks.
+
+<a id="sec-6-4"></a>
 
 ### 6.4 Information Architecture (IA)
 
@@ -378,6 +505,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Internal linking & governance:
   - Learn → PDP deep‑links; PDP → Learn (care/meaning); Collections cross‑link to intents.
   - IA changes via lightweight RFC; monthly nav review; track search zero‑result rate < 5%.
+
+<a id="sec-6-5"></a>
 
 ### 6.5 API Documentation
 
@@ -427,6 +556,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - `query { productBySlug(slug: "amethyst-tower") { id name price { amount currency } energyTags images { url alt } } }`
   - `mutation { addCartItem(cartId: "...", sku: "AMY-001", qty: 2) { cart { id items { sku qty } totals { subtotal grandTotal } } } }`
 
+<a id="sec-6-6"></a>
+
 ### 6.6 Analytics & Telemetry
 
 - Event taxonomy:
@@ -455,6 +586,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Compliance:
   - Consent logs; opt‑out honored; delete/export data flows; data retention policy (13 months for raw events; 24 months for aggregates).
+
+<a id="sec-6-7"></a>
 
 ### 6.7 Frontend & Backend Development Guidelines
 
@@ -488,6 +621,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Definition of Done (DoD):
   - Acceptance criteria met; a11y and perf budgets pass; tests/coverage green; logs/metrics dashboards updated; runbook updated; rollback plan documented.
 
+<a id="sec-6-8"></a>
+
 ### 6.8 Content & SEO Strategy (for websites)
 
 - Pillars & formats:
@@ -516,6 +651,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - KPIs:
   - Organic sessions + MoM 10%; top‑20 keywords within 6 months; CTR ≥ 5% for top pages; bounce < 40%; newsletter signups from content ≥ 2% CVR.
 
+<a id="sec-6-9"></a>
+
 ### 6.9 App Store / Play Store Launch Checklist
 
 - Pre‑launch QA:
@@ -540,6 +677,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Post‑launch:
   - Monitor crashes/ANR, reviews, conversion; store listing experiments; ASA/UAC campaigns; rapid hotfix pipeline.
 
+<a id="sec-6-10"></a>
+
 ### 6.10 Web Hosting & Deployment Plans
 
 - Reference architecture (AWS):
@@ -562,6 +701,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Observability & security:
   - Centralized logs (CloudWatch → OpenSearch), tracing (X-Ray/OpenTelemetry), metrics/dashboards; alerting on SLOs, error spikes, latency, saturation.
   - WAF rules (bot, SQLi, XSS), rate limiting, CSP/HTTPS only, HSTS, regular pen‑tests.
+
+<a id="sec-6-11"></a>
 
 ### 6.11 Maintenance & Update Logs
 
@@ -589,7 +730,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 
 
+<a id="sec-7"></a>
+
 ## 7. Internal Policies & Hiring Plan
+
+<a id="sec-7-1"></a>
 
 ### 7.1 Org Chart & Hiring Plan
 
@@ -626,6 +771,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Contractors & vendors:
   - Use for creative (photo/video), translations, seasonal CX; clear SLAs and IP assignment.
 
+<a id="sec-7-2"></a>
+
 ### 7.2 Company Policies (Remote Work, Expenses, Security)
 
 - Work model & hours:
@@ -661,6 +808,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Compliance & workplace:
   - PoSH committee constituted; anti‑harassment training mandatory; zero retaliation policy.
 
+<a id="sec-7-3"></a>
+
 ### 7.3 Code of Conduct
 
 - Principles:
@@ -680,6 +829,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Reporting & enforcement:
   - Report via HR, manager, or anonymous form; PoSH matters to ICC; prompt investigation; proportional consequences; no retaliation.
+
+<a id="sec-7-4"></a>
 
 ### 7.4 Team Onboarding Documents
 
@@ -706,7 +857,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ---
 
+<a id="sec-8"></a>
+
 ## 8. Marketing and Sales Materials
+
+<a id="sec-8-1"></a>
 
 ### 8.1 Marketing Plan
 
@@ -731,6 +886,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Measurement:
   - MMM (v2) and MTA via platform + GA4; lift tests quarterly; brand search index and share of voice tracked monthly.
 
+<a id="sec-8-2"></a>
+
 ### 8.2 Brand Messaging & Content Strategy
 
 - Positioning:
@@ -750,6 +907,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Governance:
   - E‑E‑A‑T: author bios with expertise; review/refresh cadence; source citations; medical disclaimers where needed.
+
+<a id="sec-8-3"></a>
 
 ### 8.3 Sales Playbook
 
@@ -772,6 +931,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Metrics:
   - Pipeline coverage 3× target; win rate ≥ 25%; sales cycle ≤ 21 days (SMB); NPS ≥ 60.
 
+<a id="sec-8-4"></a>
+
 ### 8.4 Customer Journey Map
 
 - Stages & moments:
@@ -790,6 +951,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Improvements backlog (examples):
   - PDP comparison tool; AR placement (v2); post‑purchase ritual series; OOS back‑in‑stock flows; proactive CX nudges.
+
+<a id="sec-8-5"></a>
 
 ### 8.5 Campaign Templates
 
@@ -814,7 +977,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ---
 
+<a id="sec-9"></a>
+
 ## 9. Investor & Growth Reporting Templates
+
+<a id="sec-9-1"></a>
 
 ### 9.1 Executive Summary
 
@@ -829,6 +996,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Risks & Mitigations: top 3 with owners and timelines.
   - Asks & Next 30/60/90: hiring, intros, budget shifts, experiments.
 
+<a id="sec-9-2"></a>
+
 ### 9.2 Board Decks / Investor Updates
 
 - Cadence & hygiene:
@@ -842,6 +1011,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Update email outline (monthly):
   - Top wins; KPIs; growth/campaign notes; product launches; hiring; risks/blockers; asks; links to dashboards.
+
+<a id="sec-9-3"></a>
 
 ### 9.3 Metrics & Traction Dashboards
 
@@ -866,6 +1037,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - Implementation notes:
   - Link to analytics (see 6.6): event taxonomy, ETL, warehouse; owner responsibilities; alert thresholds and escalation.
 
+<a id="sec-9-4"></a>
+
 ### 9.4 Partnership Proposals & MOUs
 
 - Proposal one‑pager (template):
@@ -881,6 +1054,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Leads, conversions, revenue share, CPA, repeat rate, brand search uplift, content reach/engagement.
 
 ---
+
+<a id="sec-10"></a>
 
 ## 10. Risks & Mitigations
 
@@ -916,6 +1091,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Risk: Overspend vs. traction leading to shortened runway.
   - Mitigations: Scenario budgets, marketing guardrails, CAC/LTV gates, hiring gates tied to milestones, monthly runway reviews.
 
+<a id="sec-11"></a>
+
 ## 11. Cross-Functional Milestones
 
 - Q4 2023
@@ -935,6 +1112,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - H1 2025
   - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%.
+
+<a id="sec-12"></a>
 
 ## 12. Next Steps & Sign-Off
 
@@ -957,6 +1136,8 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - PM (TBD): _____________________________  Date: __________
   - Eng Lead (TBD): _______________________  Date: __________
 
+<a id="sec-appendix-a"></a>
+
 ## Appendix A: Glossary
 
 - AOV: Average Order Value
@@ -971,11 +1152,15 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - DPDP: Digital Personal Data Protection (India)
 - PoSH: Prevention of Sexual Harassment (workplace policy)
 
+<a id="sec-appendix-b"></a>
+
 ## Appendix B: Source Notes & Disclaimers
 
 - Figures are indicative, based on internal estimates and publicly available industry reports as of 2024–2025; to be refreshed during fundraising and before public launch.
 - No medical claims: products are not intended to diagnose, treat, cure, or prevent disease. Content is educational; users should consult professionals for medical advice.
 - Forward‑looking statements involve risks and uncertainties; actual outcomes may differ based on market conditions and execution.
+
+<a id="sec-version-history"></a>
 
 ## Version History
 
