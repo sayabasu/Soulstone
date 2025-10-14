@@ -74,6 +74,70 @@ Lean baseline to sustain ~18‑month runway; hires are staged.
 - Misc/Travel/Community: ~₹0.3 L/month
 - Fixed opex baseline (blended average): ~₹9.4 L/month in Y1
 
+## Quarterly Hiring Ramp & Payroll (Per Role)
+The table below lists indicative monthly cash compensation by role (cash component only; exclude ~10% employer on‑costs). See Project.md 7.1 for bands; these cash figures target the lower‑mid of bands with ESOPs to stay runway‑friendly.
+
+Per‑role monthly cash (₹ L):
+
+| Role | Monthly Cash (₹ L) | Notes |
+|---|---:|---|
+| SDE‑2 (Full‑stack) | 1.20 | ESOP mix to midpoint if needed |
+| Mobile (React Native) | 1.10 | Similar to SDE‑2 early stage |
+| QA Engineer | 0.70 | Manual + automation blend |
+| DevOps/Infra (0.5 FTE, contract) | 0.70 | Scales to 1.4 at 1.0 FTE |
+| Product Manager | 1.20 | Founder covers until ramp |
+| Product Designer | 0.80 | Visual + UX |
+| Ops Associate | 0.60 | Vendor, supply/inventory |
+| CX Associate | 0.40 | Rotational/weekend coverage |
+| Performance Marketer | 0.90 | Can be contractor initially |
+| Data Analyst | 0.90 | Q3+ ramp subject to gates |
+| Vendor Manager | 0.80 | Q3+ ramp subject to gates |
+
+Quarterly headcount ramp (FTE; cash comp only):
+
+| Role | Q1 | Q2 | Q3 | Q4 |
+|---|---:|---:|---:|---:|
+| SDE‑2 (Full‑stack) | 2 | 2 | 2 | 2 |
+| Mobile (React Native) | 1 | 1 | 1 | 1 |
+| QA Engineer | 1 | 1 | 1 | 1 |
+| DevOps/Infra (FTE) | 0.5 | 0.5 | 0.5 | 0.5 |
+| Product Manager | 0 | 0 | 1 | 1 |
+| Product Designer | 0 | 0 | 1 | 1 |
+| Ops Associate | 0 | 1 | 1 | 1 |
+| CX Associate | 2 | 3 | 3 | 3 |
+| Performance Marketer | 0 | 0 | 0 | 1 |
+| Data Analyst | 0 | 0 | 0 | 0 |
+| Vendor Manager | 0 | 0 | 0 | 0 |
+
+Quarterly payroll subtotal (cash only; add ~10% for on‑costs):
+
+| Quarter | Payroll Cash (₹ L/mo) | + On‑Costs 10% (₹ L/mo) | Notes |
+|---|---:|---:|---|
+| Q1 | 5.70 | 6.27 | Founders cover PM/Brand; lean CX/DevOps |
+| Q2 | 6.70 | 7.37 | Add Ops + one CX to stabilize SLAs |
+| Q3 | 8.70 | 9.57 | Add PM + Designer; improve velocity/UX |
+| Q4 | 9.60 | 10.56 | Add Performance Marketer (growth focus) |
+
+Guidance
+- Average payroll cash across Y1 ≈ ₹7.7 L/mo (≈ ₹8.5–8.6 L incl. on‑costs). To hit the earlier ~₹7.2 L/mo average, either shift the PM/Designer/Marketer by one quarter or tilt further toward ESOPs/contracting in Q3–Q4.
+- All Q3+ additions are hiring‑gate controlled: unlock only if contribution and CAC/LTV are on or ahead of plan.
+
+## Office Cost Sensitivity (City)
+Baseline assumes Bengaluru. Sensitivity below shows typical monthly rent + utilities for a small office (6–8 cowork seats) plus micro‑warehouse (~1,000 sq ft) in major Indian cities.
+
+| City | Office/Warehouse (₹ L/mo) | Delta vs BLR (₹ L) |
+|---|---:|---:|
+| Bengaluru (baseline) | 0.60 | — |
+| Mumbai | 0.90 | +0.30 |
+| Delhi NCR | 0.70 | +0.10 |
+| Hyderabad | 0.50 | −0.10 |
+| Pune | 0.50 | −0.10 |
+| Chennai | 0.55 | −0.05 |
+
+Notes
+- If HQ is Mumbai, fixed opex rises by ~₹0.3 L/mo at identical footprint; conversely, Hyderabad/Pune reduce by ~₹0.1 L/mo.
+- Use flexible warehousing (3PL) early to defer deposits; commit to dedicated space only when order density justifies it.
+
 ## Year 1 P&L Roll‑Up (₹ Lakh)
 - Revenue (target): 150.0
 - Variable costs (percent of revenue):
