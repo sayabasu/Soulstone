@@ -554,7 +554,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 
 
-## 7. 🧠 Internal Policies & Hiring Plan
+## 7. Internal Policies & Hiring Plan
 
 ### 7.1 Org Chart & Hiring Plan
 
@@ -671,7 +671,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ---
 
-## 8. 📈 Marketing and Sales Materials
+## 8. Marketing and Sales Materials
 
 ### 8.1 Marketing Plan
 
