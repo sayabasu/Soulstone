@@ -11,12 +11,12 @@ Last Updated: 2023-10-14
 - Purpose: Build India’s trusted, modern spiritual lifestyle brand with ethically sourced crystals, education-first content, and community-led experiences.
 - Market: Strong tailwinds in India’s wellness and e-commerce growth; target 25,000 paying users in Year 1 with healthy repeat (≥30%).
 - Differentiation: Authentic sourcing, transparent storytelling, premium design, and responsible marketing; education and community as durable moats.
-- Product: Web + mobile app MVP in Q2 2024; 100+ SKUs at launch; subscriptions, loyalty, and referrals as retention engines.
+- Product: Web + mobile app MVP in Q1 FY25; 100+ SKUs at launch; subscriptions, loyalty, and referrals as retention engines.
 - Tech/Ops: TypeScript stack (Next.js/React Native/Node), robust SLOs, secure payments, analytics taxonomy, and documented APIs.
 - Unit economics: AOV ~₹1,800, CAC ≤₹500, LTV ~₹4,500; LTV:CAC ≥ 8–10:1 with improving cohorts via subscriptions and content.
 - GTM: Tier‑1 focus initially, creator partnerships, content/SEO, and community events; transparent reviews and ethics lead brand trust.
 - Funding: Seed ₹1.5 Cr (target) to achieve MVP launch, early traction, and runway to contribution margin positive.
- - Timeline conventions: Calendar quarters; Year 1 = Q2 2024–Q1 2025; Year 2 = Q2 2025–Q1 2026.
+ - Timeline conventions: Indian fiscal quarters (FY; Apr–Mar); Year 1 = FY25 (Apr 2024–Mar 2025); Year 2 = FY26 (Apr 2025–Mar 2026).
 
 ## Table of Contents
 
@@ -169,7 +169,7 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 
 ### 2.7 Go-To-Market Strategy
 
-- **Launch Timeline**: Target launch of e-commerce platform in Q2 2024 with aggressive rollout over the first 12 months.
+- **Launch Timeline**: Target launch of e-commerce platform in Q1 FY25 with aggressive rollout over the first 12 months.
 - **Partner Milestones**: 50 wellness partners (yoga studios, healers, influencers) onboarded by Year 1; 120+ partners by Year 2.
 - **Marketing Spend Allocation**:
   - Digital Ads: 40% of total marketing budget focused on performance channels (Meta, Google, YouTube)
@@ -181,7 +181,7 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
   - Influencer campaigns projected to generate 5M+ organic impressions and 250K engagements.
   - Conversion goal: 25,000 paying users with 30% repeat purchase rate in Year 1.
 - **Strategic Rollouts**:
-  - Early focus on Tier 1 cities with 70% of ad spend, expanding to Tier 2 in Q3 2024.
+  - Early focus on Tier 1 cities with 70% of ad spend, expanding to Tier 2 in Q2 FY25.
   - Target CAC under ₹500 with LTV:CAC ratio maintained above 8:1.
   - Retention uplift through loyalty and referral programs by end of Year 1.
 
@@ -213,11 +213,11 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 
 ### 3.1 Legal Compliance Timeline & Milestones
 
-- **Q4 2023**: Initiate IP audit, legal consultation, and pre-filing preparations.
-- **Q1 2024**: Complete MCA LLP incorporation; PAN/TAN and GST obtained; file trademark applications.
-- **Q2 2024**: Pre‑launch compliance checks and policy readiness ahead of MVP; annual filing cadences set up.
-- **Q3 2024**: Trademark examination and publication stage, ongoing MCA annual filings set up.
-- **Q4 2024 – Q2 2025**: Trademark registration finalization, renewal calendar setup, and compliance reporting maturity.
+- **Q3 FY24**: Initiate IP audit, legal consultation, and pre-filing preparations.
+- **Q4 FY24**: Complete MCA LLP incorporation; PAN/TAN and GST obtained; file trademark applications.
+- **Q1 FY25**: Pre‑launch compliance checks and policy readiness ahead of MVP; annual filing cadences set up.
+- **Q2 FY25**: Trademark examination and publication stage, ongoing MCA annual filings set up.
+- **Q3 FY25 – Q1 FY26**: Trademark registration finalization, renewal calendar setup, and compliance reporting maturity.
 
 This phased legal timeline aligns closely with Soulstone’s MVP and funding milestones to ensure full compliance and IP protection well before scaling.
 
@@ -226,7 +226,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 - **GST Registration**: 5–10 days; ₹2,000–₹5,000
 - **PAN/TAN Allocation**: 2–5 days
 - **Annual MCA Filings**: ₹15,000–₹25,000/year
-- Timeline: All registrations completed by **Q1 2024** before MVP launch.
+- Timeline: All registrations completed by **Q4 FY24** before MVP launch.
 
 <a id="sec-3-2"></a>
 
@@ -356,7 +356,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 ### 5.1 Product Strategy Snapshot
 
 - Platform: E-commerce website and mobile app
-- MVP Launch: Q2 2024
+- MVP Launch: Q1 FY25
 - Initial Catalog: 100+ SKUs
 - Year 1 Target: 25,000 active users
 - Vision: Wellness ecosystem with personalization and community
@@ -373,9 +373,9 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ### 5.3 Product Roadmap
 
-- Phase 1 (Q2 2024): Launch core e-commerce and storytelling pages.
-- Phase 2 (Q4 2024): Subscription box, influencer marketplace.
-- Phase 3 (Q2 2025): Community forums and gamification.
+- Phase 1 (Q1 FY25): Launch core e-commerce and storytelling pages.
+- Phase 2 (Q3 FY25): Subscription box, influencer marketplace.
+- Phase 3 (Q1 FY26): Community forums and gamification.
 - Feature targets: **250 SKUs by Year 2**, community engagement 50K MAUs.
 
 <a id="sec-5-4"></a>
@@ -755,10 +755,10 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - Add: 2 Engineers, 1 Data Analyst, 1 Community Manager, 1 Vendor Manager, 1 Compliance/QA (product), 1 Senior PM.
 
 - Hiring priorities & timeline:
-  - Q1: Core eng (2), Mobile engineer, designer, PM, CX lead.
-  - Q2: DevOps, QA, performance marketer, sourcing associate.
-  - Q3: Content lead, supply/inventory.
-  - Q4: Data analyst, additional CX, vendor manager.
+  - Q4 FY24: Core eng (2), Mobile engineer, designer, PM, CX lead.
+  - Q1 FY25: DevOps, QA, performance marketer, sourcing associate.
+  - Q2 FY25: Content lead, supply/inventory.
+  - Q3 FY25: Data analyst, additional CX, vendor manager.
 
 - Recruiting process:
   - Funnel: Recruiter screen → tech/functional rounds (2) → assignment/live exercise → culture interview → references → offer.
@@ -1096,28 +1096,28 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ## 11. Cross-Functional Milestones
 
-- Q4 2023
+- Q3 FY24
   - Legal prep, IP audit, partner discovery, initial brand system, analytics taxonomy draft.
   - Engineering discovery: repo conventions, initial CI plan, infra prerequisites.
 
-- Q1 2024
+- Q4 FY24
   - LLP/GST/PAN/TAN filings complete; MVP scope lock; design system v1; supplier shortlist; creator pipeline seeded.
   - Engineering foundations & scaffolding: monorepo, CI/CD, Docker, IaC baseline; Express/TS API scaffold with auth and error model; Prisma schema/migrations/seed; Next.js app shell; RN bootstrap; analytics SDK wrappers.
 
-- Q2 2024 (MVP Launch)
+- Q1 FY25 (MVP Launch)
   - Web + app MVP live; 100+ SKUs; payments live; Learn hub v1; analytics dashboards; first 10 partners activated.
   - Admin minimal (ops tooling) live; infra & runbooks in place; QA/perf/security gates passed; mobile in staged beta (browse/auth/cart).
 
-- Q3 2024
+- Q2 FY25
   - Subscriptions v1; loyalty/referrals; Tier‑2 expansion; 25 partners; CAC ≤₹500; repeat rate ≥25%.
   - Reviews & UGC v1; search improvements (typeahead, synonyms/fuzzy); mobile checkout parity and push/deep links; synthetic checks and error budget policy.
 
-- Q4 2024
+- Q3 FY25
   - Influencer marketplace pilot; 40+ partners; contribution margin positive cohorts; SEO pillar pages live.
   - Admin workflows (promotions/coupons, bulk uploads, reservations, returns approvals, RBAC/audit); security & DR hardening (pen‑test fixes, WAF tuning, DR drill).
 
-- H1 2025
-  - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%; 50 partners achieved by Q1 2025.
+- Q4 FY25–Q1 FY26
+  - Community & gamification v1; 250 SKUs; international shipping pilot (if metrics/ops allow); repeat ≥35%; 50 partners achieved by Q4 FY25.
   - Notifications & i18n scaffolding; multi‑region readiness (read replica plan) and incident automation improvements.
 
 <a id="sec-12"></a>

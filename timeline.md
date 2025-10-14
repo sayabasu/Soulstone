@@ -1,17 +1,46 @@
 # Soulstone Project Timeline
 
-This timeline is derived from Project.md and uses calendar quarters as defined there (Year 1 = Q2 2024–Q1 2025; Year 2 = Q2 2025–Q1 2026). Dates use India format: dd-mm-yyyy.
+Status: Final
+Version: v1.0
+Last Updated: 2023-10-14
 
-Conventions:
-- Q4 2023: 01-10-2023 to 31-12-2023
-- Q1 2024: 01-01-2024 to 31-03-2024
-- Q2 2024: 01-04-2024 to 30-06-2024
-- Q3 2024: 01-07-2024 to 30-09-2024
-- Q4 2024: 01-10-2024 to 31-12-2024
-- Q1 2025: 01-01-2025 to 31-03-2025
-- Q2 2025: 01-04-2025 to 30-06-2025
+<a id="sec-overview"></a>
 
-## Q4 2023 (Oct - Dec)
+## Overview
+
+This timeline is derived from `project.md`. It uses Indian fiscal quarters (FY; Apr–Mar) and India date format `dd-mm-yyyy`. Mapping to project “Year” notation: Year 1 = FY25 (Apr 2024–Mar 2025); Year 2 = FY26 (Apr 2025–Mar 2026).
+
+## Table of Contents
+
+- [Overview](#sec-overview)
+- [Conventions](#sec-conventions)
+- [Q3 FY24 (Oct–Dec)](#sec-q3fy24)
+- [Q4 FY24 (Jan–Mar)](#sec-q4fy24)
+- [Q1 FY25 (Apr–Jun)](#sec-q1fy25)
+- [Q2 FY25 (Jul–Sep)](#sec-q2fy25)
+- [Q3 FY25 (Oct–Dec)](#sec-q3fy25)
+- [Q4 FY25 (Jan–Mar)](#sec-q4fy25)
+- [Q1 FY26 (Apr–Jun)](#sec-q1fy26)
+- [Engineering Track](#sec-eng-track)
+- [MVP Critical Path](#sec-critical-path)
+- [Risks & Mitigations](#sec-risks)
+- [Version History](#sec-version-history)
+
+<a id="sec-conventions"></a>
+
+## Conventions
+
+- Q3 FY24: 01-10-2023 to 31-12-2023
+- Q4 FY24: 01-01-2024 to 31-03-2024
+- Q1 FY25: 01-04-2024 to 30-06-2024
+- Q2 FY25: 01-07-2024 to 30-09-2024
+- Q3 FY25: 01-10-2024 to 31-12-2024
+- Q4 FY25: 01-01-2025 to 31-03-2025
+- Q1 FY26: 01-04-2025 to 30-06-2025
+
+<a id="sec-q3fy24"></a>
+
+## Q3 FY24 (Oct - Dec)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -20,7 +49,9 @@ Conventions:
 | Brand system (initial) | Define core brand identity (logo, palette, typography, tone) and produce initial templates for web, social, and packaging to ensure consistent go-to-market visuals. | 01-10-2023 | 31-12-2023 | Product & Design; Brand & Growth |
 | Analytics taxonomy (draft) | Draft event names, properties, and identifiers across web/app/server; align to KPIs and governance; scope initial dashboards and validation plan. | 01-10-2023 | 31-12-2023 | Data & Analytics; Product & Design |
 
-## Q1 2024 (Jan - Mar)
+<a id="sec-q4fy24"></a>
+
+## Q4 FY24 (Jan - Mar)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -33,7 +64,9 @@ Conventions:
 | Hiring (per plan) | Run hiring for core roles (engineering, mobile, designer, PM, CX lead) with structured panels and SLAs. | 01-01-2024 | 31-03-2024 | People & Culture; Founders |
 | Engineering foundations & scaffolding | Monorepo, CI/CD, Docker, IaC baseline; Express/TS API scaffold with error handling and auth; Prisma schema/migrations/seed; Next.js app shell; RN bootstrap; analytics SDK wrappers. | 01-01-2024 | 31-03-2024 | Engineering; DevOps; Product & Design |
 
-## Q2 2024 (Apr - Jun)
+<a id="sec-q1fy25"></a>
+
+## Q1 FY25 (Apr - Jun)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -49,7 +82,9 @@ Conventions:
 | Admin minimal (Ops tooling) | Minimal admin for price/inventory edits and order view; basic refunds export and RBAC scaffold. | 01-04-2024 | 30-06-2024 | Engineering; Product & Design |
 | QA & launch readiness | E2E smoke tests (browse→PDP→cart→checkout), load/perf tests, accessibility baseline; go‑live checklist. | 01-04-2024 | 30-06-2024 | QA; Engineering; Product & Design |
 
-## Q3 2024 (Jul - Sep)
+<a id="sec-q2fy25"></a>
+
+## Q2 FY25 (Jul - Sep)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -64,7 +99,9 @@ Conventions:
 | Legal cadence | Progress trademark examination/publication and maintain MCA filing cadence. | 01-07-2024 | 30-09-2024 | Finance & Legal |
 | Hiring (per plan) | Fill content lead and supply/inventory roles; onboard with 30/60/90 plans. | 01-07-2024 | 30-09-2024 | People & Culture |
 
-## Q4 2024 (Oct - Dec)
+<a id="sec-q3fy25"></a>
+
+## Q3 FY25 (Oct - Dec)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -78,7 +115,9 @@ Conventions:
 | Admin workflows | Promotions/coupons, bulk uploads, reservations, returns approvals; RBAC and audit logs for admin actions. | 01-10-2024 | 31-12-2024 | Engineering; Product & Design |
 | Security & DR hardening | Pen‑test remediations, WAF tuning, DR drill, and cost guardrails; update runbooks and alerts. | 01-10-2024 | 31-12-2024 | Engineering; DevOps |
 
-## Q1 2025 (Jan - Mar)
+<a id="sec-q4fy25"></a>
+
+## Q4 FY25 (Jan - Mar)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -88,7 +127,9 @@ Conventions:
 | Notifications & i18n scaffolding | Notifications center and i18n scaffolding across services; moderation tools for community. | 01-01-2025 | 31-03-2025 | Engineering; Product & Design |
 | Catalog scale-up | Expand toward 250 SKUs with quality checks, photography, and inventory accuracy. | 01-01-2025 | 31-03-2025 | Operations & Sourcing |
 
-## Q2 2025 (Apr - Jun)
+<a id="sec-q1fy26"></a>
+
+## Q1 FY26 (Apr - Jun)
 
 | Task | Description | Start | End | Owners |
 | --- | --- | --- | --- | --- |
@@ -102,6 +143,8 @@ Notes:
 - Dates follow dd-mm-yyyy. Owners are functional teams per Project.md Section 7.1.
 
 ---
+
+<a id="sec-eng-track"></a>
 
 ## Software Development Timeline (Engineering Track)
 
@@ -120,7 +163,7 @@ Q1 2024 — Foundations
 - Security: Secret scanning, dependency checks, headers/CSP baseline; privacy policy drafts.
 - Analytics: Event taxonomy finalization; SDK wrappers; basic dashboards skeleton.
 
-Q2 2024 — MVP (Launch)
+Q1 FY25 — MVP (Launch)
 - Backend/API: Catalog (PLP/PDP), Cart/Pricing, Address & Shipping, Orders lifecycle (created/paid), Payments intents + webhooks.
 - Web: PLP, PDP, Cart, Checkout, Account (orders/addresses); performance budgets; SEO basics.
 - Mobile: Read‑only browse/PDP, auth, cart; staged beta via internal tracks.
@@ -129,7 +172,7 @@ Q2 2024 — MVP (Launch)
 - QA: E2E smoke for browse→PDP→cart→checkout; load test of hot paths; accessibility baseline.
 - Analytics: Purchase funnels, error/latency monitors; KPI dashboards live.
 
-Q3 2024 — Retention & Scale
+Q2 FY25 — Retention & Scale
 - Backend/API: Subscriptions v1, referrals/loyalty, reviews & UGC with moderation, search synonyms/fuzzy.
 - Web: Subscriptions flows, loyalty UI, reviews; performance tuning and CWV hardening.
 - Mobile: Cart/checkout parity; push notifications and deep links.
@@ -137,31 +180,41 @@ Q3 2024 — Retention & Scale
 - Data: ETL to warehouse (dbt v1), retention cohorts; alerting on CR dips and payment failures.
 - SRE: Synthetic checks, error budget policy; capacity tuning.
 
-Q4 2024 — Scale Features
+Q3 FY25 — Scale Features
 - Backend/API: Influencer marketplace pilot endpoints; feature hardening; fraud/risk scoring hooks.
 - Web/Mobile: Creator marketplace UI pilot; SEO pillar pages; reviews enhancements.
 - Admin: Catalog workflows (bulk adjust, reservations), returns approvals.
 - SRE/Sec: Pen‑test remediations, WAF tuning; DR drill; cost guardrails.
 
-Q1 2025 — Community & Intl Prep
+Q4 FY25 — Community & Intl Prep
 - Backend/API: Forums/gamification services; notifications center; i18n scaffolding.
 - Web/Mobile: Community v1 UX; moderation tools; performance budgets maintained.
 - Data: Community engagement dashboards; A/B infra for experiments.
 - Ops: Tax/GST reports hardening; returns/RMA refinements.
 
-Q2 2025 — Launch Community & Intl Pilot
+Q1 FY26 — Launch Community & Intl Pilot
 - Community launch with moderation workflows and notifications.
 - International shipping pilot plumbing; duties/taxes & address validation.
 - Multi‑region readiness (read replica plan), improved incident automation.
 
-MVP Critical Path (Q1→Q2 2024)
-- Gate A (Q1 W4): CI/CD, envs, schema baseline, auth ready.
-- Gate B (Q2 W4): Checkout with payments + webhooks stabilized; Admin minimal live.
-- Gate C (Q2 W6): Perf (P75 < 2.0s web), crash‑free > 99.5% (app beta), security checklist.
-- Gate D (Q2 W8–10): Beta + bug bash + staged rollout; go‑live.
+<a id="sec-critical-path"></a>
 
-Risks & Mitigations
+## MVP Critical Path (Q4 FY24 → Q1 FY25)
+- Gate A (Q4 FY24 W4): CI/CD, envs, schema baseline, auth ready.
+- Gate B (Q1 FY25 W4): Checkout with payments + webhooks stabilized; Admin minimal live.
+- Gate C (Q1 FY25 W6): Perf (P75 < 2.0s web), crash‑free > 99.5% (app beta), security checklist.
+- Gate D (Q1 FY25 W8–10): Beta + bug bash + staged rollout; go‑live.
+
+<a id="sec-risks"></a>
+
+## Risks & Mitigations
 - Payments onboarding/approvals can slip 2–3 weeks → start early; sandbox parity and fallbacks.
 - App store review variability → keep web primary for Day‑0, app staged beta.
 - Subscriptions/loyalty complexity → isolate as Q3 feature flags; defer if MVP dates at risk.
 - Admin scope creep → enforce “minimal ops” for MVP; expand in Q3.
+
+<a id="sec-version-history"></a>
+
+## Version History
+
+- v1.0 (2023-10-14) — Finalized timeline to match project.md: added status/version header, anchors and TOC, and aligned critical path and risks.

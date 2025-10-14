@@ -106,6 +106,20 @@
 ##### 4.2.2. [ Task ] - Data rights portal
 ###### 4.2.2.1. [ Subtask ] - Export/delete with audit log; SLA ≤ 7 days
 
+#### 4.3. [ User Story ] - Penetration Testing & Remediation
+##### 4.3.1. [ Task ] - Triage and severity classification
+###### 4.3.1.1. [ Subtask ] - SLAs by severity; owner assignment and tracking
+##### 4.3.2. [ Task ] - Remediation and verification
+###### 4.3.2.1. [ Subtask ] - Re-test and regression tests wired into CI
+##### 4.3.3. [ Task ] - Reporting and change management
+###### 4.3.3.1. [ Subtask ] - Approvals, audit trail, and post-mortems
+
+#### 4.4. [ User Story ] - Fraud & Risk Scoring Hooks
+##### 4.4.1. [ Task ] - Pre/post-payment risk evaluation
+###### 4.4.1.1. [ Subtask ] - Signals: device/IP/email heuristics, velocity, coupon abuse
+##### 4.4.2. [ Task ] - Actions & workflows
+###### 4.4.2.1. [ Subtask ] - Manual review queue; auto-cancel/hold rules; audit logs
+
 ### 5. [ Feature ] - Database & Data Modeling (PostgreSQL + Prisma)
 
 #### 5.1. [ User Story ] - Schema Foundation
@@ -253,6 +267,14 @@
 ##### 15.2.2. [ Task ] - Alerts
 ###### 15.2.2.1. [ Subtask ] - Checkout CR dip > 20%, payment failure > 2%, LCP > 3s
 
+#### 15.3. [ User Story ] - Experimentation & Feature Flags
+##### 15.3.1. [ Task ] - Feature flag SDK and bucketing
+###### 15.3.1.1. [ Subtask ] - Deterministic assignment; exposure events and holdouts
+##### 15.3.2. [ Task ] - A/B test lifecycle
+###### 15.3.2.1. [ Subtask ] - Hypothesis, guardrails, rollout/rollback procedures
+##### 15.3.3. [ Task ] - Analysis & governance
+###### 15.3.3.1. [ Subtask ] - Segmentation and stats checks; archive of results
+
 ### 16. [ Feature ] - Notifications & Communications
 
 #### 16.1. [ User Story ] - Email & Templates
@@ -262,6 +284,14 @@
 #### 16.2. [ User Story ] - Push & SMS
 ##### 16.2.1. [ Task ] - Push topics (orders, content, offers) and SMS for order events (where applicable)
 ###### 16.2.1.1. [ Subtask ] - Preferences and consent toggles
+
+#### 16.3. [ User Story ] - Notifications Center
+##### 16.3.1. [ Task ] - Unified in-app inbox (web/mobile)
+###### 16.3.1.1. [ Subtask ] - Read/unread, categories, deep links
+##### 16.3.2. [ Task ] - Preferences and digests
+###### 16.3.2.1. [ Subtask ] - Per-channel/topic; quiet hours and batching
+##### 16.3.3. [ Task ] - Delivery orchestration
+###### 16.3.3.1. [ Subtask ] - De-duplication and channel failover (push/email/SMS)
 
 ### 17. [ Feature ] - Support & Help Center
 
@@ -283,11 +313,24 @@
 ##### 18.2.1. [ Task ] - RPO/RTO targets, snapshots, cross-region read replica plan
 ###### 18.2.1.1. [ Subtask ] - Quarterly restore and failover drills
 
+#### 18.3. [ User Story ] - Cost Guardrails & FinOps
+##### 18.3.1. [ Task ] - Budgets and anomaly alerts
+###### 18.3.1.1. [ Subtask ] - Per-service cost allocation via tags and accounts
+##### 18.3.2. [ Task ] - Dashboards and reports
+###### 18.3.2.1. [ Subtask ] - Unit economics KPIs; monthly reviews and actions
+
+#### 18.4. [ User Story ] - Incident Automation
+##### 18.4.1. [ Task ] - Runbook automation for common failures
+###### 18.4.1.1. [ Subtask ] - Auto-remediation playbooks; ChatOps triggers and approvals
+##### 18.4.2. [ Task ] - Post-incident follow-ups
+###### 18.4.2.1. [ Subtask ] - Blameless postmortems; action items tracked to closure
+
 ### 19. [ Feature ] - Content & CMS
 
 #### 19.1. [ User Story ] - Learn Hub CMS Integration
 ##### 19.1.1. [ Task ] - Article, ritual, glossary types and rendering
 ###### 19.1.1.1. [ Subtask ] - Webhook ingestion and cache invalidation
+###### 19.1.1.2. [ Subtask ] - SEO pillar pages templates and internal linking
 
 ### 20. [ Feature ] - Governance & Quality
 
@@ -352,6 +395,7 @@
 #### 22.4. [ User Story ] - Orders & Returns Ops
 ##### 22.4.1. [ Task ] - Order search, status updates, refunds/RMA approvals
 ###### 22.4.1.1. [ Subtask ] - Notes/timeline per order; permission checks
+###### 22.4.1.2. [ Subtask ] - Refunds export (CSV) for finance reconciliation
 
 #### 22.5. [ User Story ] - Promotions & Coupons
 ##### 22.5.1. [ Task ] - Create/disable coupons, rules, limits
@@ -375,6 +419,12 @@
 ##### 23.3.1. [ Task ] - Tax summary reports by period
 ###### 23.3.1.1. [ Subtask ] - Export CSV for filing and audit trail
 
+#### 23.4. [ User Story ] - Cross-border Duties & Taxes
+##### 23.4.1. [ Task ] - Landed cost estimation (HS codes, duties, VAT)
+###### 23.4.1.1. [ Subtask ] - Provider integration and fallback rate tables
+##### 23.4.2. [ Task ] - Compliance documents
+###### 23.4.2.1. [ Subtask ] - Commercial invoice and customs declarations
+
 ### 24. [ Feature ] - Shipping & Logistics Integration
 
 #### 24.1. [ User Story ] - Carrier Aggregator Integration
@@ -388,6 +438,14 @@
 #### 24.3. [ User Story ] - Exceptions Handling
 ##### 24.3.1. [ Task ] - RTO/failed delivery flows and customer comms
 ###### 24.3.1.1. [ Subtask ] - Automatic ticket creation and refund/Reship options
+
+#### 24.4. [ User Story ] - International Shipping Pilot
+##### 24.4.1. [ Task ] - Country/zone serviceability and carriers
+###### 24.4.1.1. [ Subtask ] - Region-based SKU restrictions and lead times
+##### 24.4.2. [ Task ] - Address validation (international formats)
+###### 24.4.2.1. [ Subtask ] - Postal code and address verification APIs
+##### 24.4.3. [ Task ] - Cross-border returns & CX
+###### 24.4.3.1. [ Subtask ] - RTO and refund SLAs; customer communications
 
 ### 25. [ Feature ] - Media & CDN Pipeline
 
@@ -426,3 +484,41 @@
 #### 27.2. [ User Story ] - App Performance
 ##### 27.2.1. [ Task ] - Track cold start, TTI, memory, ANR
 ###### 27.2.1.1. [ Subtask ] - Dashboards and alerts for regressions
+
+### 28. [ Feature ] - Creator/Influencer Marketplace
+
+#### 28.1. [ User Story ] - Listings & Briefs
+##### 28.1.1. [ Task ] - Creator profiles, listings, and campaign briefs
+###### 28.1.1.1. [ Subtask ] - Availability, rates, and supported content formats
+
+#### 28.2. [ User Story ] - Deliverables & Attribution
+##### 28.2.1. [ Task ] - Track deliverables, links, and performance
+###### 28.2.1.1. [ Subtask ] - Attribution parameters and analytics events
+
+#### 28.3. [ User Story ] - Reviews & Compliance
+##### 28.3.1. [ Task ] - Contract terms, approvals, and policy checks
+###### 28.3.1.1. [ Subtask ] - Audit trail and dispute workflow
+
+### 29. [ Feature ] - Community & Gamification
+
+#### 29.1. [ User Story ] - Forums & Threads
+##### 29.1.1. [ Task ] - Topics, threads, comments, reactions
+###### 29.1.1.1. [ Subtask ] - Moderation tools and community reports
+
+#### 29.2. [ User Story ] - Gamification
+##### 29.2.1. [ Task ] - Points, badges, levels, streaks
+###### 29.2.1.1. [ Subtask ] - Rules engine and abuse checks
+
+#### 29.3. [ User Story ] - Notifications & Moderation
+##### 29.3.1. [ Task ] - Community notifications and role-based moderation
+###### 29.3.1.1. [ Subtask ] - Escalation workflows; CSAT on resolutions
+
+### 30. [ Feature ] - Internationalization & Localization
+
+#### 30.1. [ User Story ] - Service-wide i18n Scaffolding
+##### 30.1.1. [ Task ] - Locale-aware messages, dates, and numbers
+###### 30.1.1.1. [ Subtask ] - Server-side locale negotiation and formatting
+
+#### 30.2. [ User Story ] - Content & Translation Pipeline
+##### 30.2.1. [ Task ] - Translation management and fallbacks
+###### 30.2.1.1. [ Subtask ] - Missing-key monitoring; export/import tooling
