@@ -83,12 +83,20 @@ Soulstone is envisioned as a modern spiritual lifestyle brand rooted in India’
 
 ### 2.8 OKRs (Objectives & Key Results)
 
-- **Objective 1**: Launch platform within 3 months of incorporation.
-  - KR1: 10,000 unique visitors and 1,000 sales in Q1.
-- **Objective 2**: Build partner ecosystem.
-  - KR2: Onboard 15+ wellness partners in 6 months.
-- **Objective 3**: Sustain high satisfaction.
-  - KR3: Maintain 90% customer satisfaction with transparent sourcing and quality.
+- Objective 1: Launch platform within 3 months of incorporation.
+  - KR1: 10,000 unique visitors and 1,000 orders in first full quarter.
+  - KR2: Conversion rate ≥ 3.5% and checkout success ≥ 65%.
+  - KR3: P75 page load < 2.0s (web), crash‑free sessions > 99.5% (app).
+
+- Objective 2: Build a high‑trust partner ecosystem.
+  - KR1: Onboard 25 wellness partners by Month 6; 50 by Month 12.
+  - KR2: ≥ 20% of monthly content co‑created with partners.
+  - KR3: Partner NPS ≥ 60 and partner‑attributed revenue ≥ 15% by Month 12.
+
+- Objective 3: Sustain customer satisfaction and retention.
+  - KR1: CSAT ≥ 90; first‑response time ≤ 2 minutes on chat.
+  - KR2: Repeat purchase rate ≥ 30% within 6 months; subscription churn ≤ 3%/mo.
+  - KR3: Product returns ≤ 4% with < 2% defect rate (measured monthly).
 
 ---
 
@@ -113,9 +121,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ### 3.2 IP & Trademark Strategy
 
-- Trademark name “Soulstone” and related logos.
-- All assets owned by Soulstone India LLP.
-- Standard IP assignment clauses in contracts with **12-month protection audits**.
+- Trademarks: word mark “Soulstone”, logomark, and tagline; classes covering jewelry, decor, retail, education content, and mobile apps.
+- Domains & handles: secure `soulstone.in`, `.com` (if available), and social handles; set DNSSEC; brand monitoring.
+- IP ownership: all creative, code, photos, and content assigned to Soulstone India LLP.
+- Contracts: standard IP assignment; work‑for‑hire language; moral rights waivers where enforceable.
+- Enforcement: watch service; takedown SOP; counterfeit monitoring on marketplaces; quarterly audit of misuse.
 
 ### 3.3 Founders’ Agreement
 
@@ -134,9 +144,11 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 ### 3.5 NDAs & Privacy
 
-- 3-year duration, governed by Indian law.
-- Covers sourcing, supplier relationships, and tech stack.
-- Jurisdiction: Bengaluru courts.
+- Duration: 3 years; governing law: India; venue: Bengaluru.
+- Scope: sourcing/vendor info, supply pricing, customer data, roadmaps, security posture.
+- Data handling: classification (Public/Internal/Confidential/Restricted); least‑privilege access; encryption at rest/in transit.
+- Retention: data deletion on request ≤ 7 days; vendor offboarding includes verified deletion; annual privacy review.
+- Incident response: notify within 72 hours of confirmed breach; maintain audit trails and access logs.
 
 ### 3.6 Cap Table
 
