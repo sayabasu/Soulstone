@@ -301,5 +301,220 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
 
 - Site map tiers:
   - Tier 1: Home, Shop, Learn, Community, About, Support.
-  - Tier 2 (Shop): New, By Intention (e.g., Calm, Focus), By Type (Quartz, Obsidian), Sets & Gifts,
+  - Tier 2 (Shop): New, By Intention (e.g., Calm, Focus), By Type (Quartz, Obsidian), By Chakra, Sets & Gifts, Bestsellers, Sale, Collections, Accessories, Care.
+  - Tier 2 (Learn): Guides, Rituals, Crystal Meanings, Sourcing & Ethics, Care & Cleansing, Glossary, FAQs.
+  - Tier 2 (Community): Stories, Events/Workshops, Reviews & UGC, Discussions (v2), Ambassador Program.
+  - Tier 2 (About): Our Story, Sourcing & Certification, Sustainability, Press, Careers, Contact.
+  - Tier 2 (Support): Orders & Shipping, Returns & Refunds, Warranty & Authenticity, Track Order, Help Center, Contact Support.
+
+- Navigation patterns:
+  - Global header with primary categories; sticky utility bar (search, account, cart).
+  - Contextual sub‑nav for Shop and Learn; breadcrumb on PLP/PDP and articles.
+  - Footer: quick links, policies, newsletter, social, certifications.
+
+- Search, filters, sorting:
+  - Facets: Type, Intention, Chakra, Color, Price, Weight/Size, Origin, Material, Availability, Rating.
+  - Sort: Relevance, Newest, Price (low→high, high→low), Popularity, Rating.
+  - Search assist: auto-suggest, synonyms (e.g., Amethyst ↔ Jamunia), fuzzy match, recent searches.
+  - Zero‑results handling with suggested categories and top‑searched intents.
+
+- Taxonomy & tagging:
+  - Core tags: Energy/Intention, Chakra mapping, Stone type, Finish/Cut, Authenticity grade, Certification, Formation, Use‑case (decor, wear, gifting).
+  - Content tags: difficulty (beginner/intermediate), ritual duration, materials needed, safety notes.
+
+- URL structure & canonicals:
+  - Lowercase, kebab‑case; stable slugs; canonical URLs per PDP/Article.
+  - Category pages as static routes; multi‑facet filters via query params; prevent crawl traps.
+  - Consistent trailing‑slash policy; 301 redirects on slug changes; hreflang for `en-IN`/`hi-IN` (v2).
+
+- Content model (PDP blocks):
+  - Hero gallery, price, SKU, dimensions/weight, origin, energy attributes, intention tags, chakra mapping, care instructions, authenticity/certification, shipping & returns, FAQs, UGC, related.
+  - CMS entities: `article`, `ritual`, `collection`, `glossary-term`, `story` with authorship and review date.
+
+- Metadata & accessibility:
+  - Title 50–60 chars; meta description 140–160; OG/Twitter cards; JSON‑LD (Product, Article, FAQ, BreadcrumbList, Organization).
+  - Alt text for all media; semantic landmarks; keyboard focus states; skip links.
+
+- Internal linking & governance:
+  - Learn → PDP deep‑links; PDP → Learn (care/meaning); Collections cross‑link to intents.
+  - IA changes via lightweight RFC; monthly nav review; track search zero‑result rate < 5%.
+
+### 6.5 API Documentation
+
+- Overview:
+  - Style: GraphQL for core app; REST for webhooks/payments/admin.
+  - Base URLs: `https://api.soulstone.in` (prod), `https://staging.api.soulstone.in` (stage).
+  - Auth: `Authorization: Bearer <JWT>`; refresh tokens (30d); short‑lived access tokens (15m).
+  - Roles: anonymous, customer, staff, admin.
+
+- Versioning & stability:
+  - GraphQL: additive changes only in minor; deprecations flagged for ≥2 release cycles.
+  - REST: prefix with `/v1`; breaking changes only in major; sunset headers on deprecations.
+
+- Key operations (GraphQL):
+  - Catalog: `productBySlug(slug)`, `products(filter, sort, first, after)`, `collections`.
+  - Cart: `createCart`, `addCartItem(cartId, sku, qty)`, `updateCartItem`, `removeCartItem`, `cartTotals`.
+  - Checkout: `createOrder(cartId)`, `paymentIntent(orderId, provider)`, `applyCoupon`.
+  - Account: `me`, `orders(first, after)`, `addresses CRUD`, `reviews`.
+  - Subscriptions: `createSubscription`, `pause/resume`, `cancel`, `billingHistory`.
+  - Content: `articles`, `articleBySlug`, `search(query, facets)`.
+
+- REST endpoints (selected):
+  - `POST /v1/auth/login`, `POST /v1/auth/refresh`, `POST /v1/auth/logout`.
+  - `POST /v1/payments/razorpay/intent` → returns `order_id`, amount, currency.
+  - `POST /v1/webhooks/razorpay` (HMAC‑SHA256 signature header) — idempotent, 5 retries (expo backoff).
+  - `POST /v1/webhooks/stripe`, `POST /v1/webhooks/cms`.
+
+- Pagination, filtering, sorting:
+  - Cursor‑based pagination for GraphQL (Relay spec); default `first=20`, max 50.
+  - REST uses `limit` (≤50) and `offset`; `sort` with `-price`, `created_at`.
+
+- Errors & status codes:
+  - Standard shape: `code`, `message`, `field`, `traceId`.
+  - Common: `AUTH_FAILED` (401), `FORBIDDEN` (403), `NOT_FOUND` (404), `OUT_OF_STOCK` (409), `PAYMENT_FAILED` (402), `RATE_LIMITED` (429), `VALIDATION_ERROR` (422).
+
+- Idempotency & retries:
+  - Write ops accept `Idempotency-Key`; safe to retry on 5xx/timeouts; do not retry `422`.
+
+- Caching:
+  - CDN cache GETs 5–15m; `ETag`/`If-None-Match`; GraphQL persisted queries; `Cache-Control: stale-while-revalidate=60` for catalog.
+
+- Security & limits:
+  - Per‑IP: 120 req/min (anon); per‑token: 600 req/min (customer); write ops ≤ 20/min.
+  - JWT signed with RS256; rotate keys 90d; HSTS; strict CORS allowlist; audit logs on admin endpoints.
+
+- Example queries (indicative):
+  - `query { productBySlug(slug: "amethyst-tower") { id name price { amount currency } energyTags images { url alt } } }`
+  - `mutation { addCartItem(cartId: "...", sku: "AMY-001", qty: 2) { cart { id items { sku qty } totals { subtotal grandTotal } } } }`
+
+### 6.7 Frontend & Backend Development Guidelines
+
+- Frontend (Web/App):
+  - Frameworks: Next.js (web), React Native (app); TypeScript everywhere.
+  - Data: GraphQL via Apollo/urql; React Query for REST/utilities; normalize errors.
+  - State: Local context for cart/session; avoid global state unless needed; persist cart in secure storage.
+  - Styling: Design tokens (CSS variables); component library; responsive grid; prefer CSS Modules or Tailwind (one per surface).
+  - Performance budgets: critical JS ≤ 200KB gz (web), image LCP ≤ 2.5s P75; defer non‑critical scripts; lazy‑load media.
+  - Accessibility: WCAG AA; focus management; reduced motion; semantic HTML.
+  - i18n/l10n: `en-IN` v1; `hi-IN` v2 with number/date formats.
+
+- Backend:
+  - Runtime: Node.js LTS, TypeScript; ORM: Prisma; DB: PostgreSQL; Cache: Redis.
+  - Structure: modules → resolvers/controllers → services → repositories; DTO validation with Zod/Yup.
+  - Security: input/output validation; parameterized queries; secrets in AWS Secrets Manager; principle of least privilege.
+  - Observability: JSON logs (pino/winston), trace with OpenTelemetry, metrics (RED/USE), health endpoints and readiness probes.
+  - Background jobs: SQS/SNS or BullMQ for webhooks, email, inventory sync; retries with backoff.
+  - File/media: S3 with presigned URLs; malware scan (v2); image optimization pipeline.
+
+- QA & CI:
+  - Tests: unit (≥80% critical paths), integration (API contracts), e2e smoke for checkout.
+  - Pipelines: lint, type‑check, tests, build; block on coverage; preview env for PRs.
+  - Static analysis: ESLint, Prettier, `tsc --noEmit`, secret scanning, dependency audit.
+
+- Git & releases:
+  - Branching: trunk‑based with short‑lived feature branches; PRs with 1+ reviewer.
+  - Commits: Conventional Commits (`feat:`, `fix:`, `chore:`); semantic versioning.
+  - Feature flags for risky changes; kill‑switch env var.
+
+- Definition of Done (DoD):
+  - Acceptance criteria met; a11y and perf budgets pass; tests/coverage green; logs/metrics dashboards updated; runbook updated; rollback plan documented.
+
+### 6.8 Content & SEO Strategy (for websites)
+
+- Pillars & formats:
+  - Education (crystal meanings, care), Rituals (guided), Sourcing & Ethics, Community Stories, Buying Guides, FAQs, Glossary, Short videos.
+  - Cadence: 2 blog posts/week, 1 video/week, 1 long‑form guide/month, glossary updates monthly.
+
+- Keyword themes (India):
+  - "healing crystals india", "amethyst meaning", "rose quartz benefits", "crystal shop online", "chakra stones", "gemstone authenticity", "crystals for anxiety", brand terms.
+
+- On‑page SEO:
+  - One H1; structured sub‑heads; keyword in title/H1/URL/first 100 words; internal links; alt text; FAQ schema for Q&A content.
+  - Page speed: serve images as AVIF/WebP; lazy‑load; preconnect CDN; Core Web Vitals targets met.
+
+- Technical SEO:
+  - XML sitemaps (web + images); robots.txt; canonical tags; breadcrumb schema; pagination (`rel=next/prev` where applicable).
+  - Hreflang for `en-IN`/`hi-IN` when Hindi launches; 404/410 hygiene.
+
+- Off‑page & distribution:
+  - Digital PR with wellness partners; influencer collabs; UGC campaigns; schema‑rich press releases.
+  - Newsletter, WhatsApp channels (opt‑in), YouTube/Shorts for rituals.
+
+- Editorial governance:
+  - E‑E‑A‑T signals: author bios, last reviewed dates, sources; medical disclaimers where relevant.
+  - Fact‑checking checklist; tone: warm, credible, non‑medical claims; avoid absolutist wording.
+
+- KPIs:
+  - Organic sessions + MoM 10%; top‑20 keywords within 6 months; CTR ≥ 5% for top pages; bounce < 40%; newsletter signups from content ≥ 2% CVR.
+
+### 6.9 App Store / Play Store Launch Checklist
+
+- Pre‑launch QA:
+  - Device matrix (Android 8–14, iOS 15+); network conditions; offline flows; deep links; push notifications; analytics events verified.
+  - Crash‑free sessions ≥ 99.5%; ANR ≤ 0.3%; cold start ≤ 2.5s (mid‑range Android).
+
+- Assets & metadata:
+  - Icons, feature graphics, screenshots (phone/tablet), preview video (optional); localized captions.
+  - App name, subtitle/short description, long description with keywords; categories; content rating.
+
+- Compliance & policies:
+  - Privacy Policy and Terms URLs; data safety (Play) and privacy labels (App Store) accurate.
+  - ATT prompts only if tracking; no prohibited external purchase flows for digital goods (physical goods allowed).
+
+- Distribution & signing:
+  - iOS: Bundle ID, provisioning profiles, certificates, `ipa` via Xcode/App Store Connect; TestFlight internal/external testing.
+  - Android: App Bundle (`.aab`), Play App Signing, internal/closed testing tracks; staged rollout (10% → 50% → 100%).
+
+- Review notes & support:
+  - Provide test credentials, demo payment flow notes, contact email; set up support links and FAQ.
+
+- Post‑launch:
+  - Monitor crashes/ANR, reviews, conversion; store listing experiments; ASA/UAC campaigns; rapid hotfix pipeline.
+
+### 6.10 Web Hosting & Deployment Plans
+
+- Reference architecture (AWS):
+  - Web (Next.js): static assets on S3 + CloudFront; SSR via Lambda@Edge or AWS Amplify (v1), image optimization via Lambda/CloudFront.
+  - API (Node/GraphQL): ECS Fargate or EKS; ALB; auto‑scaling on CPU/RPS; WAF in front of CloudFront/ALB.
+  - Data: Amazon RDS (PostgreSQL, Multi‑AZ), ElastiCache (Redis), S3 (media), OpenSearch (logs/analytics, optional).
+  - Networking: VPC with public/private subnets; NAT Gateways; SG least privilege; Secrets Manager/SSM Parameter Store.
+
+- Environments:
+  - `dev`, `staging`, `prod` with isolated accounts; separate VPCs; per‑env DB and caches; feature flags for toggles.
+
+- CI/CD:
+  - GitHub Actions: build → test → scan → package → deploy; infra via Terraform; zero‑downtime deploys (blue/green or canary).
+  - DB migrations gated; pre‑deploy smoke tests; automatic rollback on health check failure or error budget breach.
+
+- Reliability & DR:
+  - SLO: 99.9% uptime; RPO 15m, RTO 60m; automated snapshots; cross‑region read replica (v2); Route 53 health checks for failover.
+  - Backups verified monthly; runbook for incident management (SEV0–SEV3) with on‑call rotation.
+
+- Observability & security:
+  - Centralized logs (CloudWatch → OpenSearch), tracing (X-Ray/OpenTelemetry), metrics/dashboards; alerting on SLOs, error spikes, latency, saturation.
+  - WAF rules (bot, SQLi, XSS), rate limiting, CSP/HTTPS only, HSTS, regular pen‑tests.
+
+### 6.11 Maintenance & Update Logs
+
+- Cadence & ownership:
+  - Web weekly releases; app bi‑weekly; hotfix anytime; rotating release captain; on‑call SRE.
+
+- Routine maintenance:
+  - Dependency updates (weekly), security patches (asap), DB vacuum/analyze (weekly), index tuning (monthly), backup restore drills (quarterly), CDN cache hygiene (weekly).
+
+- Monitoring & SLOs:
+  - Error budget policy; SEV0 page immediately; initial response ≤ 15m (SEV0/1), ≤ 2h (SEV2), ≤ 1bd (SEV3).
+
+- Change log template:
+  - `[YYYY‑MM‑DD] vX.Y.Z`
+  - Added — new features
+  - Changed — behavior updates
+  - Fixed — bug fixes
+  - Deprecated/Removed — with migration notes
+  - Security — CVEs, patches applied
+  - Known Issues — impact/workarounds
+
+- Example entries (illustrative):
+  - `[2026‑04‑10] v0.9.0` — Added subscriptions MVP; improved PDP performance; fixed address validation; applied OpenSSL patch.
+  - `[2026‑05‑02] v1.0.0` — Public launch; added Learn hub; enabled Razorpay live; tuned cache TTLs; runbooks finalized.
 
