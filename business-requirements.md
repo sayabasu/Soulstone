@@ -22,7 +22,7 @@ Acceptance Criteria:
 
 ### 1.1. [ User Story ] - Monorepo and Tooling Setup
 #### 1.1.1. [ Task ] - Initialize monorepo (pnpm or yarn workspaces)
-**1.1.1.1. [ Subtask ] - Create structure: apps/api, apps/web, packages/ui, packages/config, packages/tsconfig, packages/eslint-config, infra/terraform, ops/**
+**1.1.1.1. [ Subtask ] - Create structure: apps/api, apps/web, packages/ui, packages/config, packages/tsconfig, packages/eslint-config, infra/terraform, ops**
 
 **1.1.1.2. [ Subtask ] - Configure workspace root package.json with scripts (build, dev, test, lint, format)**
 
