@@ -71,6 +71,28 @@ resource "aws_iam_role" "task" {
   })
 }
 
+resource "aws_iam_role" "codedeploy" {
+  name = "${var.name}-${var.environment}-codedeploy"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = { Service = "codedeploy.amazonaws.com" }
+    }]
+  })
+
+  tags = merge(var.tags, {
+    Environment = var.environment
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "codedeploy" {
+  role       = aws_iam_role.codedeploy.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRoleForECS"
+}
+
 resource "aws_security_group" "alb" {
   name        = "${var.name}-${var.environment}-alb"
   description = "ALB security group"
@@ -80,6 +102,14 @@ resource "aws_security_group" "alb" {
     description = "HTTPS"
     from_port   = 443
     to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Blue/green canary"
+    from_port   = 9001
+    to_port     = 9002
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -143,8 +173,8 @@ resource "aws_lb" "this" {
   })
 }
 
-resource "aws_lb_target_group" "api" {
-  name        = "${var.name}-${var.environment}-api"
+resource "aws_lb_target_group" "api_blue" {
+  name        = "${var.name}-${var.environment}-api-blue"
   port        = var.api_container_port
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -162,11 +192,35 @@ resource "aws_lb_target_group" "api" {
   tags = merge(var.tags, {
     Environment = var.environment
     Service     = "api"
+    Variant     = "blue"
   })
 }
 
-resource "aws_lb_target_group" "web" {
-  name        = "${var.name}-${var.environment}-web"
+resource "aws_lb_target_group" "api_green" {
+  name        = "${var.name}-${var.environment}-api-green"
+  port        = var.api_container_port
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+    interval            = 30
+    timeout             = 5
+    matcher             = "200-399"
+    path                = var.api_healthcheck_path
+  }
+
+  tags = merge(var.tags, {
+    Environment = var.environment
+    Service     = "api"
+    Variant     = "green"
+  })
+}
+
+resource "aws_lb_target_group" "web_blue" {
+  name        = "${var.name}-${var.environment}-web-blue"
   port        = var.web_container_port
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -184,6 +238,30 @@ resource "aws_lb_target_group" "web" {
   tags = merge(var.tags, {
     Environment = var.environment
     Service     = "web"
+    Variant     = "blue"
+  })
+}
+
+resource "aws_lb_target_group" "web_green" {
+  name        = "${var.name}-${var.environment}-web-green"
+  port        = var.web_container_port
+  protocol    = "HTTP"
+  vpc_id      = var.vpc_id
+  target_type = "ip"
+
+  health_check {
+    healthy_threshold   = 3
+    unhealthy_threshold = 3
+    interval            = 30
+    timeout             = 5
+    matcher             = "200-399"
+    path                = var.web_healthcheck_path
+  }
+
+  tags = merge(var.tags, {
+    Environment = var.environment
+    Service     = "web"
+    Variant     = "green"
   })
 }
 
@@ -212,7 +290,7 @@ resource "aws_lb_listener" "https" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.web.arn
+    target_group_arn = aws_lb_target_group.web_blue.arn
   }
 }
 
@@ -222,13 +300,35 @@ resource "aws_lb_listener_rule" "api" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.api.arn
+    target_group_arn = aws_lb_target_group.api_blue.arn
   }
 
   condition {
     path_pattern {
       values = var.api_listener_paths
     }
+  }
+}
+
+resource "aws_lb_listener" "api_test" {
+  load_balancer_arn = aws_lb.this.arn
+  port              = 9001
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.api_blue.arn
+  }
+}
+
+resource "aws_lb_listener" "web_test" {
+  load_balancer_arn = aws_lb.this.arn
+  port              = 9002
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.web_blue.arn
   }
 }
 
@@ -345,6 +445,10 @@ resource "aws_ecs_service" "api" {
   launch_type     = "FARGATE"
   propagate_tags  = "SERVICE"
 
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
+
   network_configuration {
     subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.services["api"].id]
@@ -352,7 +456,7 @@ resource "aws_ecs_service" "api" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.api.arn
+    target_group_arn = aws_lb_target_group.api_blue.arn
     container_name   = "api"
     container_port   = var.api_container_port
   }
@@ -372,6 +476,10 @@ resource "aws_ecs_service" "web" {
   launch_type     = "FARGATE"
   propagate_tags  = "SERVICE"
 
+  deployment_controller {
+    type = "CODE_DEPLOY"
+  }
+
   network_configuration {
     subnets         = var.private_subnet_ids
     security_groups = [aws_security_group.services["web"].id]
@@ -379,7 +487,7 @@ resource "aws_ecs_service" "web" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.web.arn
+    target_group_arn = aws_lb_target_group.web_blue.arn
     container_name   = "web"
     container_port   = var.web_container_port
   }
@@ -389,6 +497,142 @@ resource "aws_ecs_service" "web" {
   }
 
   depends_on = [aws_lb_listener.https]
+}
+
+resource "aws_codedeploy_app" "api" {
+  name             = "${var.name}-${var.environment}-api"
+  compute_platform = "ECS"
+}
+
+resource "aws_codedeploy_app" "web" {
+  name             = "${var.name}-${var.environment}-web"
+  compute_platform = "ECS"
+}
+
+resource "aws_codedeploy_deployment_group" "api" {
+  app_name              = aws_codedeploy_app.api.name
+  deployment_group_name = "${var.name}-${var.environment}-api"
+  service_role_arn      = aws_iam_role.codedeploy.arn
+
+  auto_rollback_configuration {
+    enabled = true
+    events  = ["DEPLOYMENT_FAILURE", "DEPLOYMENT_STOP_ON_ALARM"]
+  }
+
+  deployment_style {
+    deployment_option = "WITH_TRAFFIC_CONTROL"
+    deployment_type   = "BLUE_GREEN"
+  }
+
+  blue_green_deployment_config {
+    deployment_ready_option {
+      action_on_timeout = "STOP_DEPLOYMENT"
+      wait_time_in_minutes = var.deployment_ready_wait_time_minutes
+    }
+
+    terminate_blue_instances_on_deployment_success {
+      action = "TERMINATE"
+      termination_wait_time_in_minutes = var.green_termination_wait_time_minutes
+    }
+  }
+
+  ecs_service {
+    cluster_name = aws_ecs_cluster.this.name
+    service_name = aws_ecs_service.api.name
+  }
+
+  load_balancer_info {
+    target_group_pair_info {
+      prod_target_group {
+        name = aws_lb_target_group.api_blue.name
+      }
+
+      test_target_group {
+        name = aws_lb_target_group.api_green.name
+      }
+
+      prod_traffic_route {
+        listener_arns = [aws_lb_listener.https.arn]
+      }
+
+      test_traffic_route {
+        listener_arns = [aws_lb_listener.api_test.arn]
+      }
+    }
+  }
+
+  dynamic "alarm_configuration" {
+    for_each = length(var.codedeploy_alarm_names) > 0 ? [1] : []
+    content {
+      enabled = true
+      alarms  = var.codedeploy_alarm_names
+    }
+  }
+
+  depends_on = [aws_ecs_service.api]
+}
+
+resource "aws_codedeploy_deployment_group" "web" {
+  app_name              = aws_codedeploy_app.web.name
+  deployment_group_name = "${var.name}-${var.environment}-web"
+  service_role_arn      = aws_iam_role.codedeploy.arn
+
+  auto_rollback_configuration {
+    enabled = true
+    events  = ["DEPLOYMENT_FAILURE", "DEPLOYMENT_STOP_ON_ALARM"]
+  }
+
+  deployment_style {
+    deployment_option = "WITH_TRAFFIC_CONTROL"
+    deployment_type   = "BLUE_GREEN"
+  }
+
+  blue_green_deployment_config {
+    deployment_ready_option {
+      action_on_timeout    = "STOP_DEPLOYMENT"
+      wait_time_in_minutes = var.deployment_ready_wait_time_minutes
+    }
+
+    terminate_blue_instances_on_deployment_success {
+      action = "TERMINATE"
+      termination_wait_time_in_minutes = var.green_termination_wait_time_minutes
+    }
+  }
+
+  ecs_service {
+    cluster_name = aws_ecs_cluster.this.name
+    service_name = aws_ecs_service.web.name
+  }
+
+  load_balancer_info {
+    target_group_pair_info {
+      prod_target_group {
+        name = aws_lb_target_group.web_blue.name
+      }
+
+      test_target_group {
+        name = aws_lb_target_group.web_green.name
+      }
+
+      prod_traffic_route {
+        listener_arns = [aws_lb_listener.https.arn]
+      }
+
+      test_traffic_route {
+        listener_arns = [aws_lb_listener.web_test.arn]
+      }
+    }
+  }
+
+  dynamic "alarm_configuration" {
+    for_each = length(var.codedeploy_alarm_names) > 0 ? [1] : []
+    content {
+      enabled = true
+      alarms  = var.codedeploy_alarm_names
+    }
+  }
+
+  depends_on = [aws_ecs_service.web]
 }
 
 output "cluster_name" {

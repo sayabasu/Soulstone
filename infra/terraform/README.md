@@ -13,5 +13,6 @@ This directory now contains reusable Terraform modules and example environment c
 - `modules/secrets` – Secrets Manager + SSM parameter scaffolding with IAM access policy.
 - `modules/observability` – CloudWatch log groups, metric filters, SNS alerting fan-out.
 - `environments/dev` – Opinionated composition of the modules to stand up the dev footprint.
+- `environments/preview` – Parameterised stack that provisions per-PR preview infrastructure using the shared modules.
 
 Refer to `docs/onboarding.md` for instructions on authenticating to AWS before running Terraform commands.

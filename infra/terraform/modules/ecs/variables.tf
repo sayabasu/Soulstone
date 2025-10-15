@@ -169,3 +169,21 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "codedeploy_alarm_names" {
+  description = "CloudWatch alarms that trigger automatic CodeDeploy rollbacks"
+  type        = list(string)
+  default     = []
+}
+
+variable "deployment_ready_wait_time_minutes" {
+  description = "Minutes CodeDeploy waits for external validations (like migrations) before shifting traffic"
+  type        = number
+  default     = 15
+}
+
+variable "green_termination_wait_time_minutes" {
+  description = "Minutes to wait before terminating the blue tasks after a successful deployment"
+  type        = number
+  default     = 5
+}
