@@ -6,7 +6,11 @@ const parseAllowedOrigins = (value) => {
   if (!value) {
     return [];
   }
-  return value.split(',').map((origin) => origin.trim());
+
+  return value
+    .split(/,|\n/)
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 };
 
 export const loadConfig = () => ({

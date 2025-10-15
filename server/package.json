@@ -10,7 +10,7 @@
     "prestart": "npm run prisma:generate",
     "prisma:generate": "prisma generate",
     "lint": "eslint \"src/**/*.js\"",
-    "test": "jest"
+    "test": "node --experimental-vm-modules ../node_modules/jest/bin/jest.js"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
