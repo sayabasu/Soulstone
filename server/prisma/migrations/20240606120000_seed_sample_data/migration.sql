@@ -1,5 +1,58 @@
--- Seed initial application data for development and testing.
--- Adds one user per available role and a small variety of catalog products.
+
+-- Initial schema creation ----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS "User" (
+  "id"           TEXT      NOT NULL,
+  "name"         TEXT      NOT NULL,
+  "email"        TEXT      NOT NULL,
+  "passwordHash" TEXT      NOT NULL,
+  "role"         TEXT      NOT NULL DEFAULT 'customer',
+  "createdAt"    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt"    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS "User_email_key" ON "User" ("email");
+
+CREATE TABLE IF NOT EXISTS "Product" (
+  "id"          TEXT      NOT NULL,
+  "name"        TEXT      NOT NULL,
+  "description" TEXT      NOT NULL,
+  "price"       DECIMAL(10, 2) NOT NULL,
+  "imageUrl"    TEXT      NOT NULL,
+  "tags"        TEXT[]    NOT NULL,
+  "isPublished" BOOLEAN   NOT NULL DEFAULT FALSE,
+  "createdAt"   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt"   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+);
+
+CREATE TABLE IF NOT EXISTS "Order" (
+  "id"        TEXT      NOT NULL,
+  "userId"    TEXT      NOT NULL,
+  "status"    TEXT      NOT NULL DEFAULT 'pending',
+  "total"     DECIMAL(10, 2) NOT NULL,
+  "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "Order_pkey" PRIMARY KEY ("id"),
+  CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS "Order_userId_idx" ON "Order" ("userId");
+
+CREATE TABLE IF NOT EXISTS "OrderItem" (
+  "id"        TEXT      NOT NULL,
+  "orderId"   TEXT      NOT NULL,
+  "productId" TEXT      NOT NULL,
+  "quantity"  INTEGER   NOT NULL,
+  "price"     DECIMAL(10, 2) NOT NULL,
+  CONSTRAINT "OrderItem_pkey" PRIMARY KEY ("id"),
+  CONSTRAINT "OrderItem_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order"("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT "OrderItem_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS "OrderItem_orderId_idx" ON "OrderItem" ("orderId");
+CREATE INDEX IF NOT EXISTS "OrderItem_productId_idx" ON "OrderItem" ("productId");
 
 INSERT INTO "User" ("id", "name", "email", "passwordHash", "role")
 VALUES
