@@ -49,6 +49,7 @@ const envSchema = z.object({
   CIRCUIT_BREAKER_FAILURE_THRESHOLD: z.coerce.number().int().min(1).default(5),
   CIRCUIT_BREAKER_RECOVERY_MS: z.coerce.number().int().min(1000).default(30_000),
   PRIVACY_EXPORT_SLA_DAYS: z.coerce.number().int().min(1).max(7).default(7),
+  RISK_REVIEW_SLA_HOURS: z.coerce.number().int().min(1).max(72).default(24),
 });
 
 export type AppEnv = z.infer<typeof envSchema>;

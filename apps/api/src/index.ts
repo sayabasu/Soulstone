@@ -12,6 +12,12 @@ import {
 } from './pen-test';
 import { DataRightsService, dataRightsRequestSchema } from './privacy';
 import {
+  ManualReviewQueue,
+  RiskScoringService,
+  riskEvaluationSchema,
+  type ManualReviewStatus,
+} from './risk';
+import {
   CircuitBreaker,
   createCorsMiddleware,
   createHelmetMiddleware,
@@ -48,6 +54,8 @@ export interface ApiServices {
   penTestWorkflow: PenTestWorkflow;
   auditLogRepository: AuditLogRepository;
   circuitBreaker: CircuitBreaker;
+  riskScoringService: RiskScoringService;
+  manualReviewQueue: ManualReviewQueue;
 }
 
 export const createServices = (): ApiServices => {
@@ -56,6 +64,8 @@ export const createServices = (): ApiServices => {
   const consentService = new ConsentService(auditLogRepository);
   const dataRightsService = new DataRightsService(auditLogRepository, env.PRIVACY_EXPORT_SLA_DAYS);
   const penTestWorkflow = new PenTestWorkflow(auditLogRepository);
+  const manualReviewQueue = new ManualReviewQueue(auditLogRepository, env.RISK_REVIEW_SLA_HOURS);
+  const riskScoringService = new RiskScoringService(auditLogRepository, manualReviewQueue);
   const circuitBreaker = new CircuitBreaker({
     failureThreshold: env.CIRCUIT_BREAKER_FAILURE_THRESHOLD,
     recoveryTimeMs: env.CIRCUIT_BREAKER_RECOVERY_MS,
@@ -67,6 +77,8 @@ export const createServices = (): ApiServices => {
     dataRightsService,
     penTestWorkflow,
     circuitBreaker,
+    riskScoringService,
+    manualReviewQueue,
   };
 };
 
@@ -212,6 +224,81 @@ export const createApp = (services = createServices()) => {
 
     response.json({ findings });
   });
+
+  app.post(
+    '/v1/risk/evaluations',
+    sensitiveLimiter,
+    ensureJsonContent,
+    async (request: Request, response: Response, next: NextFunction) => {
+      try {
+        const payload = riskEvaluationSchema.parse(request.body);
+        const result = await services.riskScoringService.evaluate(payload);
+        response.status(201).json(result);
+      } catch (error) {
+        next(error);
+      }
+    },
+  );
+
+  app.get('/v1/risk/evaluations', (request: Request, response: Response) => {
+    const filterSchema = z
+      .object({
+        riskLevel: z.enum(['low', 'medium', 'high', 'critical']).optional(),
+        action: z.enum(['allow', 'manual_review', 'hold', 'cancel']).optional(),
+      })
+      .partial();
+
+    const filter = filterSchema.safeParse(request.query);
+    const assessments = services.riskScoringService.listAssessments(
+      filter.success
+        ? {
+            riskLevel: filter.data.riskLevel,
+            action: filter.data.action,
+          }
+        : undefined,
+    );
+
+    response.json({ assessments });
+  });
+
+  app.get('/v1/risk/reviews', (request: Request, response: Response) => {
+    const statusSchema = z
+      .object({
+        status: z.enum(['pending', 'resolved']).optional(),
+      })
+      .partial();
+
+    const parsed = statusSchema.safeParse(request.query);
+    const statusFilter = parsed.success
+      ? (parsed.data.status as ManualReviewStatus | undefined)
+      : undefined;
+    const items = services.manualReviewQueue.list(statusFilter);
+
+    response.json({
+      reviews: items.map((item) => ({
+        ...item,
+        slaBreached: item.status === 'pending' && item.dueAt.getTime() < Date.now(),
+      })),
+    });
+  });
+
+  app.post(
+    '/v1/risk/reviews/:id/decision',
+    sensitiveLimiter,
+    ensureJsonContent,
+    async (request: Request, response: Response, next: NextFunction) => {
+      try {
+        const decision = request.body;
+        const record = await services.manualReviewQueue.recordDecision(request.params.id, decision);
+        response.json({
+          ...record,
+          slaBreached: record.status === 'pending' && record.dueAt.getTime() < Date.now(),
+        });
+      } catch (error) {
+        next(error);
+      }
+    },
+  );
 
   app.use((error: unknown, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof ZodError) {
