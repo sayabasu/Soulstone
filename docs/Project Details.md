@@ -524,6 +524,7 @@ This phased legal timeline aligns closely with Soulstone’s MVP and funding mil
   - REST: prefix with `/v1`; breaking changes only in major; sunset headers on deprecations.
 
 - Key operations (GraphQL):
+  - Currently implemented: `productBySlug`, `products` (cursor-based connection with filtering/sorting), and `collections` (tag-derived summaries for catalog navigation).
   - Catalog: `productBySlug(slug)`, `products(filter, sort, first, after)`, `collections`.
   - Cart: `createCart`, `addCartItem(cartId, sku, qty)`, `updateCartItem`, `removeCartItem`, `cartTotals`.
   - Checkout: `createOrder(cartId)`, `paymentIntent(orderId, provider)`, `applyCoupon`.

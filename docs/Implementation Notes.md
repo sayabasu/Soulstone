@@ -7,6 +7,7 @@
 
 ## Backend
 - Express API under `server/` with modular structure that mirrors frontend features (auth, catalog).
+- Apollo GraphQL endpoint exposed at `/graphql` offering product connections, slug lookups, and derived collections for the catalog domain.
 - Prisma schema defines `User`, `Product`, `Order`, and `OrderItem` models for Postgres.
 - Request logging via Morgan + Winston; centralized error handling.
 - Swagger docs exposed at `/api-docs`.
