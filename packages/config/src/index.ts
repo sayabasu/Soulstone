@@ -1,16 +1,31 @@
 import { config as loadEnv } from 'dotenv-safe';
+import fs from 'node:fs';
 import path from 'node:path';
 import { z } from 'zod';
 
 const NODE_ENV = (process.env.NODE_ENV ?? 'development') as string;
-const envFileName =
-  NODE_ENV === 'test' ? '.env.test' : NODE_ENV === 'production' ? '.env' : '.env.dev';
 const rootDir = process.cwd();
+
+const envFileCandidates = (() => {
+  if (NODE_ENV === 'development') {
+    return ['.env.local', '.env.dev'];
+  }
+
+  if (NODE_ENV === 'test') {
+    return ['.env.test'];
+  }
+
+  return ['.env'];
+})();
+
+const envFilePath = envFileCandidates
+  .map((fileName) => path.join(rootDir, fileName))
+  .find((candidatePath) => fs.existsSync(candidatePath));
 
 loadEnv({
   allowEmptyValues: true,
   example: path.join(rootDir, '.env.example'),
-  path: path.join(rootDir, envFileName),
+  ...(envFilePath ? { path: envFilePath } : {}),
 });
 
 const envSchema = z.object({
