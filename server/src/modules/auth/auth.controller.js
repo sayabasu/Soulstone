@@ -9,7 +9,7 @@ export const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const user = await registerUser({ name, email, password });
-    const { passwordHash, ...safeUser } = user;
+    const { passwordHash: _passwordHash, ...safeUser } = user;
     res.status(201).json(safeUser);
   } catch (error) {
     next(error);
