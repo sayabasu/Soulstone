@@ -59,6 +59,7 @@ const swaggerDocument = {
         properties: {
           id: { type: 'string' },
           name: { type: 'string' },
+          slug: { type: 'string' },
           price: { type: 'number' },
           description: { type: 'string' },
           imageUrl: { type: 'string' },
