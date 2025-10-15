@@ -8,7 +8,11 @@ services:
     ports:
       - '${PORT:-4000}:4000'
     env_file:
-      - .env.example
+      - path: .env.example
+      - path: .env
+        required: false
+    environment:
+      ENV_FILE_USED: '${ENV_FILE_USED:-.env.example}'
 
   client:
     build:
@@ -16,5 +20,11 @@ services:
       dockerfile: client/Dockerfile
     depends_on:
       - server
+    env_file:
+      - path: .env.example
+      - path: .env
+        required: false
+    environment:
+      ENV_FILE_USED: '${ENV_FILE_USED:-.env.example}'
     ports:
       - '${CLIENT_PORT:-5173}:5173'

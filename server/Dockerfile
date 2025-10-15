@@ -12,6 +12,7 @@ RUN npm install
 
 # Copy application source
 COPY server/. ./
+COPY .env.example ./
 
 EXPOSE 4000
 
