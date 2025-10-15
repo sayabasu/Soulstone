@@ -244,5 +244,24 @@ export const bootstrap = () => {
 };
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  bootstrap();
+  const server = bootstrap();
+  const shutdown = (signal: NodeJS.Signals) => {
+    // eslint-disable-next-line no-console
+    console.log(`Received ${signal}. Shutting down API server.`);
+
+    server.close(() => {
+      // eslint-disable-next-line no-console
+      console.log('API server shut down gracefully.');
+      process.exit(0);
+    });
+
+    setTimeout(() => {
+      // eslint-disable-next-line no-console
+      console.error('Graceful shutdown timed out. Forcing exit.');
+      process.exit(1);
+    }, 10_000).unref();
+  };
+
+  process.once('SIGTERM', shutdown);
+  process.once('SIGINT', shutdown);
 }

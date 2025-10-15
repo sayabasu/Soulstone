@@ -65,7 +65,8 @@ export const createRateLimiter = (options: RateLimiterOptions = {}) =>
       error: options.message ?? 'Too many requests. Please retry shortly.',
     },
     keyGenerator: (request) => {
-      const apiKey = request.header('x-api-key');
+      const apiKeyHeader = request.header('x-api-key');
+      const apiKey = Array.isArray(apiKeyHeader) ? apiKeyHeader[0] : apiKeyHeader;
       return apiKey ?? request.ip;
     },
   });

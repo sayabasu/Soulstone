@@ -1,0 +1,14 @@
+# General
+.git
+.gitignore
+node_modules
+pnpm-store
+*.log
+
+# Build outputs
+**/dist
+**/.turbo
+**/.next
+
+# Local environment files
+.env*
