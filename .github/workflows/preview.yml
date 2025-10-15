@@ -1,0 +1,215 @@
+name: Preview Environments
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-images:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    outputs:
+      api_image_uri: ${{ steps.push_api.outputs.image_uri }}
+      web_image_uri: ${{ steps.push_web.outputs.image_uri }}
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      API_ECR_REPOSITORY: ${{ vars.API_ECR_REPOSITORY }}
+      WEB_ECR_REPOSITORY: ${{ vars.WEB_ECR_REPOSITORY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_PREVIEW_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push API preview image
+        id: push_api
+        env:
+          IMAGE_TAG: pr-${{ github.event.pull_request.number }}-${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker build -t "${API_ECR_REPOSITORY}:${IMAGE_TAG}" -f apps/api/Dockerfile .
+          docker push "${API_ECR_REPOSITORY}:${IMAGE_TAG}"
+          echo "image_uri=${API_ECR_REPOSITORY}:${IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push Web preview image
+        id: push_web
+        env:
+          IMAGE_TAG: pr-${{ github.event.pull_request.number }}-${{ github.sha }}
+        run: |
+          set -euo pipefail
+          docker build -t "${WEB_ECR_REPOSITORY}:${IMAGE_TAG}" -f apps/web/Dockerfile .
+          docker push "${WEB_ECR_REPOSITORY}:${IMAGE_TAG}"
+          echo "image_uri=${WEB_ECR_REPOSITORY}:${IMAGE_TAG}" >> "$GITHUB_OUTPUT"
+
+  provision-preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    needs: build-images
+    environment: preview
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      TF_BACKEND_BUCKET: ${{ vars.PREVIEW_STATE_BUCKET }}
+      TF_BACKEND_KEY_PREFIX: ${{ vars.PREVIEW_STATE_KEY_PREFIX }}
+      TF_BACKEND_DYNAMODB_TABLE: ${{ vars.PREVIEW_STATE_LOCK_TABLE }}
+      TF_VAR_project: ${{ vars.PROJECT_NAME }}
+      TF_VAR_region: ${{ vars.AWS_REGION }}
+      TF_VAR_pr_number: ${{ github.event.pull_request.number }}
+      TF_VAR_vpc_cidr: ${{ vars.PREVIEW_VPC_CIDR }}
+      TF_VAR_public_subnet_cidrs: ${{ vars.PREVIEW_PUBLIC_SUBNET_CIDRS }}
+      TF_VAR_private_subnet_cidrs: ${{ vars.PREVIEW_PRIVATE_SUBNET_CIDRS }}
+      TF_VAR_availability_zones: ${{ vars.PREVIEW_AVAILABILITY_ZONES }}
+      TF_VAR_default_tags: ${{ vars.DEFAULT_TAGS_JSON }}
+      TF_VAR_log_retention_days: ${{ vars.PREVIEW_LOG_RETENTION_DAYS }}
+      TF_VAR_alert_webhook_endpoint: ${{ vars.PREVIEW_ALERT_WEBHOOK_ENDPOINT }}
+      TF_VAR_alert_email_addresses: ${{ vars.PREVIEW_ALERT_EMAILS }}
+      TF_VAR_alb_certificate_arn: ${{ vars.PREVIEW_ALB_CERTIFICATE_ARN }}
+      TF_VAR_api_container_port: ${{ vars.API_CONTAINER_PORT }}
+      TF_VAR_web_container_port: ${{ vars.WEB_CONTAINER_PORT }}
+      TF_VAR_api_healthcheck_path: ${{ vars.API_HEALTHCHECK_PATH }}
+      TF_VAR_web_healthcheck_path: ${{ vars.WEB_HEALTHCHECK_PATH }}
+      TF_VAR_api_cpu: ${{ vars.API_CPU }}
+      TF_VAR_api_memory: ${{ vars.API_MEMORY }}
+      TF_VAR_web_cpu: ${{ vars.WEB_CPU }}
+      TF_VAR_web_memory: ${{ vars.WEB_MEMORY }}
+      TF_VAR_api_desired_count: ${{ vars.PREVIEW_API_DESIRED_COUNT }}
+      TF_VAR_web_desired_count: ${{ vars.PREVIEW_WEB_DESIRED_COUNT }}
+      TF_VAR_api_secrets: ${{ vars.PREVIEW_API_SECRETS_JSON }}
+      TF_VAR_web_secrets: ${{ vars.PREVIEW_WEB_SECRETS_JSON }}
+      TF_VAR_shared_environment: ${{ vars.PREVIEW_SHARED_ENV_JSON }}
+      TF_VAR_api_environment: ${{ vars.PREVIEW_API_ENV_JSON }}
+      TF_VAR_web_environment: ${{ vars.PREVIEW_WEB_ENV_JSON }}
+      TF_VAR_api_listener_paths: ${{ vars.API_LISTENER_PATHS }}
+      TF_VAR_codedeploy_alarm_names: ${{ vars.PREVIEW_CODEDEPLOY_ALARMS }}
+      TF_VAR_deployment_ready_wait_time_minutes: ${{ vars.PREVIEW_DEPLOYMENT_WAIT_MINUTES }}
+      TF_VAR_green_termination_wait_time_minutes: ${{ vars.PREVIEW_TERMINATION_WAIT_MINUTES }}
+      TF_VAR_api_image: ${{ needs.build-images.outputs.api_image_uri }}
+      TF_VAR_web_image: ${{ needs.build-images.outputs.web_image_uri }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_PREVIEW_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.7.5
+
+      - name: Initialise Terraform
+        working-directory: infra/terraform/environments/preview
+        run: |
+          set -euo pipefail
+          BACKEND_ARGS=()
+          if [[ -n "${TF_BACKEND_BUCKET}" ]]; then
+            BACKEND_ARGS+=("-backend-config=bucket=${TF_BACKEND_BUCKET}")
+          fi
+          if [[ -n "${TF_BACKEND_KEY_PREFIX}" ]]; then
+            BACKEND_ARGS+=("-backend-config=key=${TF_BACKEND_KEY_PREFIX}/pr-${TF_VAR_pr_number}.tfstate")
+          fi
+          if [[ -n "${TF_BACKEND_DYNAMODB_TABLE}" ]]; then
+            BACKEND_ARGS+=("-backend-config=dynamodb_table=${TF_BACKEND_DYNAMODB_TABLE}")
+          fi
+          terraform init "${BACKEND_ARGS[@]}"
+
+      - name: Apply preview environment
+        working-directory: infra/terraform/environments/preview
+        run: |
+          set -euo pipefail
+          terraform apply -auto-approve
+
+  destroy-preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+      TF_BACKEND_BUCKET: ${{ vars.PREVIEW_STATE_BUCKET }}
+      TF_BACKEND_KEY_PREFIX: ${{ vars.PREVIEW_STATE_KEY_PREFIX }}
+      TF_BACKEND_DYNAMODB_TABLE: ${{ vars.PREVIEW_STATE_LOCK_TABLE }}
+      TF_VAR_project: ${{ vars.PROJECT_NAME }}
+      TF_VAR_region: ${{ vars.AWS_REGION }}
+      TF_VAR_pr_number: ${{ github.event.pull_request.number }}
+      TF_VAR_vpc_cidr: ${{ vars.PREVIEW_VPC_CIDR }}
+      TF_VAR_public_subnet_cidrs: ${{ vars.PREVIEW_PUBLIC_SUBNET_CIDRS }}
+      TF_VAR_private_subnet_cidrs: ${{ vars.PREVIEW_PRIVATE_SUBNET_CIDRS }}
+      TF_VAR_availability_zones: ${{ vars.PREVIEW_AVAILABILITY_ZONES }}
+      TF_VAR_default_tags: ${{ vars.DEFAULT_TAGS_JSON }}
+      TF_VAR_log_retention_days: ${{ vars.PREVIEW_LOG_RETENTION_DAYS }}
+      TF_VAR_alert_webhook_endpoint: ${{ vars.PREVIEW_ALERT_WEBHOOK_ENDPOINT }}
+      TF_VAR_alert_email_addresses: ${{ vars.PREVIEW_ALERT_EMAILS }}
+      TF_VAR_alb_certificate_arn: ${{ vars.PREVIEW_ALB_CERTIFICATE_ARN }}
+      TF_VAR_api_image: ${{ vars.PREVIEW_FALLBACK_API_IMAGE }}
+      TF_VAR_web_image: ${{ vars.PREVIEW_FALLBACK_WEB_IMAGE }}
+      TF_VAR_api_container_port: ${{ vars.API_CONTAINER_PORT }}
+      TF_VAR_web_container_port: ${{ vars.WEB_CONTAINER_PORT }}
+      TF_VAR_api_healthcheck_path: ${{ vars.API_HEALTHCHECK_PATH }}
+      TF_VAR_web_healthcheck_path: ${{ vars.WEB_HEALTHCHECK_PATH }}
+      TF_VAR_api_cpu: ${{ vars.API_CPU }}
+      TF_VAR_api_memory: ${{ vars.API_MEMORY }}
+      TF_VAR_web_cpu: ${{ vars.WEB_CPU }}
+      TF_VAR_web_memory: ${{ vars.WEB_MEMORY }}
+      TF_VAR_api_desired_count: ${{ vars.PREVIEW_API_DESIRED_COUNT }}
+      TF_VAR_web_desired_count: ${{ vars.PREVIEW_WEB_DESIRED_COUNT }}
+      TF_VAR_api_secrets: ${{ vars.PREVIEW_API_SECRETS_JSON }}
+      TF_VAR_web_secrets: ${{ vars.PREVIEW_WEB_SECRETS_JSON }}
+      TF_VAR_shared_environment: ${{ vars.PREVIEW_SHARED_ENV_JSON }}
+      TF_VAR_api_environment: ${{ vars.PREVIEW_API_ENV_JSON }}
+      TF_VAR_web_environment: ${{ vars.PREVIEW_WEB_ENV_JSON }}
+      TF_VAR_api_listener_paths: ${{ vars.API_LISTENER_PATHS }}
+      TF_VAR_codedeploy_alarm_names: ${{ vars.PREVIEW_CODEDEPLOY_ALARMS }}
+      TF_VAR_deployment_ready_wait_time_minutes: ${{ vars.PREVIEW_DEPLOYMENT_WAIT_MINUTES }}
+      TF_VAR_green_termination_wait_time_minutes: ${{ vars.PREVIEW_TERMINATION_WAIT_MINUTES }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_PREVIEW_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.7.5
+
+      - name: Initialise Terraform
+        working-directory: infra/terraform/environments/preview
+        run: |
+          set -euo pipefail
+          BACKEND_ARGS=()
+          if [[ -n "${TF_BACKEND_BUCKET}" ]]; then
+            BACKEND_ARGS+=("-backend-config=bucket=${TF_BACKEND_BUCKET}")
+          fi
+          if [[ -n "${TF_BACKEND_KEY_PREFIX}" ]]; then
+            BACKEND_ARGS+=("-backend-config=key=${TF_BACKEND_KEY_PREFIX}/pr-${TF_VAR_pr_number}.tfstate")
+          fi
+          if [[ -n "${TF_BACKEND_DYNAMODB_TABLE}" ]]; then
+            BACKEND_ARGS+=("-backend-config=dynamodb_table=${TF_BACKEND_DYNAMODB_TABLE}")
+          fi
+          terraform init "${BACKEND_ARGS[@]}"
+
+      - name: Destroy preview environment
+        working-directory: infra/terraform/environments/preview
+        run: |
+          set -euo pipefail
+          terraform destroy -auto-approve
