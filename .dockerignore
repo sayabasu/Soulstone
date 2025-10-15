@@ -1,0 +1,14 @@
+.git
+.github
+node_modules
+pnpm-debug.log
+Dockerfile
+Dockerfile.*
+dist
+tmp
+.turbo
+.idea
+.vscode
+coverage
+*.local
+*.log
