@@ -80,7 +80,7 @@ export const authenticateUser = async ({ email, password }) => {
   }
 
   const token = issueToken(user);
-  const { passwordHash, ...safeUser } = user;
+  const { passwordHash: _passwordHash, ...safeUser } = user;
   return { token, user: safeUser };
 };
 

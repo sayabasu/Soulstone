@@ -1,0 +1,66 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "coverage/**",
+    "client/vite.config.js",
+    "server/prisma/**"
+  ],
+  "env": {
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["client/src/**/*.{js,jsx}", "client/**/*.config.js"],
+      "env": {
+        "browser": true
+      },
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended"
+      ],
+      "plugins": ["react", "react-hooks"],
+      "settings": {
+        "react": {
+          "version": "detect"
+        }
+      },
+      "rules": {
+        "react/prop-types": "off",
+        "react/jsx-uses-react": "off"
+      }
+    },
+    {
+      "files": ["server/src/**/*.js", "shared/**/*.js"],
+      "env": {
+        "node": true
+      },
+      "extends": ["eslint:recommended"],
+      "rules": {
+        "no-console": ["warn", { "allow": ["warn", "error"] }],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+      }
+    },
+    {
+      "files": ["**/__tests__/**/*.js", "**/*.test.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
