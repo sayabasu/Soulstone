@@ -16,10 +16,13 @@ Welcome to the Soulstone engineering team! This guide walks you through prerequi
    ```bash
    make install
    ```
-3. **Copy environment variables**:
-   ```bash
-   cp .env.example .env.local
-   ```
+3. **Copy environment variable templates** for the modes you plan to run:
+   - Development defaults live in `.env.dev` (copy from `.env.dev.example`).
+   - Local overrides that should stay on your machine go in `.env.local` (copy from `.env.local.example`).
+   - Automated tests read from `.env.test` (copy from `.env.test.example`).
+
+   The configuration loader will read `.env.local` first when `NODE_ENV=development`, then fall back to `.env.dev` if no override exists. Create only the files you need—each template is ignored by Git once copied so you can safely customise secrets locally.
+
 4. **Start dependent services**:
    ```bash
    make db-up
