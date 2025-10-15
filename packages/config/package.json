@@ -1,0 +1,27 @@
+{
+  "name": "@soulstone/config",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm exec tsc -p tsconfig.json",
+    "clean": "pnpm exec rimraf dist",
+    "dev": "pnpm exec tsx watch src/index.ts",
+    "lint": "pnpm exec eslint \"src/**/*.{ts,tsx}\"",
+    "test": "echo 'No tests yet'",
+    "typecheck": "pnpm exec tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "dotenv-safe": "^9.1.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/dotenv-safe": "^9.1.0",
+    "@types/node": "^20.11.10"
+  }
+}
