@@ -1,0 +1,34 @@
+import React from 'react';
+
+import App from './App.jsx';
+import LoginPage from './features/auth/LoginPage.jsx';
+import RegisterPage from './features/auth/RegisterPage.jsx';
+import CatalogPage from './features/catalog/CatalogPage.jsx';
+import HomePage from './features/home/HomePage.jsx';
+
+const routes = [
+  {
+    path: '/',
+    element: React.createElement(App),
+    children: [
+      {
+        index: true,
+        element: React.createElement(HomePage),
+      },
+      {
+        path: 'login',
+        element: React.createElement(LoginPage),
+      },
+      {
+        path: 'register',
+        element: React.createElement(RegisterPage),
+      },
+      {
+        path: 'catalog',
+        element: React.createElement(CatalogPage),
+      },
+    ],
+  },
+];
+
+export default routes;

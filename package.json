@@ -1,13 +1,36 @@
 {
   "name": "soulstone",
   "private": true,
-  "workspaces": [
-    "client",
-    "server"
-  ],
+  "packageManager": "pnpm@9.9.0",
   "scripts": {
-    "build": "npm run build --workspaces",
-    "lint": "npm run lint --workspaces",
-    "test": "npm run test --workspaces"
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r --parallel run dev",
+    "lint": "pnpm -r run lint",
+    "format": "pnpm -r run format",
+    "test": "pnpm -r run test",
+    "typecheck": "pnpm -r run typecheck",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": [
+      "pnpm exec eslint --max-warnings=0"
+    ],
+    "*.{json,md,mdx,yaml,yml,css,scss}": [
+      "pnpm exec prettier --check"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "eslint": "^8.57.0",
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "typescript": "5.5.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "5.5.4"
+    }
   }
 }

@@ -1,0 +1,20 @@
+{
+  "name": "@soulstone/tsconfig",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    "./base.json": "./tsconfig.base.json",
+    "./node.json": "./tsconfig.node.json",
+    "./react.json": "./tsconfig.react.json"
+  },
+  "scripts": {
+    "build": "echo \"No build required for tsconfig\"",
+    "lint": "echo \"No linting required for tsconfig\"",
+    "typecheck": "echo \"No typecheck required for tsconfig\"",
+    "test": "echo \"No tests for tsconfig\"",
+    "format": "prettier --check \"tsconfig.*.json\""
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}

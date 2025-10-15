@@ -1,0 +1,8 @@
+{
+  "extends": "@soulstone/tsconfig/node.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts", "src/**/*.js", "prisma/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

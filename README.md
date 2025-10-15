@@ -1,54 +1,63 @@
 # Soulstone
 
-Soulstone is a full-stack learning platform that combines a React-based client, a Node.js/Express server, and shared type definitions to deliver a cohesive experience for learners and instructors. This repository hosts the complete monorepo, including frontend, backend, shared utilities, and documentation resources.
+Soulstone is a full-stack commerce and learning platform delivered through a monorepo that houses the web frontend, API backend, shared tooling, and infrastructure assets.
 
 ## Repository Structure
-- `client/` – React application organized by feature folders under `src/features`.
-- `server/` – Node.js backend exposing REST APIs, with modules that mirror frontend features and integrations for external services.
-- `shared/` – Reusable types and helpers consumed by both the client and server.
-- `docs/` – Project documentation, including API specs, database schema references, and feature notes.
-- `package.json` – Root package manifest that coordinates workspace scripts and dependencies.
 
-## Development Prerequisites
-- Node.js 18+
-- npm 9+
-- PostgreSQL and MongoDB instances for persistent storage
+- `apps/api` – Node.js/Express API with Prisma, GraphQL, and REST surface areas.
+- `apps/web` – React client powered by Vite and Material UI.
+- `packages/config` – Shared helpers for environment loading and configuration management.
+- `packages/ui` – Design system and reusable UI primitives (placeholder scaffolding for now).
+- `packages/tsconfig` – Shared TypeScript compiler options for Node and React targets.
+- `packages/eslint-config` – Centralized ESLint rules consumed across the workspace.
+- `infra/terraform` – Terraform modules and stacks (scaffolding).
+- `ops` – Operational tooling and runbooks (scaffolding).
+- `docs` – Product and engineering documentation, including onboarding instructions.
 
-Install dependencies from the repository root:
+## Tooling Requirements
+
+- Node.js 20 (managed via `.nvmrc`)
+- PNPM 9 (Corepack included with Node 20)
+- Docker Engine with Compose v2
+
+## Getting Started
+
+1. Install dependencies and bring up backing services:
+   ```bash
+   make bootstrap
+   ```
+2. Start all applications in watch mode:
+   ```bash
+   pnpm dev
+   ```
+
+Consult [`docs/ONBOARDING.md`](docs/ONBOARDING.md) for the full setup checklist.
+
+## Workspace Scripts
+
+These scripts can be executed from the repository root and will fan out to every workspace.
 
 ```bash
-npm install
+pnpm build      # Build all packages/apps (generates Prisma client for the API)
+pnpm lint       # Run ESLint with the shared configuration
+pnpm typecheck  # Perform TypeScript checks using shared configs
+pnpm test       # Execute package-specific test suites
+pnpm format     # Run Prettier in check mode
 ```
 
-## Running with Docker
-The repository includes Docker images for the client and server. Docker Compose loads the shared
-configuration from `.env.example` so both containers have sensible defaults during local development.
-Copy that file to `.env` and update the values before running in a real environment so secrets—especially
-`DATABASE_URL`—point at infrastructure you control.
+## Docker Compose Environment
+
+The repository ships with a Compose stack that provisions Postgres 15, Redis 7, MailHog, LocalStack, and the application containers. Health checks ensure dependencies are ready before services start.
 
 ```bash
 docker compose up --build
 ```
 
-The default configuration exposes the client at <http://localhost:5173> and the API at <http://localhost:4000>.
-Adjust the `PORT` and `CLIENT_PORT` values in your `.env` to change the ports published on your machine.
-Set the `DATABASE_URL` to a reachable Postgres instance; the server now validates that the variable exists
-and will exit with a descriptive message if it is missing.
+Environment variables live in `.env.dev`, `.env.test`, and `.env.local` (ignored by Git). `.env.example` documents all required variables.
 
-## Common Scripts
-Run scripts from the repository root unless otherwise noted.
+## Contributing
 
-```bash
-npm run dev          # Start client and server in development mode
-npm run lint         # Lint the codebase with ESLint
-npm run test         # Execute the test suite
-npm run prisma:migrate # Apply database migrations for the Prisma-managed Postgres schema
-```
-
-## Contribution Guidelines
-- Follow the feature-based folder structure for both frontend and backend additions.
-- Write JSDoc comments for all functions and APIs.
-- Update the documentation in `docs/` when introducing new features or modifying existing behavior.
-- Do not commit sensitive configuration values; rely on environment variables and update `.env.example` when needed.
-
-For more detailed standards, review the project-wide guidelines in `Agents.md`.
+- Follow the feature-based structure documented in `Agents.md`.
+- Keep API contracts and shared types in sync between `apps/api` and `packages`.
+- Update relevant documents in `docs/` when introducing or changing functionality.
+- Never commit secrets; update `.env.example` whenever new variables are required.

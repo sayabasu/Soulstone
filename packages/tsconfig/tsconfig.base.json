@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "baseUrl": "..",
+    "paths": {
+      "@soulstone/config": ["../config/src/index.js"],
+      "@soulstone/config/*": ["../config/src/*"],
+      "@soulstone/ui": ["../ui/src/index.ts"],
+      "@soulstone/ui/*": ["../ui/src/*"],
+      "@soulstone/types": ["../shared/types/index.js"],
+      "@soulstone/types/*": ["../shared/types/*"]
+    }
+  },
+  "include": ["../**/*.ts", "../**/*.tsx", "../**/*.js", "../**/*.jsx"],
+  "exclude": ["../**/node_modules", "../**/dist", "../**/build"]
+}

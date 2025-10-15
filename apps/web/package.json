@@ -1,0 +1,37 @@
+{
+  "name": "@soulstone/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "format": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "test": "vitest --run --passWithNoTests"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.15.21",
+    "@mui/material": "^5.15.21",
+    "@soulstone/ui": "workspace:*",
+    "axios": "^1.7.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1",
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@soulstone/eslint-config": "workspace:*",
+    "@soulstone/tsconfig": "workspace:*",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "5.5.4",
+    "vite": "^5.3.4",
+    "vitest": "^1.6.0"
+  }
+}

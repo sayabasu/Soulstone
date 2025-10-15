@@ -1,0 +1,40 @@
+{
+  "name": "@soulstone/api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "pnpm exec prisma generate",
+    "dev": "pnpm run prisma:migrate && NODE_ENV=development node --watch src/index.js",
+    "start": "pnpm run prisma:migrate && node src/index.js",
+    "prisma:migrate": "pnpm exec prisma migrate deploy",
+    "prisma:generate": "pnpm exec prisma generate",
+    "lint": "eslint . --ext .js,.ts --max-warnings=0",
+    "format": "prettier --check \"src/**/*.{js,ts}\"",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "test": "NODE_OPTIONS=--experimental-vm-modules pnpm exec jest"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.9.5",
+    "@prisma/client": "^5.15.0",
+    "@soulstone/config": "workspace:*",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "graphql": "^16.8.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "prisma": "^5.15.0",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@soulstone/eslint-config": "workspace:*",
+    "@soulstone/tsconfig": "workspace:*",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "typescript": "5.5.4"
+  }
+}

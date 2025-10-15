@@ -1,0 +1,24 @@
+{
+  "name": "@soulstone/config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "dotenv-safe": "^9.1.0"
+  },
+  "scripts": {
+    "build": "tsc --project tsconfig.json --noEmit",
+    "lint": "eslint src --ext .js --max-warnings=0",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "test": "echo \"No tests for @soulstone/config yet\"",
+    "format": "prettier --check \"src/**/*.js\""
+  },
+  "devDependencies": {
+    "@soulstone/eslint-config": "workspace:*",
+    "@soulstone/tsconfig": "workspace:*",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "5.5.4"
+  }
+}
