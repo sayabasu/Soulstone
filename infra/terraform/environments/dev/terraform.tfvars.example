@@ -1,0 +1,21 @@
+project      = "soulstone"
+environment  = "dev"
+region       = "ap-south-1"
+root_domain  = "example.soulstone.in"
+web_domain   = "app.example.soulstone.in"
+api_domain   = "api.example.soulstone.in"
+
+alert_webhook_endpoint = null
+alert_email_addresses  = []
+
+api_environment = {
+  NODE_ENV = "production"
+}
+
+web_environment = {
+  NODE_ENV = "production"
+}
+
+api_feature_flags = {
+  enableNewCheckout = false
+}
