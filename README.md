@@ -21,18 +21,19 @@ npm install
 ```
 
 ## Running with Docker
-The repository includes Docker images for the client and server. Docker Compose now attempts to load
-configuration from a local `.env` file first and falls back to `.env.example` if the local override is
-missing. Update `.env` to customize your host port bindings or other secrets while keeping `.env.example`
-as the shared template.
+The repository includes Docker images for the client and server. Docker Compose loads the shared
+configuration from `.env.example` so both containers have sensible defaults during local development.
+Copy that file to `.env` and update the values before running in a real environment so secrets—especially
+`DATABASE_URL`—point at infrastructure you control.
 
 ```bash
 docker compose up --build
 ```
 
 The default configuration exposes the client at <http://localhost:5173> and the API at <http://localhost:4000>.
-Adjust the `PORT` and `CLIENT_PORT` values in your `.env` to change the ports published on your machine. Set
-the `DATABASE_URL` in `.env.example` (or your local `.env`) to point at your hosted PostgreSQL instance.
+Adjust the `PORT` and `CLIENT_PORT` values in your `.env` to change the ports published on your machine.
+Set the `DATABASE_URL` to a reachable Postgres instance; the server now validates that the variable exists
+and will exit with a descriptive message if it is missing.
 
 ## Common Scripts
 Run scripts from the repository root unless otherwise noted.

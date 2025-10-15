@@ -7,6 +7,8 @@ services:
       dockerfile: server/Dockerfile
     ports:
       - '${PORT:-4000}:4000'
+    env_file:
+      - .env.example
 
   client:
     build:
