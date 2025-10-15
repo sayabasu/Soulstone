@@ -1,0 +1,23 @@
+{
+  "name": "@soulstone/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm exec tsc -p tsconfig.json",
+    "clean": "pnpm exec rimraf dist",
+    "dev": "pnpm exec tsx watch src/index.ts",
+    "lint": "pnpm exec eslint \"src/**/*.{ts,tsx}\"",
+    "test": "echo 'No tests yet'",
+    "typecheck": "pnpm exec tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@soulstone/config": "workspace:*",
+    "@soulstone/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.10"
+  }
+}

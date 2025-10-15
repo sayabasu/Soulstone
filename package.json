@@ -1,0 +1,50 @@
+{
+  "name": "soulstone",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@8.15.4",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "scripts": {
+    "build": "pnpm -r --workspace-root=false run build",
+    "clean": "pnpm -r --workspace-root=false run clean",
+    "dev": "pnpm -r --workspace-root=false --parallel run dev",
+    "format": "prettier --write \"**/*.{cjs,cts,mjs,mts,ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{cjs,cts,mjs,mts,ts,tsx,js,jsx,json,md,yml,yaml}\"",
+    "lint": "pnpm -r --workspace-root=false run lint",
+    "lint:fix": "pnpm -r --workspace-root=false run lint -- --fix",
+    "prepare": "husky install",
+    "test": "pnpm -r --workspace-root=false run test",
+    "typecheck": "pnpm -r --workspace-root=false run typecheck"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "pnpm exec eslint --max-warnings=0"
+    ],
+    "*.{ts,tsx,js,jsx,json,md,yml,yaml}": [
+      "pnpm exec prettier --check"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "dotenv-safe": "^9.1.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "husky": "^9.0.7",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
+    "rimraf": "^5.0.5",
+    "@soulstone/eslint-config": "workspace:*"
+  }
+}

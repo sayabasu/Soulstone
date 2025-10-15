@@ -1,0 +1,10 @@
+{
+  "extends": "./packages/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": ".",
+    "tsBuildInfoFile": "dist/root.tsbuildinfo"
+  },
+  "include": ["scripts/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

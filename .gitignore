@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds
+dist/
+build/
+coverage/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Editors
+.DS_Store
+*.log
+
+# Docker
+docker-data/
+
+# Misc
+.pnp.*

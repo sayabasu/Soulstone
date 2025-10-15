@@ -1,0 +1,78 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: soulstone
+      POSTGRES_USER: soulstone
+      POSTGRES_PASSWORD: soulstone
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U soulstone']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - soulstone
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    command: ['redis-server', '--appendonly', 'yes']
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - soulstone
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    restart: unless-stopped
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+    healthcheck:
+      test: ['CMD', 'nc', '-z', 'localhost', '1025']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - soulstone
+
+  localstack:
+    image: localstack/localstack:2.3
+    restart: unless-stopped
+    ports:
+      - '4566:4566'
+    environment:
+      SERVICES: 's3,secretsmanager,sqs'
+      DEBUG: '1'
+    volumes:
+      - localstack-data:/var/lib/localstack
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:4566/health']
+      interval: 30s
+      timeout: 5s
+      retries: 5
+    networks:
+      - soulstone
+
+volumes:
+  postgres-data:
+  redis-data:
+  localstack-data:
+
+networks:
+  soulstone:
+    driver: bridge
