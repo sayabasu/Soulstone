@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "node --watch src/index.js",
-    "predev": "npm run prisma:generate",
+    "predev": "npm run prisma:migrate && npm run prisma:generate",
     "start": "node src/index.js",
-    "prestart": "npm run prisma:generate",
+    "prestart": "npm run prisma:migrate && npm run prisma:generate",
+    "prisma:migrate": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "lint": "eslint \"src/**/*.js\"",
     "test": "node --experimental-vm-modules ../node_modules/jest/bin/jest.js"
