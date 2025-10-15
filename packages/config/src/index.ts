@@ -19,6 +19,21 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   REDIS_URL: z.string().url(),
   MAILHOG_SMTP_URL: z.string().url(),
+  SECURITY_CORS_ALLOWLIST: z
+    .string()
+    .default('http://localhost:3000')
+    .transform((value) =>
+      value
+        .split(',')
+        .map((origin) => origin.trim())
+        .filter((origin) => origin.length > 0),
+    )
+    .pipe(z.array(z.string().url()).min(1, 'At least one CORS origin must be configured.')),
+  RATE_LIMIT_WINDOW_MS: z.coerce.number().int().min(1000).default(60_000),
+  RATE_LIMIT_MAX_REQUESTS: z.coerce.number().int().min(1).default(100),
+  CIRCUIT_BREAKER_FAILURE_THRESHOLD: z.coerce.number().int().min(1).default(5),
+  CIRCUIT_BREAKER_RECOVERY_MS: z.coerce.number().int().min(1000).default(30_000),
+  PRIVACY_EXPORT_SLA_DAYS: z.coerce.number().int().min(1).max(7).default(7),
 });
 
 export type AppEnv = z.infer<typeof envSchema>;
