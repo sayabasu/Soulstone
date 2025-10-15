@@ -9,6 +9,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:security/recommended-legacy',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -22,7 +23,7 @@ module.exports = {
     ],
     tsconfigRootDir: process.cwd(),
   },
-  plugins: ['@typescript-eslint', 'import', 'unused-imports'],
+  plugins: ['@typescript-eslint', 'import', 'security', 'unused-imports'],
   rules: {
     'import/order': [
       'warn',
