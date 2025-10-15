@@ -14,7 +14,5 @@ services:
       dockerfile: client/Dockerfile
     depends_on:
       - server
-    env_file:
-      - .env.example
     ports:
       - '${CLIENT_PORT:-5173}:5173'
